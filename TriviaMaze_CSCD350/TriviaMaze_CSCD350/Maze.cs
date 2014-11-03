@@ -15,6 +15,7 @@ namespace TriviaMaze_CSCD350 {
             this.mazeFloor = new Floor();
             PlaceExit();
             PickStart();
+            MakeWalls();
         }
 
         private void PlaceExit() {
@@ -31,6 +32,16 @@ namespace TriviaMaze_CSCD350 {
             
             curRoom = mazeFloor.GetRoom(startRoom);
             curPoint = startRoom;
+        }
+
+        private void MakeWalls() {
+            int size = this.mazeFloor.GetSize();
+            for (int i = 0; i < size; i++) {
+                mazeFloor.GetRoom(new Point(0, i)).SetNDoor(new NullDoor());
+                mazeFloor.GetRoom(new Point(i, size - 1)).SetEDoor(new NullDoor());
+                mazeFloor.GetRoom(new Point(size - 1, i)).SetSDoor(new NullDoor());
+                mazeFloor.GetRoom(new Point(i, 0)).SetWDoor(new NullDoor());
+            }
         }
 
         public bool IsSolvable() {
@@ -73,6 +84,14 @@ namespace TriviaMaze_CSCD350 {
             }
             visitedMap[testYCoord, testXCoord] = false; //update visited
             return false;
+        }
+
+        public void DisplayCurRoom() {
+            //TODO update window with current room
+        }
+
+        public void DisplayMiniMap() {
+            //TODO display the minimap
         }
     }
 }
