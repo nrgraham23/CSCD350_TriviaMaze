@@ -4,7 +4,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-        <BitmapImage x:Key="ImageSource1" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Kyle\My Work\Programming\GitHub\CSCD350_TriviaMaze\TriviaMaze_CSCD350\TriviaMaze_CSCD350\Images\hound.jpg"/>
+        <!-- BitmapImage x:Key="ImageSource1" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Kyle\My Work\Programming\GitHub\CSCD350_TriviaMaze\TriviaMaze_CSCD350\TriviaMaze_CSCD350\Images\hound.jpg"/ -->
 
     </Application.Resources>
 </Application>
