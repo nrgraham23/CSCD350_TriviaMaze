@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Floor.cs" />
+    <Compile Include="GameCore.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Room.cs" />

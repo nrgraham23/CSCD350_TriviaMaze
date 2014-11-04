@@ -31,10 +31,13 @@
         <RadioButton x:Name="C_RadioButton" Content="C" IsEnabled="False" Margin="157,213,603,316"/>
         <RadioButton x:Name="D_RadioButton" Content="D" IsEnabled="False" Margin="196,213,557,316"/>
         <TextBox x:Name="AnswerBox" TextWrapping="Wrap" Text="Enter Answer" FontSize="15" IsEnabled="False" Margin="226,213,402,316"/>
-        <Rectangle x:Name="DoorImageRectangle" Fill="#FFC5BFBF" HorizontalAlignment="Left" Height="523" Margin="410,30,0,0" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="364"/>
-        <Image x:Name="DoorsImage" Source= "{DynamicResource ImageSource1}" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="346" Stretch="UniformToFill"/>
+        <Rectangle x:Name="DoorImageRectangle" Fill="#FFC5BFBF" HorizontalAlignment="Left" Height="523" Margin="410,30,0,0" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="374"/>
+        <Image x:Name="LDoorsImage" Source= "{DynamicResource ImageSource1}" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="89" Stretch="UniformToFill"/>
         <Rectangle x:Name="MapRectangle" HorizontalAlignment="Left" Height="292" Margin="10,261,0,0" Stroke="Black" VerticalAlignment="Top" Width="382" StrokeThickness="5" Fill="#FFC5BFBF"/>
         <Canvas x:Name="MapCanvas" HorizontalAlignment="Left" Height="274" Margin="20,270,0,0" VerticalAlignment="Top" Width="362" Background="#FF8B8080" IsEnabled="False"/>
+        <Image x:Name="RDoorsImage" Source= "{DynamicResource ImageSource1}" HorizontalAlignment="Left" Height="505" Margin="686,39,0,0" VerticalAlignment="Top" Width="89" Stretch="UniformToFill"/>
+        <Image x:Name="CDoorsImage_Copy" Source= "{DynamicResource ImageSource1}" HorizontalAlignment="Left" Height="378" Margin="508,39,0,0" VerticalAlignment="Top" Width="178" Stretch="UniformToFill"/>
+        <Image x:Name="BDoorsImage" Source= "{DynamicResource ImageSource1}" HorizontalAlignment="Left" Height="126" Margin="508,418,0,0" VerticalAlignment="Top" Width="178" Stretch="UniformToFill"/>
 
 
 
