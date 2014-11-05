@@ -17,12 +17,13 @@ namespace TriviaMaze_CSCD350 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window, IObserver<Maze> {
         private GameCore gameCore;
 
         public MainWindow() {
             InitializeComponent();
             this.gameCore = new GameCore();
+            this.gameCore.GetMaze().Subscribe(this);
         }
 
         private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
@@ -59,6 +60,20 @@ namespace TriviaMaze_CSCD350 {
 
         private void viewQuestionsGameMenuItemClick(object sender, RoutedEventArgs e) {
 
+        }
+
+        void IObserver<Maze>.OnCompleted() {
+            //not used in this context
+        }
+
+        void IObserver<Maze>.OnError(Exception error) {
+            //not used in this context
+        }
+
+        void IObserver<Maze>.OnNext(Maze value) {
+            
+
+            //update minimap
         }
     }
 }

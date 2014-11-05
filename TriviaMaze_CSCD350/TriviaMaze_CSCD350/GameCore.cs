@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
     class GameCore {
-        
+        private Maze maze;
+
+        public GameCore() {
+            this.maze = new Maze();
+        }
+
         public void SetLDoorImage(String fileName) {
             
         }
@@ -17,6 +22,11 @@ namespace TriviaMaze_CSCD350 {
 
         public void SetRDoorImage(String fileName) {
 
+        }
+
+        //should only ever be used for subscription purposes
+        public Maze GetMaze() {
+            return this.maze;
         }
     }
 }

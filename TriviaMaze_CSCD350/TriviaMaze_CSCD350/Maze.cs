@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Maze {
-        Floor mazeFloor;
-        Room curRoom;
-        Point exit;
-        Point curPoint;
+    class Maze : IObservable<Maze> {
+        private Floor mazeFloor;
+        private Room curRoom;
+        private Point exit;
+        private Point curPoint;
+        private List<IObserver<Maze>> observers;
 
         public Maze() {
             this.mazeFloor = new Floor();
+            this.observers = new List<IObserver<Maze>>();
             PlaceExit();
             PickStart();
             MakeWalls();
@@ -92,6 +94,31 @@ namespace TriviaMaze_CSCD350 {
 
         public void DisplayMiniMap() {
             //TODO display the minimap
+        }
+
+        //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
+        public IDisposable Subscribe(IObserver<Maze> observer) {
+            if (!this.observers.Contains(observer)) {
+                observers.Add(observer);
+            }
+            return new Unsubscriber(observers, observer);
+        }
+
+        //allows for the removal of an observer
+        //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
+        private class Unsubscriber : IDisposable {
+            private List<IObserver<Maze>> _observers;
+            private IObserver<Maze> _observer;
+
+            public Unsubscriber(List<IObserver<Maze>> observers, IObserver<Maze> observer) {
+                this._observers = observers;
+                this._observer = observer;
+            }
+
+            public void Dispose() {
+                if (_observer != null && _observers.Contains(_observer))
+                    _observers.Remove(_observer);
+            }
         }
     }
 }
