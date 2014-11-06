@@ -40,16 +40,16 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetTop(outline, 10);
             MapCanvas.Children.Add(outline);
 
-            for (int x = 0; x < 25; x++)
+            for (int x = 0; x < 5; x++)
             {
-                for (int y = 0; y < 25; y++)
+                for (int y = 0; y < 5; y++)
                 {
                     line = new System.Windows.Shapes.Rectangle();
                     line.Stroke = new SolidColorBrush(Colors.Black);
-                    line.Width = 10;
-                    line.Height = 10;
-                    Canvas.SetLeft(line, 50 + (x * 10));
-                    Canvas.SetTop(line, 10 + (y * 10));
+                    line.Width = 50;
+                    line.Height = 50;
+                    Canvas.SetLeft(line, 50 + (x * 50));
+                    Canvas.SetTop(line, 10 + (y * 50));
                     MapCanvas.Children.Add(line);
                 }
             }
