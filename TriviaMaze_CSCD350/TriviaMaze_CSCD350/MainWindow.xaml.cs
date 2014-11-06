@@ -22,8 +22,37 @@ namespace TriviaMaze_CSCD350 {
 
         public MainWindow() {
             InitializeComponent();
+            drawMiniMap();
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
+        }
+        private void drawMiniMap()
+        {
+            System.Windows.Shapes.Rectangle outline;
+            System.Windows.Shapes.Rectangle line;
+
+            outline = new System.Windows.Shapes.Rectangle();
+            outline.Stroke = new SolidColorBrush(Colors.Black);
+            outline.Width = 250;
+            outline.Height = 250;
+            outline.StrokeThickness = 2;
+            Canvas.SetLeft(outline, 50);
+            Canvas.SetTop(outline, 10);
+            MapCanvas.Children.Add(outline);
+
+            for (int x = 0; x < 25; x++)
+            {
+                for (int y = 0; y < 25; y++)
+                {
+                    line = new System.Windows.Shapes.Rectangle();
+                    line.Stroke = new SolidColorBrush(Colors.Black);
+                    line.Width = 10;
+                    line.Height = 10;
+                    Canvas.SetLeft(line, 50 + (x * 10));
+                    Canvas.SetTop(line, 10 + (y * 10));
+                    MapCanvas.Children.Add(line);
+                }
+            }
         }
 
         private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
