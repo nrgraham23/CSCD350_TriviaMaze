@@ -30,7 +30,7 @@ namespace TriviaMaze_CSCD350 {
         {
             System.Windows.Shapes.Rectangle outline;
             System.Windows.Shapes.Rectangle line;
-
+            
             outline = new System.Windows.Shapes.Rectangle();
             outline.Stroke = new SolidColorBrush(Colors.Black);
             outline.Width = 250;
@@ -53,6 +53,17 @@ namespace TriviaMaze_CSCD350 {
                     MapCanvas.Children.Add(line);
                 }
             }
+
+            //The following will fill in the indiviual squares of the minimap depending on the row and colum
+
+            //System.Windows.Shapes.Rectangle fill;
+            //fill = new System.Windows.Shapes.Rectangle();
+            //fill.Fill = new SolidColorBrush(Colors.,color>);
+            //fill.Width = 50;
+            //fill.Height = 50;
+            //Canvas.SetLeft(fill, 50 + (<row> * 50));
+            //Canvas.SetTop(fill, 10 + (<colum> * 50));
+            //MapCanvas.Children.Add(fill);
         }
 
         private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
