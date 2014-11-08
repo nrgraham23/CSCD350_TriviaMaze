@@ -19,12 +19,12 @@
                 <MenuItem x:Name="aboutMenuItem" Header="About" Click="aboutGameMenuItemClick"/>
                 <MenuItem x:Name="ctrlsMenuItem" Header="Controls" Click="controlsGameMenuItemClick"/>
             </MenuItem>
-            <MenuItem Header="_Tools" x:Name="toolsMenuItem">
+            <MenuItem Header="_Tools" x:Name="toolsMenuItem" Click="toolsMenuItem_Click">
                 <MenuItem x:Name="addQMenuItem" Header="Add Question" Click="addQuestionGameMenuItemClick"/>
                 <MenuItem x:Name="viewQuestionsMenuItem" Header="View Questions" Click="viewQuestionsGameMenuItemClick"/>
             </MenuItem>
         </Menu>
-        <TextBox x:Name="QuestionBox" HorizontalAlignment="Left" Height="178" TextWrapping="Wrap"  VerticalAlignment="Top" Width="382" IsReadOnlyCaretVisible="True" IsEnabled="False" Margin="10,30,0,0"/>
+        <TextBox x:Name="QuestionBox" HorizontalAlignment="Left" Height="178" TextWrapping="Wrap"  VerticalAlignment="Top" Width="382" IsReadOnlyCaretVisible="True" Margin="10,30,0,0" Text="Question...." IsEnabled="False"/>
 
         <RadioButton x:Name="A_TrueRadioButton" Content="A / True" IsEnabled="False" Margin="10,213,714,316"/>
         <RadioButton x:Name="B_FalseRadioButton" Content="B / False" IsEnabled="False" Margin="80,213,642,316" />

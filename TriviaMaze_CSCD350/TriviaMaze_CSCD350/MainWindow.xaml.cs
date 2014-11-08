@@ -115,5 +115,10 @@ namespace TriviaMaze_CSCD350 {
 
             //update minimap
         }
+
+        private void toolsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
