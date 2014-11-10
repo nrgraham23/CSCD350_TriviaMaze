@@ -8,7 +8,7 @@ namespace TriviaMaze_CSCD350{
     class Random_Question_Factory{
         public IQuestion createQuestion(){
 
-            IQuestion Q = new TF_Answer_Question();
+            IQuestion Q;
 
            return Q;
         }

@@ -7,5 +7,7 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350{
     interface IQuestion{
 
+        Boolean CheckAnswer(String playerAnswer);
+
     }
 }
