@@ -25,6 +25,8 @@ namespace TriviaMaze_CSCD350 {
             drawMiniMap();
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
+            InitDoors();
+            
         }
 
         private void drawMiniMap()
@@ -65,6 +67,13 @@ namespace TriviaMaze_CSCD350 {
             //Canvas.SetLeft(fill, 50 + (<row> * 50));
             //Canvas.SetTop(fill, 10 + (<colum> * 50));
             //MapCanvas.Children.Add(fill);
+        }
+
+        private void InitDoors() {
+            this.RDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\rdoor_closed.png", UriKind.Relative)));
+            this.LDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\ldoor_closed.png", UriKind.Relative)));
+            this.CDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\cdoor_closed.png", UriKind.Relative)));
+            this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
         }
 
         private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
@@ -112,7 +121,8 @@ namespace TriviaMaze_CSCD350 {
         }
 
         void IObserver<Maze>.OnNext(Maze value) {
-            
+            //this.RDoorsImage.Source = new BitmapImage(new Uri(@"..\..\Images\rdoor_closed", UriKind.Relative));
+            //Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\..\TriviaMaze\door.png", UriKind.Relative)));
 
             //update minimap
         }

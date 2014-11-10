@@ -89,7 +89,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         public void DisplayCurRoom() {
-            //TODO update window with current room
+            observers[0].OnNext(this);
         }
 
         public void DisplayMiniMap() {
