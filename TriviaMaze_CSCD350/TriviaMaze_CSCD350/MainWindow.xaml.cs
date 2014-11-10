@@ -26,6 +26,7 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
         }
+
         private void drawMiniMap()
         {
             System.Windows.Shapes.Rectangle outline;
@@ -116,6 +117,27 @@ namespace TriviaMaze_CSCD350 {
             //update minimap
         }
 
+        //=====================================================================
+        //
+        void IObserver<Short_Answer_Question>.OnCompleted() {
+            //not used in this context
+        }
+
+        //=====================================================================
+        //
+        void IObserver<Short_Answer_Question>.OnError(Exception error) {
+            //not used in this context
+        }
+
+        //=====================================================================
+        //
+        void IObserver<Short_Answer_Question>.OnNext(Maze value) {
+            //Updated MainWindow stuff like enable check boxes
+            //Get information to pass to Question classes to check answers
+        }
+
+        //=====================================================================
+        //
         private void toolsMenuItem_Click(object sender, RoutedEventArgs e)
         {
 

@@ -15,6 +15,8 @@ namespace TriviaMaze_CSCD350{
             this.Answer        = A;
         }
 
+        //=====================================================================
+        //
         private Boolean CheckAnswer(String playerAnswer){
 
             //This code is to print out both answer to the screen for the developers.
