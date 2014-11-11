@@ -57,9 +57,9 @@
     <Compile Include="GameCore.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="Maze.cs" />
-    <Compile Include="Multi_Answer_Question.cs" />
+    <Compile Include="MultiAnswerQuestion.cs" />
     <Compile Include="Point.cs" />
-    <Compile Include="Random_Question_Factory.cs" />
+    <Compile Include="RandomQuestionFactory.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="ShortAnswerQuestion.cs" />
     <Compile Include="TFAnswerQuestion.cs" />

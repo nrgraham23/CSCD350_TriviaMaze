@@ -1,8 +1,8 @@
 ﻿/* Twenty Hats
- * Members names
+ * Daniel Moore
  * CSCD 350
  *
- * Brief Description-
+ * Brief Description- Factory for making questions
  * Things To Do-
  * 
 */

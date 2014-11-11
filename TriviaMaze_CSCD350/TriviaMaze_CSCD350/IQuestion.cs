@@ -1,15 +1,24 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Daniel Moore
+ * CSCD 350
+ *
+ * Brief Description- The base class for Quesions, Most of the action happens here.
+ * Things To Do-
+ * 
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
-    class IQuestion : IObservable<IQuestion> {
+        class IQuestion : IObservable<IQuestion> {
 
-        private String Question;
-        private String Answer;
-        private List<IObserver<IQuestion>> observers;
+        protected String Question;
+        protected String Answer;
+        protected List<IObserver<IQuestion>> observers;
 
         public IQuestion(String Q, String A) {
             this.Question = Q;
@@ -17,10 +26,22 @@ namespace TriviaMaze_CSCD350{
             this.observers = new List<IObserver<IQuestion>>();
         }
 
-        //This Is Always Overriden.
-        Boolean CheckAnswer(String playerAnswer) {
-            Console.WriteLine("*Error* - CheckAnswer in IQuestion");
-            return true;
+        //=====================================================================
+        //Checks to see if the answer to the question is right
+        public Boolean CheckAnswer(String playerAnswer) {
+
+            //This code is to print out both answer to the screen for the developers.
+            Console.WriteLine("Player's Answer: " + playerAnswer);
+            Console.WriteLine("Correct Answer: " + this.Answer);
+            //
+
+            Boolean result = false;
+
+            if (this.Answer.Equals(playerAnswer)) {
+                result = true;
+            }
+
+            return result;
         }
 
         //=====================================================================

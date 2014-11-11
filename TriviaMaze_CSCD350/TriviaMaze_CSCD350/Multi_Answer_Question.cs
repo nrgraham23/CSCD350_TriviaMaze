@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
-    class Multi_Answer_Question : IQuestion{
+    class MultiAnswerQuestion : IQuestion{
 
         private String Question;
         private String Answer;
@@ -14,9 +14,7 @@ namespace TriviaMaze_CSCD350{
         private String C;
         private String D;
 
-        public Multi_Answer_Question(String Q, String A) {
-            this.Question      = Q;
-            this.Answer        = A;
+        public MultiAnswerQuestion(String Q, String A) {
         }
 
         private Boolean CheckAnswer(String playerAnswer) {

@@ -2,7 +2,7 @@
  * Daniel Moore
  * CSCD 350
  *
- * Brief Description- Child class of IQuestion for True / False Questions.
+ * Brief Description- Child class of IQuestion for Multipule choice Questions.
  * Things To Do-
  * 
 */
@@ -14,9 +14,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
-    class TFAnswerQuestion : IQuestion{
+    class MultiAnswerQuestion : IQuestion{
 
-        public TFAnswerQuestion(String Q, String A): base(Q, A) {
+        public MultiAnswerQuestion(String Q, String A): base(Q, A) {
             //Nothing needed here yet.
         }
     }
