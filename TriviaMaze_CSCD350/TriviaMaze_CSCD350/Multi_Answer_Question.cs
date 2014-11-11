@@ -34,5 +34,9 @@ namespace TriviaMaze_CSCD350{
 
             return result;
         }
+
+        bool IQuestion.CheckAnswer(string playerAnswer) {
+            throw new NotImplementedException();
+        }
     }
 }

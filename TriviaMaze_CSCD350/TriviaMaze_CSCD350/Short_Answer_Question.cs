@@ -61,5 +61,9 @@ namespace TriviaMaze_CSCD350{
                     _observers.Remove(_observer);
             }
         }
+
+        bool IQuestion.CheckAnswer(string playerAnswer) {
+            throw new NotImplementedException();
+        }
     }
 }
