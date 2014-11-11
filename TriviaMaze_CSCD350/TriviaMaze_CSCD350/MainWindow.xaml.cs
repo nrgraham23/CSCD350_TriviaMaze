@@ -17,7 +17,7 @@ namespace TriviaMaze_CSCD350 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IObserver<Maze> {
+    public partial class MainWindow : Window, IObserver<Maze>, IObserver<Short_Answer_Question> {
         private GameCore gameCore;
 
         public MainWindow() {
@@ -141,16 +141,23 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
         //
+        
+        /*
         void IObserver<Short_Answer_Question>.OnNext(Maze value) {
             //Updated MainWindow stuff like enable check boxes
             //Get information to pass to Question classes to check answers
         }
-
+        */
         //=====================================================================
         //
         private void toolsMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+
+        void IObserver<Short_Answer_Question>.OnNext(Short_Answer_Question value) {
+            throw new NotImplementedException();
         }
     }
 }

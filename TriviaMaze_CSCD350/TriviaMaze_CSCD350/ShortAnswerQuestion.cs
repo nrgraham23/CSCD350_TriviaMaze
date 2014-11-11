@@ -5,20 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
-    class Multi_Answer_Question : IQuestion{
+    class ShortAnswerQuestion : IQuestion{
 
-        private String Question;
-        private String Answer;
-        private String A;
-        private String B;
-        private String C;
-        private String D;
 
-        public Multi_Answer_Question(String Q, String A) {
-            this.Question      = Q;
-            this.Answer        = A;
+
+        public ShortAnswerQuestion(String Q, String A): base(Q, A) {
+            
         }
 
+        //=====================================================================
+        //
         private Boolean CheckAnswer(String playerAnswer) {
 
             //This code is to print out both answer to the screen for the developers.
@@ -35,8 +31,6 @@ namespace TriviaMaze_CSCD350{
             return result;
         }
 
-        bool IQuestion.CheckAnswer(string playerAnswer) {
-            throw new NotImplementedException();
-        }
+        
     }
 }
