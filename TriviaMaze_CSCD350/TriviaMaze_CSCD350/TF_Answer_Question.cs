@@ -5,14 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
-    class TF_Answer_Question : IQuestion{
+    class TFAnswerQuestion : IQuestion{
 
-        private String Question;
-        private String Answer;
 
-        public TF_Answer_Question(String Q, String A) {
-            this.Question      = Q;
-            this.Answer        = A;
+        public TFAnswerQuestion(String Q, String A) {
         }
 
         //=====================================================================
