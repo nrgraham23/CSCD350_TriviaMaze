@@ -26,14 +26,91 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
             InitDoors();
+
+            DemoTheMap(); //It is important to delete this method call before we implement the game logic
             
         }
 
+        //=====================================================================
+        //Delete this DemoTheMap method when finish the software
+
+        private void DemoTheMap()
+        {
+            FillInVerticleDoor(0, 0, false);
+            FillInHorizonalDoor(0, 0, true);
+            FillInHorizonalDoor(1, 0, true);
+            FillInVerticleDoor(1, 0, false);
+            FillInVerticleDoor(2, 0, true);
+            FillInHorizonalDoor(2, 0, false);
+            FillInHorizonalDoor(2, 1, false);
+            FillInVerticleDoor(2, 1, true);
+            FillInVerticleDoor(2, 2, true);
+            FillInVerticleDoor(2, 3, true);
+            FillInHorizonalDoor(2, 2, false);
+            FillInHorizonalDoor(2, 3, false);
+            FillInVerticleDoor(2, 4, false);
+            FillInVerticleDoor(3, 4, true);
+            FillInHorizonalDoor(3, 3, false);
+            FillInVerticleDoor(3, 3, false);
+            FillInHorizonalDoor(4, 3, false);
+        }
+
+        //=====================================================================
+        //
+
         private void drawMiniMap()
         {
+            DrawOutline();
+            DrawLines();
+            DrawVerticleDoors();
+            DrawHorizontalDoors();
+            DrawEntranceExit();
+        }
+
+        //=====================================================================
+        //
+
+        private void FillInVerticleDoor(int row, int column, bool wrong)
+        {
+            System.Windows.Shapes.Rectangle verticleDoor;
+            verticleDoor = new System.Windows.Shapes.Rectangle();
+            verticleDoor.Stroke = new SolidColorBrush(Colors.Black);
+            verticleDoor.Width = 10;
+            verticleDoor.Height = 10;
+            if (wrong == true)
+                verticleDoor.Fill = new SolidColorBrush(Colors.Red);
+            else
+                verticleDoor.Fill = new SolidColorBrush(Colors.Green);
+            Canvas.SetLeft(verticleDoor, 95 + (row * 50));
+            Canvas.SetTop(verticleDoor, 30 + (column * 50));
+            MapCanvas.Children.Add(verticleDoor);
+        }
+
+        //=====================================================================
+        //
+
+        private void FillInHorizonalDoor(int row, int column, bool wrong)
+        {
+            System.Windows.Shapes.Rectangle horizontalDoor;
+            horizontalDoor = new System.Windows.Shapes.Rectangle();
+            horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
+            horizontalDoor.Width = 10;
+            horizontalDoor.Height = 10;
+            if (wrong == true)
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Red);
+            else
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Green);
+            Canvas.SetLeft(horizontalDoor, 70 + (row * 50));
+            Canvas.SetTop(horizontalDoor, 55 + (column * 50));
+            MapCanvas.Children.Add(horizontalDoor);
+        }
+
+        //=====================================================================
+        //
+
+        private void DrawOutline()
+        {
             System.Windows.Shapes.Rectangle outline;
-            System.Windows.Shapes.Rectangle line;
-            
             outline = new System.Windows.Shapes.Rectangle();
             outline.Stroke = new SolidColorBrush(Colors.Black);
             outline.Width = 250;
@@ -42,7 +119,14 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetLeft(outline, 50);
             Canvas.SetTop(outline, 10);
             MapCanvas.Children.Add(outline);
+        }
 
+        //=====================================================================
+        //
+
+        private void DrawLines()
+        {
+            System.Windows.Shapes.Rectangle line;
             for (int x = 0; x < 5; x++)
             {
                 for (int y = 0; y < 5; y++)
@@ -51,23 +135,86 @@ namespace TriviaMaze_CSCD350 {
                     line.Stroke = new SolidColorBrush(Colors.Black);
                     line.Width = 50;
                     line.Height = 50;
+                    line.Fill = new SolidColorBrush(Colors.ForestGreen);
                     Canvas.SetLeft(line, 50 + (x * 50));
                     Canvas.SetTop(line, 10 + (y * 50));
                     MapCanvas.Children.Add(line);
                 }
             }
-
-            //The following will fill in the indiviual squares of the minimap depending on the row and colum
-
-            //System.Windows.Shapes.Rectangle fill;
-            //fill = new System.Windows.Shapes.Rectangle();
-            //fill.Fill = new SolidColorBrush(Colors.,color>);
-            //fill.Width = 50;
-            //fill.Height = 50;
-            //Canvas.SetLeft(fill, 50 + (<row> * 50));
-            //Canvas.SetTop(fill, 10 + (<colum> * 50));
-            //MapCanvas.Children.Add(fill);
         }
+
+        //=====================================================================
+        //
+
+        private void DrawVerticleDoors()
+        {
+            System.Windows.Shapes.Rectangle verticleDoor;
+            for (int x = 0; x < 4; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    verticleDoor = new System.Windows.Shapes.Rectangle();
+                    verticleDoor.Stroke = new SolidColorBrush(Colors.Black);
+                    verticleDoor.Width = 10;
+                    verticleDoor.Height = 10;
+                    verticleDoor.Fill = new SolidColorBrush(Colors.White);
+                    Canvas.SetLeft(verticleDoor, 95 + (x * 50));
+                    Canvas.SetTop(verticleDoor, 30 + (y * 50));
+                    MapCanvas.Children.Add(verticleDoor);
+                }
+            }
+        }
+
+        //=====================================================================
+        //
+
+        private void DrawHorizontalDoors()
+        {
+            System.Windows.Shapes.Rectangle horizontalDoor;
+            for (int x = 0; x < 5; x++)
+            {
+                for (int y = 0; y < 4; y++)
+                {
+                    horizontalDoor = new System.Windows.Shapes.Rectangle();
+                    horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
+                    horizontalDoor.Width = 10;
+                    horizontalDoor.Height = 10;
+                    horizontalDoor.Fill = new SolidColorBrush(Colors.White);
+                    Canvas.SetLeft(horizontalDoor, 70 + (x * 50));
+                    Canvas.SetTop(horizontalDoor, 55 + (y * 50));
+                    MapCanvas.Children.Add(horizontalDoor);
+                }
+            }
+        }
+
+        //=====================================================================
+        //
+
+        private void DrawEntranceExit(/*int entranceColumn, int exitColumn*/)
+        {
+            System.Windows.Shapes.Rectangle entrance;
+            entrance = new System.Windows.Shapes.Rectangle();
+            entrance.Stroke = new SolidColorBrush(Colors.Black);
+            entrance.Width = 15;
+            entrance.Height = 15;
+            entrance.Fill = new SolidColorBrush(Colors.SlateBlue);
+            Canvas.SetLeft(entrance, 50 + (0 * 50));
+            Canvas.SetTop(entrance, 25 + (0 /*entranceColumn*/* 50));
+            MapCanvas.Children.Add(entrance);
+
+            System.Windows.Shapes.Rectangle exit;
+            exit = new System.Windows.Shapes.Rectangle();
+            exit.Stroke = new SolidColorBrush(Colors.Black);
+            exit.Width = 15;
+            exit.Height = 15;
+            exit.Fill = new SolidColorBrush(Colors.Chocolate);
+            Canvas.SetLeft(exit, 85 + (4 * 50));
+            Canvas.SetTop(exit, 25 + (4 /*exitColumn*/ * 50));
+            MapCanvas.Children.Add(exit);
+        }
+
+        //=====================================================================
+        //
 
         private void InitDoors() {
             this.RDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\rdoor_closed.png", UriKind.Relative)));
