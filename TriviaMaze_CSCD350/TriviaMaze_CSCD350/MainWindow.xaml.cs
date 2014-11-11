@@ -246,7 +246,7 @@ namespace TriviaMaze_CSCD350 {
         private void controlsGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("The bottom left hand corner you will see a map of\n" +
                             "the maze. \n\nUse it to find your way from where you entered \n" +
-                            "(insert color here) to the exit (insert color here)\n" +
+                            "\"The Blue Square\" to the exit \"The Brown Square\"\n" +
                             "by clicking or the doorways to move either forward,\n" +
                             "backward, left, or right.", "Controls");
         }
