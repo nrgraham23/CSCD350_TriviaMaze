@@ -289,7 +289,7 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         //
         void IObserver<IQuestion>.OnNext(IQuestion value) {
-            throw new NotImplementedException();
+            
         }
 
         //=====================================================================

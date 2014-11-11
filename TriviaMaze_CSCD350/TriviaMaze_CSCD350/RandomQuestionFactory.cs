@@ -15,23 +15,36 @@ using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
     class RandomQuestionFactory{
+
         public IQuestion createQuestion(String type, String Question, String Answer){
             IQuestion Q = null;
 
             if(type.Equals("TF Question")){
                 //create TF question 
-            }
-            else if(type.Equals("Multi Question")){
-                //create Multi question
+                Q = new TFAnswerQuestion(Question, Answer);
             }
             else if (type.Equals("Short Question")) {
                 //create Short Question
-            }
-            else {
+                Q = new ShortAnswerQuestion(Question, Answer);
+            }else {
                 Console.WriteLine("*Error* - createQuestion in Random_Question_Factory");
             }
 
            return Q;
         }
+
+        public IQuestion createQuestion(String type, String Question, String Answer, String A, String B, String C, String D) {
+            IQuestion Q = null;
+            
+            if(type.Equals("Multi Question")){
+                //create Multi question
+                Q = new MultiAnswerQuestion(Question, Answer, A, B, C, D);
+            }else{
+                Console.WriteLine("*Error* - createQuestion in Random_Question_Factory");
+            }
+
+            return Q;
+        }
+
     }
 }

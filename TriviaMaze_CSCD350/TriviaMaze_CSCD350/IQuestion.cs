@@ -3,7 +3,8 @@
  * CSCD 350
  *
  * Brief Description- The base class for Quesions, Most of the action happens here.
- * Things To Do-
+ * Things To Do- 
+ * -Change IQuestion to Question
  * 
 */
 
@@ -42,6 +43,18 @@ namespace TriviaMaze_CSCD350{
             }
 
             return result;
+        }
+
+        //=====================================================================
+        //Prints out Answer
+        public void PrintAnswer() {
+            Console.WriteLine(this.Answer);
+        }
+
+        //=====================================================================
+        //Prints out Question
+        public virtual void PrintQuestion() {
+            Console.WriteLine(this.Question);
         }
 
         //=====================================================================

@@ -16,8 +16,23 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350{
     class MultiAnswerQuestion : IQuestion{
 
-        public MultiAnswerQuestion(String Q, String A): base(Q, A) {
-            //Nothing needed here yet.
+        protected String[] MultiChoiceList = new String[4];
+
+        public MultiAnswerQuestion(String Q, String A, String Aanswer, String Banswer, String Canswer, String Danswer): base(Q, A) {
+            this.MultiChoiceList[0] = Aanswer;
+            this.MultiChoiceList[1] = Banswer;
+            this.MultiChoiceList[2] = Canswer;
+            this.MultiChoiceList[3] = Danswer;
+        }
+
+        public override void PrintQuestion() {
+            base.PrintQuestion();
+
+            int i;
+            for (i = 0; i < 4; i++) {
+                Console.WriteLine(this.MultiChoiceList[i]);
+            }
+            
         }
     }
 }
