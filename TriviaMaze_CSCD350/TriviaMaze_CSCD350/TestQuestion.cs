@@ -22,7 +22,7 @@ namespace TriviaMaze_CSCD350 {
         private static RandomQuestionFactory factory = new RandomQuestionFactory();
         private static IQuestion Question;
 
-        static void Main(string[] args) { TestGetSetMulti(); }
+        //static void Main(string[] args) { TestGetSetMulti(); }
 
         private static void TestFactory() {
             //Basic Test
