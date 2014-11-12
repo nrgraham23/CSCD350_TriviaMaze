@@ -20,6 +20,8 @@ namespace TriviaMaze_CSCD350 {
             MakeWalls();
         }
 
+        //=====================================================================
+
         private void PlaceExit() {
             Random rand = new Random();
             int size = mazeFloor.GetSize();
@@ -28,13 +30,18 @@ namespace TriviaMaze_CSCD350 {
             exit = new Point(exitRow, size - 1);
         }
 
+        //=====================================================================
+
         private void PickStart() {
             Random rand = new Random();
             Point startRoom = new Point(rand.Next(mazeFloor.GetSize()), 0);
             
             curRoom = mazeFloor.GetRoom(startRoom);
+            curRoom.SetEnteredFrom('w');
             curPoint = startRoom;
         }
+
+        //=====================================================================
 
         private void MakeWalls() {
             int size = this.mazeFloor.GetSize();
@@ -45,6 +52,8 @@ namespace TriviaMaze_CSCD350 {
                 mazeFloor.GetRoom(new Point(i, 0)).SetWDoor(new NullDoor());
             }
         }
+
+        //=====================================================================
 
         public bool IsSolvable() {
             int size = mazeFloor.GetSize();
@@ -88,22 +97,23 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
-        public void DisplayCurRoom() {
-            observers[0].OnNext(this);
+        //=====================================================================
+
+        public Room GetCurRoom() {
+            return this.curRoom;
         }
 
-        public void DisplayMiniMap() {
-            //TODO display the minimap
-        }
-
+        //=====================================================================
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         public IDisposable Subscribe(IObserver<Maze> observer) {
             if (!this.observers.Contains(observer)) {
                 observers.Add(observer);
+                observers[0].OnNext(this);
             }
             return new Unsubscriber(observers, observer);
         }
 
+        //=====================================================================
         //allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {

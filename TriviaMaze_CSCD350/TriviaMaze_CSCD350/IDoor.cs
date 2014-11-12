@@ -8,7 +8,7 @@ namespace TriviaMaze_CSCD350 {
     interface IDoor {
 
         void Enter();
-        void Display();
+        String GetFileName();
         bool Passable();
     }
 }

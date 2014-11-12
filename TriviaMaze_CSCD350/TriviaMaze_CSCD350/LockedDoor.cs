@@ -12,9 +12,13 @@ namespace TriviaMaze_CSCD350
             
         }
 
-        public void Display() {
-            
+        //=====================================================================
+
+        public String GetFileName() {
+            return "door_locked.png";
         }
+
+        //=====================================================================
 
         public bool Passable() {
             return false;

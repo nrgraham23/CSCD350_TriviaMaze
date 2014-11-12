@@ -10,6 +10,7 @@ namespace TriviaMaze_CSCD350 {
         private IDoor eDoor;
         private IDoor sDoor;
         private IDoor wDoor;
+        private char enteredFrom;
 
         public Room() {
             this.nDoor = new ClosedDoor();
@@ -18,21 +19,31 @@ namespace TriviaMaze_CSCD350 {
             this.wDoor = new ClosedDoor();
         }
 
+        //=====================================================================
+
         public void EnterNorth() {
             nDoor.Enter();
         }
+
+        //=====================================================================
 
         public void EnterEast() {
             eDoor.Enter();
         }
 
+        //=====================================================================
+
         public void EnterSouth() {
             sDoor.Enter();
         }
 
+        //=====================================================================
+
         public void EnterWest() {
             wDoor.Enter();
         }
+
+        //=====================================================================
 
         public bool GetNPassable() {
             return nDoor.Passable();
@@ -46,18 +57,38 @@ namespace TriviaMaze_CSCD350 {
         public bool GetWPassable() {
             return wDoor.Passable();
         }
+        public char GetEnteredFrom() {
+            return this.enteredFrom;
+        }
+        public IDoor GetNDoor() {
+            return this.nDoor;
+        }
+        public IDoor GetEDoor() {
+            return this.eDoor;
+        }
+        public IDoor GetSDoor() {
+            return this.sDoor;
+        }
+        public IDoor GetWDoor() {
+            return this.wDoor;
+        }
+
+        //=====================================================================
 
         public void SetNDoor(IDoor door) {
             this.nDoor = door;
         }
         public void SetEDoor(IDoor door) {
-            this.nDoor = door;
+            this.eDoor = door;
         }
         public void SetSDoor(IDoor door) {
-            this.nDoor = door;
+            this.sDoor = door;
         }
         public void SetWDoor(IDoor door) {
-            this.nDoor = door;
+            this.wDoor = door;
+        }
+        public void SetEnteredFrom(char direction) {
+            this.enteredFrom = direction;
         }
     }
 }

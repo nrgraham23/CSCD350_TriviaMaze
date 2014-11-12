@@ -11,9 +11,13 @@ namespace TriviaMaze_CSCD350 {
 
         }
 
-        public void Display() {
+        //=====================================================================
 
+        public String GetFileName() {
+            return "door_open.png";
         }
+
+        //=====================================================================
 
         public bool Passable() {
             return true;
