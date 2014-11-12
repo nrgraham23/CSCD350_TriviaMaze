@@ -25,6 +25,18 @@ namespace TriviaMaze_CSCD350{
             this.MultiChoiceList[3] = Danswer;
         }
 
+        //=====================================================================
+        //Get and Set for Muli choice list
+        public String[] GetMultiChoiceList() {
+            return this.MultiChoiceList;
+        }
+
+        public override void SetMultiChoiceList(String[] newList) {
+            this.MultiChoiceList = newList;
+        }
+
+        //=====================================================================
+        //Overriden method to also print out A B C D
         public override void PrintQuestion() {
             base.PrintQuestion();
 

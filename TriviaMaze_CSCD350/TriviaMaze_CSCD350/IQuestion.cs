@@ -27,6 +27,25 @@ namespace TriviaMaze_CSCD350{
             this.observers = new List<IObserver<IQuestion>>();
         }
 
+
+        //=====================================================================
+        //Get and Set for Question and Answer
+        public String GetQuestion() {
+            return this.Question;
+        }
+
+        public void SetQuestion(String Q) {
+            this.Question = Q;
+        }
+
+        public String GetAnswer(){
+            return this.Answer;
+        }
+
+        public void SetAnswer(String A){
+            this.Answer = A;
+        }
+
         //=====================================================================
         //Checks to see if the answer to the question is right
         public Boolean CheckAnswer(String playerAnswer) {
@@ -82,6 +101,10 @@ namespace TriviaMaze_CSCD350{
                 if (_observer != null && _observers.Contains(_observer))
                     _observers.Remove(_observer);
             }
+        }
+
+        public virtual void SetMultiChoiceList(String[] newList) {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,11 +22,10 @@ namespace TriviaMaze_CSCD350 {
         private static RandomQuestionFactory factory = new RandomQuestionFactory();
         private static IQuestion Question;
 
-       // static void Main(string[] args) {
-       //     TestFactory();
-        //}
+        static void Main(string[] args) { TestGetSetMulti(); }
 
         private static void TestFactory() {
+            //Basic Test
             type = "TF Question";
 
             Question = factory.createQuestion(type,Q,A);
@@ -35,24 +34,40 @@ namespace TriviaMaze_CSCD350 {
 
             Question.PrintQuestion();
 
+            //Testing Multi Question
             type = "Multi Question";
+            A = "Tree";
+            Q = "What is life?";
 
             Question = factory.createQuestion(type,Q,A,"A.dog","B.cat","C.train","D.Pure Rage");
 
             Question.PrintAnswer();
 
             Question.PrintQuestion();
+
+            Console.WriteLine("CheckAnswer should be true");
+            Console.WriteLine(Question.CheckAnswer("Tree"));
+
+            Console.WriteLine("CheckAnswer should be false");
+            Console.WriteLine(Question.CheckAnswer("xxx"));
         }
 
-        private static void TestTFAnswerQuestion() {
+        private static void TestGetSetMulti() {
+            type = "Multi Question";
+            Question = factory.createQuestion(type, Q, A, "A.dog", "B.cat", "C.train", "D.Pure Rage");
 
-        }
+            Question.PrintQuestion();
+            Question.PrintAnswer();
 
-        private static void TestShortAnswerQuestion() {
+            String[] tempString = new String[4];
+            tempString[0] = "A.Car";
+            tempString[1] = "B.Fluid";
+            tempString[2] = "C.Lake House";
+            tempString[3] = "D.Swing";
+            Question.SetMultiChoiceList(tempString);
 
-        }
-
-        private static void TestMultiAnswerQuestion() {
+            Question.PrintQuestion();
+            Question.PrintAnswer();
 
         }
     }

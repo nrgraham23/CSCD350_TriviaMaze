@@ -16,6 +16,13 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350{
     class RandomQuestionFactory{
 
+        //Creates a Random Question from the Database
+        public IQuestion createRandomQuestion() {
+            throw new NotImplementedException();
+        }
+
+        //=====================================================================
+        //Create a specific question, mostly for testing.
         public IQuestion createQuestion(String type, String Question, String Answer){
             IQuestion Q = null;
 
@@ -33,6 +40,8 @@ namespace TriviaMaze_CSCD350{
            return Q;
         }
 
+        //=====================================================================
+        //Creates a specific question for testing, but its for multi question
         public IQuestion createQuestion(String type, String Question, String Answer, String A, String B, String C, String D) {
             IQuestion Q = null;
             
