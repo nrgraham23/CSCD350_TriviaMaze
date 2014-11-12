@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350 {
     class ClosedDoor : IDoor {
 
-        public void Enter() {
-
+        public bool Enter() {
+            return false; //TODO: ask a question, if right return true, if wrong return false
         }
 
         //=====================================================================

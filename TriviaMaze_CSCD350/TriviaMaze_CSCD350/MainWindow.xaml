@@ -34,10 +34,10 @@
         <Rectangle x:Name="DoorImageRectangle" Fill="#FFC5BFBF" HorizontalAlignment="Left" Height="523" Margin="410,30,0,0" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="374"/>
         <Rectangle x:Name="MapRectangle" HorizontalAlignment="Left" Height="292" Margin="10,261,0,0" Stroke="Black" VerticalAlignment="Top" Width="382" StrokeThickness="5" Fill="#FFC5BFBF"/>
         <Canvas x:Name="MapCanvas" HorizontalAlignment="Left" Height="274" Margin="20,270,0,0" VerticalAlignment="Top" Width="362" Background="#FF8B8080" IsEnabled="False"/>
-        <Canvas x:Name="CDoorCanvas" HorizontalAlignment="Left" Height="378" Margin="508,39,0,0" VerticalAlignment="Top" Width="178"/>
-        <Canvas x:Name="LDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="89"/>
-        <Canvas x:Name="RDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="686,39,0,0" VerticalAlignment="Top" Width="89"/>
-        <Canvas x:Name="BDoorCanvas" HorizontalAlignment="Left" Height="126" Margin="508,417,0,0" VerticalAlignment="Top" Width="178"/>
+        <Canvas x:Name="CDoorCanvas" HorizontalAlignment="Left" Height="378" Margin="508,39,0,0" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="CDoorCanvas_MouseLeftButtonDown"/>
+        <Canvas x:Name="LDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="LDoorCanvas_MouseLeftButtonDown"/>
+        <Canvas x:Name="RDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="686,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="RDoorCanvas_MouseLeftButtonDown"/>
+        <Canvas x:Name="BDoorCanvas" HorizontalAlignment="Left" Height="126" Margin="508,417,0,0" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="BDoorCanvas_MouseLeftButtonDown"/>
 
 
 

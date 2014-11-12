@@ -14,12 +14,22 @@ namespace TriviaMaze_CSCD350 {
             this.column = col;
         }
 
-        public int getRow() {
+        //=====================================================================
+
+        public int GetRow() {
             return this.row;
         }
-
-        public int getCol() {
+        public int GetCol() {
             return this.column;
+        }
+
+        //=====================================================================
+
+        public void SetRow(int row) {
+            this.row = row;
+        }
+        public void SetCol(int col) {
+            this.column = col;
         }
     }
 }

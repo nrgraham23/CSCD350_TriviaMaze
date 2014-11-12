@@ -12,16 +12,64 @@ namespace TriviaMaze_CSCD350 {
             this.maze = new Maze();
         }
 
-        public void SetLDoorImage(String fileName) {
-            
+        public bool RightDoorClick() {
+            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+
+            if (dirEntered == 'n') {
+                return this.maze.MoveWest();
+            } else if (dirEntered == 'w') {
+                return this.maze.MoveSouth();
+            } else if (dirEntered == 's') {
+                return this.maze.MoveEast();
+            } else if (dirEntered == 'e') {
+                return this.maze.MoveNorth();
+            }
+            return false;
         }
 
-        public void SetMDoorImage(String fileName) {
+        public bool CenterDoorClick() {
+            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
 
+            if (dirEntered == 'n') {
+                return this.maze.MoveSouth();
+            } else if (dirEntered == 'w') {
+                return this.maze.MoveEast();
+            } else if (dirEntered == 's') {
+                return this.maze.MoveNorth();
+            } else if (dirEntered == 'e') {
+                return this.maze.MoveWest();
+            }
+            return false;
         }
 
-        public void SetRDoorImage(String fileName) {
+        public bool LeftDoorClick() {
+            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
 
+            if (dirEntered == 'n') {
+                return this.maze.MoveEast();
+            } else if (dirEntered == 'w') {
+                return this.maze.MoveNorth();
+            } else if (dirEntered == 's') {
+                return this.maze.MoveWest();
+            } else if (dirEntered == 'e') {
+                return this.maze.MoveSouth();
+            }
+            return false;
+        }
+
+        public bool BackDoorClick() {
+            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+
+            if (dirEntered == 'n') {
+                return this.maze.MoveNorth();
+            } else if (dirEntered == 'w') {
+                return this.maze.MoveWest();
+            } else if (dirEntered == 's') {
+                return this.maze.MoveSouth();
+            } else if (dirEntered == 'e') {
+                return this.maze.MoveEast();
+            }
+            return false;
         }
 
         //should only ever be used for subscription purposes

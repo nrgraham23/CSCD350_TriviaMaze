@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350 {
     class OpenedDoor : IDoor {
 
-        public void Enter() {
-
+        public bool Enter() {
+            return true;
         }
 
         //=====================================================================

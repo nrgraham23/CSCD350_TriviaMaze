@@ -368,6 +368,22 @@ namespace TriviaMaze_CSCD350 {
 
         }
 
+        private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            this.gameCore.RightDoorClick();
+        }
+
+        private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            this.gameCore.CenterDoorClick();
+        }
+
+        private void LDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            this.gameCore.LeftDoorClick();
+        }
+
+        private void BDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            this.gameCore.BackDoorClick();
+        }
+
 
         
     }

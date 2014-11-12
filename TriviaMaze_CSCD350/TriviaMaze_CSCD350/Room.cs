@@ -13,10 +13,17 @@ namespace TriviaMaze_CSCD350 {
         private char enteredFrom;
 
         public Room() {
+            this.nDoor = new OpenedDoor();
+            this.eDoor = new OpenedDoor();
+            this.sDoor = new OpenedDoor();
+            this.wDoor = new OpenedDoor();
+
+            /* commented out for presentation
             this.nDoor = new ClosedDoor();
             this.eDoor = new ClosedDoor();
             this.sDoor = new ClosedDoor();
             this.wDoor = new ClosedDoor();
+             * */
         }
 
         //=====================================================================

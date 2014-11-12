@@ -28,7 +28,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         public Room GetRoom(Point point) {
-            return floor[point.getRow(), point.getCol()];
+            return floor[point.GetRow(), point.GetCol()];
         }
     }
 }

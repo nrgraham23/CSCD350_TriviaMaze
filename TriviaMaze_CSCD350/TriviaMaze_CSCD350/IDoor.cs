@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350 {
     interface IDoor {
 
-        void Enter();
+        bool Enter(); 
         String GetFileName();
         bool Passable();
     }
