@@ -78,13 +78,10 @@
     <Compile Include="GameCore.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="Maze.cs" />
-    <Compile Include="MultiAnswerQuestion.cs" />
     <Compile Include="Point.cs" />
-    <Compile Include="RandomQuestionFactory.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="QuestionDatabase.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="ShortAnswerQuestion.cs" />
-    <Compile Include="TestQuestion.cs" />
-    <Compile Include="TFAnswerQuestion.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
