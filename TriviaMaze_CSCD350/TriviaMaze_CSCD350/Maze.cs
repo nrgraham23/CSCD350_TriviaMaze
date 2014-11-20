@@ -20,6 +20,8 @@ namespace TriviaMaze_CSCD350 {
             MakeWalls();
         }
 
+        
+
         //=====================================================================
 
         private void PlaceExit() {

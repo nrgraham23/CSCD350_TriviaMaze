@@ -14,6 +14,8 @@ namespace TriviaMaze_CSCD350 {
             this.column = col;
         }
 
+        
+
         //=====================================================================
 
         public int GetRow() {

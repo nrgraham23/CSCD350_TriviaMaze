@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350{
     class RandomQuestionFactory{
+       
 
         //Creates a Random Question from the Database
         public IQuestion createRandomQuestion() {

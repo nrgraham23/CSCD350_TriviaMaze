@@ -26,6 +26,7 @@ namespace TriviaMaze_CSCD350 {
              * */
         }
 
+
         //=====================================================================
 
         public void EnterNorth() {
