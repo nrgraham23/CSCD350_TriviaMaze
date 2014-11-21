@@ -19,13 +19,14 @@ namespace TriviaMaze_CSCD350 {
         string dbPath;
         int dbEntries;
         Random rand = new Random();
+        bool validConnection;
 
         //=====================================================================
         // Create the database object, open it, and count entries
         public QuestionDatabase(string dbPath) {
             this.dbPath = dbPath;
-            if (OpenDatabase())
-                CountEntries();
+            validConnection = OpenDatabase();
+            CountEntries();
         }
 
         //=====================================================================
@@ -55,6 +56,9 @@ namespace TriviaMaze_CSCD350 {
 
         public Question RandomQuestion() {
 
+            if (!validConnection || !HasQuestions())
+                return null;
+
             int index = -1;
             do {
                 index = rand.Next(dbEntries) + 1;
@@ -69,7 +73,7 @@ namespace TriviaMaze_CSCD350 {
         // Grabs a question object from the database and returns it.
         public Question GetQuestion(int index) {
 
-            if (!HasQuestions() || !ValidIndex(index))
+            if (!HasQuestions() || !ValidIndex(index) || !validConnection)
                 return null;
 
             string sql = "SELECT * FROM Questions WHERE QIndex = " + index;
@@ -92,6 +96,10 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void AddQuestionToDatabase(Question q) {
+
+            if (!validConnection)
+                return;
+
             int index = dbEntries + 1;
             String sql = "INSERT INTO Questions (QIndex,QType,QAuxiliary,QAuxFile,QText,QAnswer,QOption1,QOption2,QOption3,QOption4) " +
                          "VALUES (" + index + ", " + q.GetQType() + ", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\", \"" +
@@ -105,6 +113,10 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void DeleteQuestionFromDatabase(int index) {
+
+            if (!validConnection)
+                return;
+
             if (index < 1 || index > dbEntries)
                 return;
             String sql = "DELETE FROM Questions WHERE QIndex = " + index;
@@ -139,6 +151,12 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void CountEntries() {
+
+            if (!validConnection) {
+                dbEntries = 0;
+                return;
+            }
+
             int entryCount = 0;
             string sql = "SELECT * FROM Questions";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
