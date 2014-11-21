@@ -18,7 +18,7 @@ namespace TriviaMaze_CSCD350 {
             this.sDoor = new OpenedDoor();
             this.wDoor = new OpenedDoor();
 
-            /* commented out for presentation
+            /* commented out for testing
             this.nDoor = new ClosedDoor();
             this.eDoor = new ClosedDoor();
             this.sDoor = new ClosedDoor();

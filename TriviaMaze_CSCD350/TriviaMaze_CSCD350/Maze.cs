@@ -150,6 +150,15 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
+
+        public Point GetCurPoint() {
+            return this.curPoint;
+        }
+        public Point GetExit() {
+            return this.exit;
+        }
+
+        //=====================================================================
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         public IDisposable Subscribe(IObserver<Maze> observer) {
             if (!this.observers.Contains(observer)) {
