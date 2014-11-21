@@ -393,8 +393,9 @@ namespace TriviaMaze_CSCD350
         {
             MessageBox.Show("The bottom left hand corner you will see a map of\n" +
                             "the maze. \n\nUse it to find your way to the exit " +
-                            "\"The Brown Square\" \nby clicking on the doorways to move either forward,\n" +
-                            "backward, left, or right.\n\nThe arrow will show you the direction you're facing", "Controls");
+                            "\"The Brown Square\" \nby clicking on the doorways, using the \"W,A,S,D\" keys,\n" +
+                            "or by using the arrow keys, to move either forward,\n" +
+                            "backward, left, or right. \n\nThe arrow on the minimap will show you the direction\nyou're facing", "Controls");
         }
 
         //=====================================================================
@@ -553,7 +554,17 @@ namespace TriviaMaze_CSCD350
             this.gameCore.BackDoorClick();
         }
 
-
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.W || e.Key == Key.Up)
+                this.gameCore.CenterDoorClick();
+            if (e.Key == Key.D || e.Key == Key.Right)
+                this.gameCore.RightDoorClick();
+            if (e.Key == Key.S || e.Key == Key.Down)
+                this.gameCore.BackDoorClick();
+            if (e.Key == Key.A || e.Key == Key.Left)
+                this.gameCore.LeftDoorClick();
+        }
 
     }
 }
