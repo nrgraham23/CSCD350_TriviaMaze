@@ -18,6 +18,10 @@ namespace TriviaMaze_CSCD350
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /*
+     * NOTES:
+     *      
+     */
     public partial class MainWindow : Window, IObserver<Maze>, IObserver<IQuestion>
     {
         private GameCore gameCore;

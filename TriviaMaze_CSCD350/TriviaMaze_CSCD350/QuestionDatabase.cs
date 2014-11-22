@@ -81,14 +81,15 @@ namespace TriviaMaze_CSCD350 {
             SQLiteDataReader reader = command.ExecuteReader();
             reader.Read();
 
-            Question tempQuestion = new Question();
 
-            tempQuestion.SetQType(Convert.ToInt32("" + reader["QType"]));
+
+            Question tempQuestion = QuestionFromType(Convert.ToInt32("" + reader["QType"]));
+
             tempQuestion.SetAuxiliary(Convert.ToInt32("" + reader["QAuxiliary"]));
             tempQuestion.SetAuxFile("" + reader["QType"]);
             tempQuestion.SetText("" + reader["QText"]);
             tempQuestion.SetAnswer(Convert.ToInt32(reader["QAnswer"]));
-            tempQuestion.SetChoices(new String[4] { "" + reader["QOption1"], "" + reader["QOption2"], "" + reader["QOption3"], "" + reader["QOption4"] });
+            tempQuestion.SetChoiceArray(new String[4] { "" + reader["QOption1"], "" + reader["QOption2"], "" + reader["QOption3"], "" + reader["QOption4"] });
 
             return tempQuestion;
         }
@@ -103,8 +104,8 @@ namespace TriviaMaze_CSCD350 {
             int index = dbEntries + 1;
             String sql = "INSERT INTO Questions (QIndex,QType,QAuxiliary,QAuxFile,QText,QAnswer,QOption1,QOption2,QOption3,QOption4) " +
                          "VALUES (" + index + ", " + q.GetQType() + ", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\", \"" +
-                         q.GetText() + "\", " + q.GetAnswer() + ", \"" + q.GetChoices()[0] + "\", \"" + q.GetChoices()[1] + "\", \"" +
-                         q.GetChoices()[2] + "\", \"" + q.GetChoices()[3] + "\")";
+                         q.GetText() + "\", " + q.GetAnswer() + ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" +
+                         q.GetChoice(3) + "\", \"" + q.GetChoice(4) + "\")";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
             dbEntries++;
@@ -170,6 +171,16 @@ namespace TriviaMaze_CSCD350 {
 
         private void UnignoreAll() {
             dbIgnore.Clear();
+        }
+
+        //=====================================================================
+
+        private Question QuestionFromType(int type) {
+            if (type == 1)
+                return new QuestionShort();
+            if (type == 2)
+                return new QuestionTF();
+            return new QuestionMulti();
         }
 
         //=====================================================================

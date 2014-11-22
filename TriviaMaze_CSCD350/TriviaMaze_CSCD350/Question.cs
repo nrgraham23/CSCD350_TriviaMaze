@@ -5,28 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Question {
+    abstract class Question {
 
-        enum QType { SHORT = 1, TF, MULTI };
-        enum QAux { TEXT = 1, IMAGE, SOUND };
-
-        String[] questionChoices;
+        String[] questionChoices = new String[4] { "", "", "", "" };
         String questionText, questionAuxFile;
         int questionAnswer, questionType, questionAuxiliary;
 
         //=====================================================================
-        // initialize values for default question object
-        public Question() {
-            questionChoices = new String[4] { "Correct", "Wrong", "Nope", "False" };
-            questionText = "Default question";
-            questionAuxFile = "NULL";
-            questionAnswer = 1;
-            questionType = 3;
-            questionAuxiliary = 1;
-        }
-
-        //=====================================================================
-
+        // SET METHODS
         public void SetText(String text) {
             questionText = text;
         }
@@ -47,7 +33,7 @@ namespace TriviaMaze_CSCD350 {
             questionAuxFile = path;
         }
 
-        public void SetChoices(String[] choices) {
+        public void SetChoiceArray(String[] choices) {
             for (int i = 0; i < 4; i++)
                 questionChoices[i] = choices[i];
         }
@@ -58,7 +44,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        // GET METHODS
         public String GetText() {
             return questionText;
         }
@@ -79,7 +65,7 @@ namespace TriviaMaze_CSCD350 {
             return questionAuxFile;
         }
 
-        public String[] GetChoices() {
+        public String[] GetChoiceArray() {
             return questionChoices;
         }
 
@@ -90,24 +76,10 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
+        // ABSTRACT METHODS
+        public abstract override String ToString();
 
-        public bool CorrectShortAnswer(String answer) {
-            if (answer.ToLower().Equals(GetChoice(1).ToLower()))
-                return true;
-            return false;
-        }
-
-        public bool CorrectTFAnswer(bool answer) {
-            if ((answer && GetAnswer() == 1) || (!answer && GetAnswer() == 2))
-                return true;
-            return false;
-        }
-
-        public bool CorrectMultiAnswer(int answer) {
-            if (answer == GetAnswer())
-                return true;
-            return false;
-        }
+        public abstract bool CheckAnswer(String answer);
 
         //=====================================================================
     }

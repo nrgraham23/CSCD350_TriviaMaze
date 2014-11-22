@@ -3,6 +3,12 @@
   dslVersion="1.0.0.0"
   Id="dbfc4926-fc9b-44cd-8914-ac78cdddaec0"
   name="TriviaMazeUML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="bf53f989-1ef2-4fc5-a3ac-a2f0213fe067">
+      <body>Comment</body>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -35,6 +41,117 @@
         Id="a81ff991-0858-49a4-b686-cf14f88308b6"
         LastKnownName="System"
         LastKnownLocation="Package1_1236.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="78d9c0f0-c56b-44e2-af9b-e66ae769e7c2"
+        name="IObservable"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="85e09e0b-c1c7-4732-b296-414fa29753e7"
+            isDerived="false"
+            sourceEndRoleName="IObservable"
+            targetEndRoleName="IObserver"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="9e1df0d8-fa32-43d9-8a7c-7a2302dd03ab"
+              LastKnownName="IObserver"
+              LastKnownLocation="TriviaMazeUML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9c05f3bf-2a0a-406d-a4ba-374d04371a06"
+                  name="IObservable"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dcbc118c-c379-47cd-a67a-9d15fbb85d34"
+                  name="IObserver"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="65002a46-2da1-43c3-a68e-8efc7633654a"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="4d665819-a463-4430-90aa-a0e18a23b485"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="6652887f-f77e-4e2b-9023-1fcbd04f660e"
+            name="List&lt;Observers&gt; observers"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9e1df0d8-fa32-43d9-8a7c-7a2302dd03ab"
+        name="IObserver"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="08632412-7e1b-4e67-8527-a8758525250b"
+            name="OnNext"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="8369cf13-3a91-4fbe-bca7-99f7a1dc98f2"
+            name="OnError"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="08c08af6-6fa5-43a0-8c55-e02ba1275895"
+            name="OnCompleted"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
