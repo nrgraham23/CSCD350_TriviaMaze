@@ -78,6 +78,8 @@
     <Compile Include="GameCore.cs" />
     <Compile Include="IQuestion.cs" />
     <Compile Include="Maze.cs" />
+    <Compile Include="MazeBuilder.cs" />
+    <Compile Include="MazeBuilderDirector.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionDatabase.cs" />

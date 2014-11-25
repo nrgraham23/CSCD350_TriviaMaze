@@ -9,7 +9,9 @@ namespace TriviaMaze_CSCD350 {
         private Maze maze;
 
         public GameCore() {
-            this.maze = new Maze();
+            MazeBuilderDirector director = new MazeBuilderDirector();
+            
+            this.maze = director.Construct();
         }
 
         public bool RightDoorClick() {

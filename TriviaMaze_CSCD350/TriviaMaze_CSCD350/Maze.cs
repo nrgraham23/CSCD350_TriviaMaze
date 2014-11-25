@@ -104,6 +104,11 @@ namespace TriviaMaze_CSCD350 {
         public Room GetCurRoom() {
             return this.curRoom;
         }
+        public Floor GetFloor() {
+            return this.mazeFloor;
+        }
+
+        //=====================================================================
 
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
@@ -116,6 +121,8 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        //=====================================================================
+
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
                 this.curPoint.SetCol(this.curPoint.GetCol() + 1);
@@ -127,6 +134,8 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        //=====================================================================
+
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
                 this.curPoint.SetRow(this.curPoint.GetRow() + 1);
@@ -137,6 +146,8 @@ namespace TriviaMaze_CSCD350 {
             }
             return false;
         }
+
+        //=====================================================================
 
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
