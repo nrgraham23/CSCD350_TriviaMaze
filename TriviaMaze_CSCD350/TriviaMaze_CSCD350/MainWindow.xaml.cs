@@ -30,40 +30,9 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
             this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
-
-            DemoTheMap(); //It is important to delete this method call before we implement the game logic
-
         }
 
         //=====================================================================
-        //Delete this DemoTheMap method when finish the software
-
-        private void DemoTheMap() {
-            /*//FillInVerticleDoor(0, 0, false);
-            FillInHorizonalDoor(0, 0, true);
-            FillInHorizonalDoor(1, 0, true);
-            /*FillInVerticleDoor(1, 0, false);
-            FillInVerticleDoor(2, 0, true);
-            FillInHorizonalDoor(2, 0, false);
-            FillInHorizonalDoor(2, 1, false);
-            FillInVerticleDoor(2, 1, true);
-            FillInVerticleDoor(2, 2, true);
-            FillInVerticleDoor(2, 3, true);
-            FillInHorizonalDoor(2, 2, false);
-            FillInHorizonalDoor(2, 3, false);
-            FillInVerticleDoor(2, 4, false);
-            FillInVerticleDoor(3, 4, true);
-            FillInHorizonalDoor(3, 3, false);
-            FillInVerticleDoor(3, 3, false);
-            FillInHorizonalDoor(4, 3, false);*/
-
-            //MoveTriangle(0, 0);
-            //MoveTriangle(0, 1);
-            //DrawTriangle(0, 0);
-        }
-
-        //=====================================================================
-        //
 
         private void DrawMiniMap() {
             DrawOutline();
@@ -73,37 +42,145 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void MoveTriangle(int row, int col, char enteredFrom) {
+
+            DrawTriangle(row, col, enteredFrom);
+
             if (enteredFrom == 'n') {
-                DrawLine(row - 1, col);
-                DrawVerticleDoor(row - 1, col);
-                DrawHorizontalDoor(row - 1, col);
-                DrawTriangle(row, col, enteredFrom);
+                if (row == 0) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col - 1);
+                    if (col - 1 > 0)
+                        DrawHorizontalDoor(row, col - 2);
+                    DrawHorizontalDoor(row, col - 1);
+                    DrawVerticleDoor(row, col - 1);
+                }
+                else if (row == 4) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col - 1);
+                    if (col - 1 > 0)
+                        DrawHorizontalDoor(row, col - 2);
+                    DrawHorizontalDoor(row, col - 1);
+                    DrawVerticleDoor(row - 1, col - 1);
+                }
+                else if (col == 4) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col - 1);
+                    DrawHorizontalDoor(row, col - 2);
+                    DrawHorizontalDoor(row, col - 1);
+                    DrawVerticleDoor(row - 1, col - 1);
+                    if (col - 1 > 0)
+                        DrawVerticleDoor(row, col - 1);
+                }
+                else {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col - 1);
+                    if (col - 1 > 0)
+                        DrawHorizontalDoor(row, col - 2);
+                    DrawHorizontalDoor(row, col - 1);
+                    DrawVerticleDoor(row - 1, col - 1);
+                    DrawVerticleDoor(row, col - 1);
+                }
             }
             if (enteredFrom == 'e') {
-                DrawLine(row - 1, col);
-                DrawVerticleDoor(row - 1, col);
-                DrawHorizontalDoor(row - 1, col);
-                DrawTriangle(row, col, enteredFrom);
+                if (col == 0) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row + 1, col);
+                    DrawHorizontalDoor(row + 1, col);
+                    DrawVerticleDoor(row, col);
+                    if (row + 1 < 4)
+                        DrawVerticleDoor(row + 1, col);
+                }
+                else if (col == 4) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row + 1, col);
+                    DrawHorizontalDoor(row + 1, col - 1);
+                    DrawVerticleDoor(row, col);
+                    if (row + 1 < 4)
+                        DrawVerticleDoor(row + 1, col);
+                }
+                else {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row + 1, col);
+                    if (row + 1 < 4) {
+                        DrawVerticleDoor(row, col);
+                        DrawVerticleDoor(row + 1, col);
+                    }
+                    DrawVerticleDoor(row, col);
+                    DrawHorizontalDoor(row + 1, col);
+                    DrawHorizontalDoor(row + 1, col - 1);
+                }
             }
             if (enteredFrom == 's') {
-                DrawLine(row, col + 1);
-                DrawVerticleDoor(row, col + 1);
-                DrawHorizontalDoor(row, col + 1);
-                DrawTriangle(row, col, enteredFrom);
+                if (row == 0) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col + 1);
+                    DrawHorizontalDoor(row, col);
+                    if (col + 1 < 4)
+                        DrawHorizontalDoor(row, col + 1);
+                    DrawVerticleDoor(row, col + 1);
+                }
+                else if (row == 4) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col + 1);
+                    DrawHorizontalDoor(row, col);
+                    if (col + 1 < 4)
+                        DrawHorizontalDoor(row, col + 1);
+                    DrawVerticleDoor(row - 1, col + 1);
+                    DrawVerticleDoor(row - 1, col);
+
+                }
+                else if (col == 0) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col + 1);
+                    DrawHorizontalDoor(row, col);
+                    DrawHorizontalDoor(row, col + 1);
+                    DrawVerticleDoor(row, col + 1);
+                    DrawVerticleDoor(row - 1, col + 1);
+                }
+                else {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row, col + 1);
+                    if (col + 1 < 4)
+                        DrawHorizontalDoor(row, col + 1);
+                    DrawHorizontalDoor(row, col);
+                    DrawVerticleDoor(row, col + 1);
+                    DrawVerticleDoor(row - 1, col + 1);
+                }
             }
             if (enteredFrom == 'w') {
-                DrawLine(row + 1, col);
-                DrawVerticleDoor(row + 1, col);
-                DrawHorizontalDoor(row + 1, col);
-                DrawTriangle(row, col, enteredFrom);
+                if (row == 0)
+                    DrawTriangle(row, col, enteredFrom);
+                else if (col == 0) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row - 1, col);
+                    DrawVerticleDoor(row - 1, col);
+                    if (row - 1 > 0)
+                        DrawVerticleDoor(row - 2, col);
+                    DrawHorizontalDoor(row - 1, col);
+                }
+                else if (col == 4) {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row - 1, col);
+                    DrawVerticleDoor(row - 1, col);
+                    if (row - 1 > 0)
+                        DrawVerticleDoor(row - 2, col);
+                    DrawHorizontalDoor(row - 1, col - 1);
+                }
+                else {
+                    DrawTriangle(row, col, enteredFrom);
+                    DrawLine(row - 1, col);
+                    DrawVerticleDoor(row - 1, col);
+                    if (row - 1 > 0)
+                        DrawVerticleDoor(row - 2, col);
+                    DrawHorizontalDoor(row - 1, col - 1);
+                    DrawHorizontalDoor(row - 1, col);
+                }
             }
         }
 
         //=====================================================================
-        //
 
         private void DrawTriangle(int row, int col, char enteredFrom) {
 
@@ -175,7 +252,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void FillInVerticleDoor(int row, int column, bool wrong) {
             System.Windows.Shapes.Rectangle verticleDoor;
@@ -194,7 +270,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void FillInHorizonalDoor(int row, int column, bool wrong) {
             System.Windows.Shapes.Rectangle horizontalDoor;
@@ -213,7 +288,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawOutline() {
             System.Windows.Shapes.Rectangle outline;
@@ -229,7 +303,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawLines() {
             for (int x = 0; x < 5; x++) {
@@ -240,7 +313,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawLine(int x, int y) {
             System.Windows.Shapes.Rectangle line;
@@ -256,7 +328,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawVerticleDoors() {
             for (int x = 0; x < 4; x++) {
@@ -267,7 +338,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawVerticleDoor(int x, int y) {
             System.Windows.Shapes.Rectangle verticleDoor;
@@ -283,7 +353,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawHorizontalDoors() {
             for (int x = 0; x < 5; x++) {
@@ -294,7 +363,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawHorizontalDoor(int x, int y) {
             System.Windows.Shapes.Rectangle horizontalDoor;
@@ -310,7 +378,6 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
 
         private void DrawExit(int row) {
             System.Windows.Shapes.Rectangle exit;
