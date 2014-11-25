@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TriviaMaze_CSCD350
-{
+namespace TriviaMaze_CSCD350 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -22,12 +21,10 @@ namespace TriviaMaze_CSCD350
      * NOTES:
      *      
      */
-    public partial class MainWindow : Window, IObserver<Maze>, IObserver<IQuestion>
-    {
+    public partial class MainWindow : Window, IObserver<Maze>, IObserver<IQuestion> {
         private GameCore gameCore;
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
             DrawMiniMap();
             this.gameCore = new GameCore();
@@ -41,8 +38,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //Delete this DemoTheMap method when finish the software
 
-        private void DemoTheMap()
-        {
+        private void DemoTheMap() {
             /*//FillInVerticleDoor(0, 0, false);
             FillInHorizonalDoor(0, 0, true);
             FillInHorizonalDoor(1, 0, true);
@@ -69,8 +65,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawMiniMap()
-        {
+        private void DrawMiniMap() {
             DrawOutline();
             DrawLines();
             DrawVerticleDoors();
@@ -80,31 +75,26 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void MoveTriangle(int row, int col, char enteredFrom)
-        {
-            if (enteredFrom == 'n')
-            {
-                DrawLine(row -1, col);
-                DrawVerticleDoor(row - 1, col);
-                DrawHorizontalDoor(row - 1 , col);
-                DrawTriangle(row, col, enteredFrom);
-            }
-            if (enteredFrom == 'e')
-            {
+        private void MoveTriangle(int row, int col, char enteredFrom) {
+            if (enteredFrom == 'n') {
                 DrawLine(row - 1, col);
                 DrawVerticleDoor(row - 1, col);
                 DrawHorizontalDoor(row - 1, col);
                 DrawTriangle(row, col, enteredFrom);
             }
-            if (enteredFrom == 's')
-            {
+            if (enteredFrom == 'e') {
+                DrawLine(row - 1, col);
+                DrawVerticleDoor(row - 1, col);
+                DrawHorizontalDoor(row - 1, col);
+                DrawTriangle(row, col, enteredFrom);
+            }
+            if (enteredFrom == 's') {
                 DrawLine(row, col + 1);
                 DrawVerticleDoor(row, col + 1);
                 DrawHorizontalDoor(row, col + 1);
                 DrawTriangle(row, col, enteredFrom);
             }
-            if (enteredFrom == 'w')
-            {
+            if (enteredFrom == 'w') {
                 DrawLine(row + 1, col);
                 DrawVerticleDoor(row + 1, col);
                 DrawHorizontalDoor(row + 1, col);
@@ -115,8 +105,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawTriangle(int row, int col, char enteredFrom)
-        {
+        private void DrawTriangle(int row, int col, char enteredFrom) {
 
             System.Windows.Shapes.Line leftTriangle;
             System.Windows.Shapes.Line rightTriangle;
@@ -127,8 +116,7 @@ namespace TriviaMaze_CSCD350
             leftTriangle.Stroke = new SolidColorBrush(Colors.Black);
             rightTriangle.Stroke = new SolidColorBrush(Colors.Black);
 
-            if (enteredFrom == 'n')
-            {
+            if (enteredFrom == 'n') {
                 leftTriangle.X1 = 25;
                 leftTriangle.Y1 = 30;
                 leftTriangle.X2 = 15;
@@ -140,8 +128,7 @@ namespace TriviaMaze_CSCD350
                 rightTriangle.Y2 = 15;
             }
 
-            if (enteredFrom == 'e')
-            {
+            if (enteredFrom == 'e') {
                 leftTriangle.X1 = 15;
                 leftTriangle.Y1 = 20;
                 leftTriangle.X2 = 30;
@@ -153,8 +140,7 @@ namespace TriviaMaze_CSCD350
                 rightTriangle.Y2 = 30;
             }
 
-            if (enteredFrom == 's')
-            {
+            if (enteredFrom == 's') {
                 leftTriangle.X1 = 25;
                 leftTriangle.Y1 = 15;
                 leftTriangle.X2 = 15;
@@ -166,8 +152,7 @@ namespace TriviaMaze_CSCD350
                 rightTriangle.Y2 = 30;
             }
 
-            if (enteredFrom == 'w')
-            {
+            if (enteredFrom == 'w') {
                 leftTriangle.X1 = 30;
                 leftTriangle.Y1 = 20;
                 leftTriangle.X2 = 15;
@@ -192,8 +177,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void FillInVerticleDoor(int row, int column, bool wrong)
-        {
+        private void FillInVerticleDoor(int row, int column, bool wrong) {
             System.Windows.Shapes.Rectangle verticleDoor;
 
             verticleDoor = new System.Windows.Shapes.Rectangle();
@@ -212,8 +196,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void FillInHorizonalDoor(int row, int column, bool wrong)
-        {
+        private void FillInHorizonalDoor(int row, int column, bool wrong) {
             System.Windows.Shapes.Rectangle horizontalDoor;
 
             horizontalDoor = new System.Windows.Shapes.Rectangle();
@@ -232,8 +215,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawOutline()
-        {
+        private void DrawOutline() {
             System.Windows.Shapes.Rectangle outline;
 
             outline = new System.Windows.Shapes.Rectangle();
@@ -249,12 +231,9 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawLines()
-        {
-            for (int x = 0; x < 5; x++)
-            {
-                for (int y = 0; y < 5; y++)
-                {
+        private void DrawLines() {
+            for (int x = 0; x < 5; x++) {
+                for (int y = 0; y < 5; y++) {
                     DrawLine(x, y);
                 }
             }
@@ -263,8 +242,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawLine(int x, int y)
-        {
+        private void DrawLine(int x, int y) {
             System.Windows.Shapes.Rectangle line;
 
             line = new System.Windows.Shapes.Rectangle();
@@ -280,12 +258,9 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawVerticleDoors()
-        {
-            for (int x = 0; x < 4; x++)
-            {
-                for (int y = 0; y < 5; y++)
-                {
+        private void DrawVerticleDoors() {
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 5; y++) {
                     DrawVerticleDoor(x, y);
                 }
             }
@@ -294,8 +269,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawVerticleDoor(int x, int y)
-        {
+        private void DrawVerticleDoor(int x, int y) {
             System.Windows.Shapes.Rectangle verticleDoor;
 
             verticleDoor = new System.Windows.Shapes.Rectangle();
@@ -311,12 +285,9 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawHorizontalDoors()
-        {
-            for (int x = 0; x < 5; x++)
-            {
-                for (int y = 0; y < 4; y++)
-                {
+        private void DrawHorizontalDoors() {
+            for (int x = 0; x < 5; x++) {
+                for (int y = 0; y < 4; y++) {
                     DrawHorizontalDoor(x, y);
                 }
             }
@@ -325,8 +296,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawHorizontalDoor(int x, int y)
-        {
+        private void DrawHorizontalDoor(int x, int y) {
             System.Windows.Shapes.Rectangle horizontalDoor;
 
             horizontalDoor = new System.Windows.Shapes.Rectangle();
@@ -342,8 +312,7 @@ namespace TriviaMaze_CSCD350
         //=====================================================================
         //
 
-        private void DrawExit(int row)
-        {
+        private void DrawExit(int row) {
             System.Windows.Shapes.Rectangle exit;
             exit = new System.Windows.Shapes.Rectangle();
             exit.Stroke = new SolidColorBrush(Colors.Black);
@@ -357,85 +326,75 @@ namespace TriviaMaze_CSCD350
 
         //=====================================================================
 
-        private void newGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
 
         }
 
         //=====================================================================
 
-        private void saveGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void saveGameMenuItemClick(object sender, RoutedEventArgs e) {
 
         }
 
         //=====================================================================
 
-        private void loadGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void loadGameMenuItemClick(object sender, RoutedEventArgs e) {
 
         }
 
         //=====================================================================
 
-        private void exitMenuItemClick(object sender, RoutedEventArgs e)
-        {
-
+        private void exitMenuItemClick(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Thanks for playing!");
+            Application.Current.Shutdown();
         }
 
         //=====================================================================
 
-        private void aboutGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void aboutGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("Welcome to the Trivia maze!\n\nDeveloped by the Twenty Hats team!\nVersion 1.0", "About");
-            
-            
+
+
         }
 
         //=====================================================================
 
-        private void controlsGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void controlsGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("The bottom left hand corner you will see a map of\n" +
                             "the maze. \n\nUse it to find your way to the exit " +
                             "\"The Brown Square\" \nby clicking on the doorways, using the \"W,A,S,D\" keys,\n" +
                             "or by using the arrow keys, to move either forward,\n" +
                             "backward, left, or right. \n\nThe arrow on the minimap will show you the direction\nyou're facing", "Controls");
-            
-        }
-
-        //=====================================================================
-
-        private void addQuestionGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
 
         }
 
         //=====================================================================
 
-        private void viewQuestionsGameMenuItemClick(object sender, RoutedEventArgs e)
-        {
+        private void addQuestionGameMenuItemClick(object sender, RoutedEventArgs e) {
 
         }
 
         //=====================================================================
 
-        void IObserver<Maze>.OnCompleted()
-        {
+        private void viewQuestionsGameMenuItemClick(object sender, RoutedEventArgs e) {
+
+        }
+
+        //=====================================================================
+
+        void IObserver<Maze>.OnCompleted() {
             //not used in this context
         }
 
         //=====================================================================
 
-        void IObserver<Maze>.OnError(Exception error)
-        {
+        void IObserver<Maze>.OnError(Exception error) {
             //not used in this context
         }
 
         //=====================================================================
 
-        void IObserver<Maze>.OnNext(Maze value)
-        {
+        void IObserver<Maze>.OnNext(Maze value) {
             Room curRoom = value.GetCurRoom();
             Point curPosition = value.GetCurPoint();
             Point exit = value.GetExit();
@@ -445,38 +404,28 @@ namespace TriviaMaze_CSCD350
 
             int exitRow = exit.GetRow();
             DrawExit(exitRow);
-                
-       
-            if (curRoom.GetEnteredFrom() == 'n')
-            {
-                NorthEntry(curRoom);;
+
+
+            if (curRoom.GetEnteredFrom() == 'n') {
+                NorthEntry(curRoom); ;
                 MoveTriangle(playerCol, playerRow, 'n');
-            }
-            else if (curRoom.GetEnteredFrom() == 'e')
-            {
+            } else if (curRoom.GetEnteredFrom() == 'e') {
                 EastEntry(curRoom);
                 MoveTriangle(playerCol, playerRow, 'e');
-            }
-            else if (curRoom.GetEnteredFrom() == 's')
-            {
+            } else if (curRoom.GetEnteredFrom() == 's') {
                 SouthEntry(curRoom);
                 MoveTriangle(playerCol, playerRow, 's');
-            }
-            else if (curRoom.GetEnteredFrom() == 'w')
-            {
+            } else if (curRoom.GetEnteredFrom() == 'w') {
                 WestEntry(curRoom);
                 MoveTriangle(playerCol, playerRow, 'w');
-            }
-            else
-            {
+            } else {
                 throw new Exception(); //TODO: find the right exception to throw
             }
         }
 
         //=====================================================================
 
-        private void NorthEntry(Room room)
-        {
+        private void NorthEntry(Room room) {
             String rFilePath = @"..\..\Images\r" + room.GetWDoor().GetFileName();
             String cFilePath = @"..\..\Images\c" + room.GetSDoor().GetFileName();
             String lFilePath = @"..\..\Images\l" + room.GetEDoor().GetFileName();
@@ -488,8 +437,7 @@ namespace TriviaMaze_CSCD350
 
         //=====================================================================
 
-        private void EastEntry(Room room)
-        {
+        private void EastEntry(Room room) {
             String rFilePath = @"..\..\Images\r" + room.GetNDoor().GetFileName();
             String cFilePath = @"..\..\Images\c" + room.GetWDoor().GetFileName();
             String lFilePath = @"..\..\Images\l" + room.GetSDoor().GetFileName();
@@ -501,8 +449,7 @@ namespace TriviaMaze_CSCD350
 
         //=====================================================================
 
-        private void SouthEntry(Room room)
-        {
+        private void SouthEntry(Room room) {
             String rFilePath = @"..\..\Images\r" + room.GetEDoor().GetFileName();
             String cFilePath = @"..\..\Images\c" + room.GetNDoor().GetFileName();
             String lFilePath = @"..\..\Images\l" + room.GetWDoor().GetFileName();
@@ -514,8 +461,7 @@ namespace TriviaMaze_CSCD350
 
         //=====================================================================
 
-        private void WestEntry(Room room)
-        {
+        private void WestEntry(Room room) {
             String rFilePath = @"..\..\Images\r" + room.GetSDoor().GetFileName();
             String cFilePath = @"..\..\Images\c" + room.GetEDoor().GetFileName();
             String lFilePath = @"..\..\Images\l" + room.GetNDoor().GetFileName();
@@ -527,55 +473,46 @@ namespace TriviaMaze_CSCD350
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnCompleted()
-        {
+        void IObserver<IQuestion>.OnCompleted() {
             //not used in this context
         }
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnError(Exception error)
-        {
+        void IObserver<IQuestion>.OnError(Exception error) {
             //not used in this context
         }
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnNext(IQuestion value)
-        {
+        void IObserver<IQuestion>.OnNext(IQuestion value) {
 
         }
 
         //=====================================================================
         //
-        private void toolsMenuItem_Click(object sender, RoutedEventArgs e)
-        {
+        private void toolsMenuItem_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.RightDoorClick();
         }
 
-        private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.CenterDoorClick();
         }
 
-        private void LDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void LDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.LeftDoorClick();
         }
 
-        private void BDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void BDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.BackDoorClick();
         }
 
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
+        private void Window_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.W || e.Key == Key.Up)
                 this.gameCore.CenterDoorClick();
             if (e.Key == Key.D || e.Key == Key.Right)
