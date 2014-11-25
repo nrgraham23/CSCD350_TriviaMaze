@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Room {
+
+    [Serializable]
+    public class Room {
         private IDoor nDoor;
         private IDoor eDoor;
         private IDoor sDoor;
@@ -13,6 +15,7 @@ namespace TriviaMaze_CSCD350 {
         private char enteredFrom;
 
         public Room() {
+            /*  Note: if you want the doors to all be open, change the closed doors to open doors in the initdoors method of MazeBuilder class
             this.nDoor = new OpenedDoor();
             this.eDoor = new OpenedDoor();
             this.sDoor = new OpenedDoor();

@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class QuestionTF : Question{
+
+    [Serializable]
+    public class QuestionTF : Question{
 
         public QuestionTF() {
             SetChoiceArray(new String[4] { "TRUE", "FALSE", "", "" });

@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Floor {
+
+    [Serializable]
+    public class Floor {
         private int size;
         private Room[,] floor;
 
@@ -15,6 +17,8 @@ namespace TriviaMaze_CSCD350 {
             InitFloor();
         }
 
+        //=====================================================================
+
         private void InitFloor() {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -23,10 +27,11 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+
         public int GetSize() {
             return this.size;
         }
-
         public Room GetRoom(Point point) {
             return floor[point.GetRow(), point.GetCol()];
         }

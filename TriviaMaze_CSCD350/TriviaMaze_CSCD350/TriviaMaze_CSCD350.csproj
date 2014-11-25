@@ -77,14 +77,27 @@
     <Compile Include="Floor.cs" />
     <Compile Include="GameCore.cs" />
     <Compile Include="IQuestion.cs" />
+    <Compile Include="LoadGameWindow.xaml.cs">
+      <DependentUpon>LoadGameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Maze.cs" />
+    <Compile Include="MazeBuilder.cs" />
+    <Compile Include="MazeBuilderDirector.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionDatabase.cs" />
     <Compile Include="QuestionMulti.cs" />
     <Compile Include="QuestionShort.cs" />
     <Compile Include="QuestionTF.cs" />
+    <Compile Include="RandomQuestionFactory.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="SaveGameWindow.xaml.cs">
+      <DependentUpon>SaveGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LoadGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,6 +113,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SaveGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NullDoor.cs" />
@@ -121,7 +138,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

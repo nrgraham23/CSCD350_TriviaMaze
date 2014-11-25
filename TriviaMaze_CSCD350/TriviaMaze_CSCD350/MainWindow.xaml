@@ -10,18 +10,18 @@
 
         <Menu IsMainMenu="True" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="Menu" >
             <MenuItem Header="_File" x:Name="mazeMenuItem">
-                <MenuItem x:Name="newGameMenuItem" Header="New Game" Click="newGameMenuItemClick"/>
-                <MenuItem x:Name="saveGameMenuItem" Header="Save Game" Click="saveGameMenuItemClick" IsEnabled="False"/>
-                <MenuItem x:Name="loadGameMenuItem" Header="Load Game" Click="loadGameMenuItemClick"/>
-                <MenuItem x:Name="exitMenuItem" Header="Exit" Click="exitMenuItemClick"/>
+                <MenuItem x:Name="newGameMenuItem" Header="_New Game" Click="newGameMenuItemClick"/>
+                <MenuItem x:Name="saveGameMenuItem" Header="_Save Game" Click="saveGameMenuItemClick"/>
+                <MenuItem x:Name="loadGameMenuItem" Header="_Load Game" Click="loadGameMenuItemClick"/>
+                <MenuItem x:Name="exitMenuItem" Header="_Exit" Click="exitMenuItemClick"/>
             </MenuItem>
             <MenuItem Header="_Help" x:Name="helpMenuItem">
-                <MenuItem x:Name="aboutMenuItem" Header="About" Click="aboutGameMenuItemClick"/>
-                <MenuItem x:Name="ctrlsMenuItem" Header="Controls" Click="controlsGameMenuItemClick"/>
+                <MenuItem x:Name="aboutMenuItem" Header="_About" Click="aboutGameMenuItemClick"/>
+                <MenuItem x:Name="ctrlsMenuItem" Header="_Controls" Click="controlsGameMenuItemClick"/>
             </MenuItem>
             <MenuItem Header="_Tools" x:Name="toolsMenuItem" Click="toolsMenuItem_Click">
-                <MenuItem x:Name="addQMenuItem" Header="Add Question" Click="addQuestionGameMenuItemClick"/>
-                <MenuItem x:Name="viewQuestionsMenuItem" Header="View Questions" Click="viewQuestionsGameMenuItemClick"/>
+                <MenuItem x:Name="addQMenuItem" Header="_Add Question" Click="addQuestionGameMenuItemClick"/>
+                <MenuItem x:Name="viewQuestionsMenuItem" Header="_View Questions" Click="viewQuestionsGameMenuItemClick"/>
             </MenuItem>
         </Menu>
         <TextBox x:Name="QuestionBox" HorizontalAlignment="Left" Height="178" TextWrapping="Wrap"  VerticalAlignment="Top" Width="382" IsReadOnlyCaretVisible="True" Margin="10,30,0,0" Text="Question...." IsEnabled="False"/>

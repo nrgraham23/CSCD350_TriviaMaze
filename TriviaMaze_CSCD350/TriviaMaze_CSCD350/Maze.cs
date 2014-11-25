@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Maze : IObservable<Maze> {
+
+    [Serializable]
+    public class Maze : IObservable<Maze> {
         private Floor mazeFloor;
         private Room curRoom;
         private Point exit;
@@ -104,6 +106,11 @@ namespace TriviaMaze_CSCD350 {
         public Room GetCurRoom() {
             return this.curRoom;
         }
+        public Floor GetFloor() {
+            return this.mazeFloor;
+        }
+
+        //=====================================================================
 
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
@@ -116,6 +123,8 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        //=====================================================================
+
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
                 this.curPoint.SetCol(this.curPoint.GetCol() + 1);
@@ -127,6 +136,8 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        //=====================================================================
+
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
                 this.curPoint.SetRow(this.curPoint.GetRow() + 1);
@@ -137,6 +148,8 @@ namespace TriviaMaze_CSCD350 {
             }
             return false;
         }
+
+        //=====================================================================
 
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
@@ -172,7 +185,9 @@ namespace TriviaMaze_CSCD350 {
         //allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
+            [NonSerialized]
             private List<IObserver<Maze>> _observers;
+            [NonSerialized]
             private IObserver<Maze> _observer;
 
             public Unsubscriber(List<IObserver<Maze>> observers, IObserver<Maze> observer) {
