@@ -429,6 +429,8 @@ namespace TriviaMaze_CSCD350 {
             if (!this.gameCore.LoadGame(fileName)) {
                 MessageBox.Show("The file you specified does not exist!");
             }
+            this.gameCore.GetMaze().Subscribe(this);
+            this.gameCore.UpdateMazeView();
         }
 
         //=====================================================================

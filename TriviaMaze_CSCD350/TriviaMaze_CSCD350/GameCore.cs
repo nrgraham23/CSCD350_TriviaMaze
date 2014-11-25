@@ -94,6 +94,11 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        public void UpdateMazeView() {
+
+            this.maze.Update();
+        }
+
         //=====================================================================
         //help for serialization found at: http://msdn.microsoft.com/en-us/library/et91as27.aspx
         public void SaveGame(String fileName) {

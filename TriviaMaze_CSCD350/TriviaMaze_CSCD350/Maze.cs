@@ -12,6 +12,7 @@ namespace TriviaMaze_CSCD350 {
         private Room curRoom;
         private Point exit;
         private Point curPoint;
+        [NonSerialized]
         private List<IObserver<Maze>> observers;
 
         public Maze() {
@@ -164,6 +165,12 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
+        public void Update() {
+            observers[0].OnNext(this);
+        }
+
+        //=====================================================================
+
         public Point GetCurPoint() {
             return this.curPoint;
         }
@@ -174,6 +181,9 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         public IDisposable Subscribe(IObserver<Maze> observer) {
+            if (this.observers == null) {
+                this.observers = new List<IObserver<Maze>>();
+            }
             if (!this.observers.Contains(observer)) {
                 observers.Add(observer);
                 observers[0].OnNext(this);
