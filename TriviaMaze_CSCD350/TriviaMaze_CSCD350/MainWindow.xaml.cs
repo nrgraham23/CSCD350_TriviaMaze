@@ -394,7 +394,9 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
-
+            DrawMiniMap();
+            this.gameCore = new GameCore();
+            this.gameCore.GetMaze().Subscribe(this);
         }
 
         //=====================================================================
