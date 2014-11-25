@@ -11,7 +11,7 @@ namespace TriviaMaze_CSCD350 {
 
         public QuestionMulti() {
             SetChoiceArray(new String[4] { "Apple", "Orange", "Cherry", "Strawberry" });
-            SetText("DEFAULT: Which of these fruits is not red?");
+            SetText("DEFAULT: Which of these fruits is not red? - Answer is B \nA.Apple\nB.Orange\nC.Cherry\nD.Strawberry");
             SetAuxFile("NULL");
             SetAnswer(2);
             SetQType(3);

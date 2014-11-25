@@ -15,8 +15,12 @@ namespace TriviaMaze_CSCD350 {
                 return new QuestionMulti();
             } else if (type == 1) {
                 return new QuestionShort();
-            } else {
+            }
+            else if (type == 2) {
                 return new QuestionTF();
+            }else {
+                Console.WriteLine("*Error* - Random Question Factory int type");
+                return new QuestionMulti();
             }
         }
     }

@@ -26,10 +26,10 @@
         </Menu>
         <TextBox x:Name="QuestionBox" HorizontalAlignment="Left" Height="178" TextWrapping="Wrap"  VerticalAlignment="Top" Width="382" IsReadOnlyCaretVisible="True" Margin="10,30,0,0" Text="Question...." IsEnabled="False"/>
 
-        <RadioButton x:Name="A_TrueRadioButton" Content="A / True" IsEnabled="False" Margin="10,213,714,316"/>
-        <RadioButton x:Name="B_FalseRadioButton" Content="B / False" IsEnabled="False" Margin="80,213,642,316" />
-        <RadioButton x:Name="C_RadioButton" Content="C" IsEnabled="False" Margin="157,213,603,316"/>
-        <RadioButton x:Name="D_RadioButton" Content="D" IsEnabled="False" Margin="196,213,557,316"/>
+        <RadioButton x:Name="A_TrueRadioButton" Content="A / True" IsEnabled="False" Margin="10,210,712,332" Height="30"/>
+        <RadioButton x:Name="B_FalseRadioButton" Content="B / False" IsEnabled="False" Margin="10,240,712,302" Height="30" />
+        <RadioButton x:Name="C_RadioButton" Content="C" IsEnabled="False" Margin="87,213,673,334" Height="25"/>
+        <RadioButton x:Name="D_RadioButton" Content="D" IsEnabled="False" Margin="87,240,666,307" RenderTransformOrigin="0.512,-0.667" Height="25"/>
         <TextBox x:Name="AnswerBox" TextWrapping="Wrap" Text="Enter Answer" FontSize="15" IsEnabled="False" Margin="226,213,402,316"/>
         <Rectangle x:Name="DoorImageRectangle" Fill="#FFC5BFBF" HorizontalAlignment="Left" Height="523" Margin="410,30,0,0" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="374"/>
         <Rectangle x:Name="MapRectangle" HorizontalAlignment="Left" Height="292" Margin="10,261,0,0" Stroke="Black" VerticalAlignment="Top" Width="382" StrokeThickness="5" Fill="#FFC5BFBF"/>
@@ -38,6 +38,7 @@
         <Canvas x:Name="LDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="LDoorCanvas_MouseLeftButtonDown"/>
         <Canvas x:Name="RDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="686,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="RDoorCanvas_MouseLeftButtonDown"/>
         <Canvas x:Name="BDoorCanvas" HorizontalAlignment="Left" Height="126" Margin="508,417,0,0" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="BDoorCanvas_MouseLeftButtonDown"/>
+        <Button x:Name="EnterButton" Content="Confirm!" HorizontalAlignment="Left" Margin="149,216,0,0" VerticalAlignment="Top" Width="51" Height="20" Click="EnterButton_Click"/>
 
 
 

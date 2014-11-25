@@ -25,6 +25,7 @@ namespace TriviaMaze_CSCD350 {
     public partial class MainWindow : Window, IObserver<Maze>, IObserver<Question> {
         private GameCore gameCore;
         private Question subscribeQuestion;
+        private Question currentQuestion;
 
         public MainWindow() {
             InitializeComponent();
@@ -575,10 +576,48 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
+        //Question CHanges here
         void IObserver<Question>.OnNext(Question value) {
-            MessageBox.Show("Im not implemented yet but I am getting called and will be able to show you a question!");
-            // $$$$ here is where you update the question window
+            this.currentQuestion = value;
+
+            QuestionBox.Text = value.GetText();
+
+            if(value.GetQType() == 1){
+                //short
+                A_TrueRadioButton.Visibility = Visibility.Hidden;
+                B_FalseRadioButton.Visibility = Visibility.Hidden;
+                C_RadioButton.Visibility = Visibility.Hidden;
+                D_RadioButton.Visibility = Visibility.Hidden;
+                AnswerBox.IsEnabled = true;
+                AnswerBox.Text = "";
+
+            }else if(value.GetQType() == 2){
+                //TF
+                A_TrueRadioButton.IsEnabled = true;
+                A_TrueRadioButton.Content = "True";
+                B_FalseRadioButton.IsEnabled = true;
+                B_FalseRadioButton.Content = "False";
+                C_RadioButton.Visibility = Visibility.Hidden;
+                D_RadioButton.Visibility = Visibility.Hidden;
+                AnswerBox.Visibility = Visibility.Hidden;
+                AnswerBox.IsEnabled = false;
+            }
+            else if (value.GetQType() == 3) {
+                //Multi
+                A_TrueRadioButton.IsEnabled = true;
+                A_TrueRadioButton.Content = "A";
+                B_FalseRadioButton.IsEnabled = true;
+                B_FalseRadioButton.Content = "B";
+                C_RadioButton.IsEnabled = true;
+                D_RadioButton.IsEnabled = true;
+                AnswerBox.Visibility = Visibility.Hidden;
+                AnswerBox.IsEnabled = false;
+
+
+            }else{
+                Console.WriteLine("*Error* - MainWindow - Question.OnNext - getType");
+            }
+            
         }
 
         //=====================================================================
@@ -605,14 +644,87 @@ namespace TriviaMaze_CSCD350 {
 
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
-            if (e.Key == Key.W || e.Key == Key.Up)
+            if (e.Key == Key.Up)
                 this.gameCore.CenterDoorClick();
-            if (e.Key == Key.D || e.Key == Key.Right)
+            if (e.Key == Key.Right)
                 this.gameCore.RightDoorClick();
-            if (e.Key == Key.S || e.Key == Key.Down)
+            if (e.Key == Key.Down)
                 this.gameCore.BackDoorClick();
-            if (e.Key == Key.A || e.Key == Key.Left)
+            if (e.Key == Key.Left)
                 this.gameCore.LeftDoorClick();
+        }
+
+        private void resetQuestion() {
+
+            A_TrueRadioButton.IsEnabled = false;
+            A_TrueRadioButton.Visibility = Visibility.Visible;
+            A_TrueRadioButton.IsChecked = false;
+            A_TrueRadioButton.Content = "A / True";
+
+            B_FalseRadioButton.IsEnabled = false;
+            B_FalseRadioButton.Visibility = Visibility.Visible;
+            B_FalseRadioButton.IsChecked = false;
+            B_FalseRadioButton.Content = "B / False";
+
+            C_RadioButton.IsEnabled         = false;
+            C_RadioButton.Visibility        = Visibility.Visible;
+            C_RadioButton.IsChecked         = false;
+
+            D_RadioButton.IsEnabled         = false;
+            D_RadioButton.Visibility        = Visibility.Visible;
+            D_RadioButton.IsChecked         = false;
+
+            AnswerBox.IsEnabled = false;
+            AnswerBox.Visibility = Visibility.Visible;
+            AnswerBox.Text                  = "Enter Answer";
+
+            QuestionBox.Text                = "Question....";
+        }
+
+        private void EnterButton_Click(object sender, RoutedEventArgs e) {
+           
+            //Get Current Answer
+            String CurrentAnswer = "A"; ;
+
+            if(this.currentQuestion.GetQType() == 1){
+                //Short
+                CurrentAnswer = AnswerBox.Text;
+            }else if(this.currentQuestion.GetQType() == 2){
+                //TF
+                if(A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value){
+                    CurrentAnswer = "TRUE";
+                }
+                else{
+                    CurrentAnswer = "FALSE";
+                }
+            }
+            else if (this.currentQuestion.GetQType() == 3) {
+                //Multi
+                if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
+                    CurrentAnswer = "A";
+                }else if(B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
+                    CurrentAnswer = "B";
+                }else if(C_RadioButton.IsChecked.HasValue && C_RadioButton.IsChecked.Value){
+                    CurrentAnswer = "C";
+                }else if(D_RadioButton.IsChecked.HasValue && D_RadioButton.IsChecked.Value){
+                    CurrentAnswer = "D";
+                }
+
+            }else{
+                Console.WriteLine("*Error* - EnterButton_Click If Statment");
+            }
+
+            //Chec kif quesiton is correct. + Open or Lock Door
+            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){
+                MessageBox.Show("CORRECT!");
+            }
+            else{
+                MessageBox.Show("INCORRECT!");
+            }
+
+            //unlock mov. controls.
+            //reset question boxes
+            resetQuestion();
         }
     }
 }
