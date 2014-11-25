@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Room {
+
+    [Serializable]
+    public class Room {
         private IDoor nDoor;
         private IDoor eDoor;
         private IDoor sDoor;

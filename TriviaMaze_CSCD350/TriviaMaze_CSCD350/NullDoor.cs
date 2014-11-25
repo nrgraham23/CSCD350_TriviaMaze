@@ -5,7 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class NullDoor : IDoor {
+
+    [Serializable]
+    public class NullDoor : IDoor {
+        public NullDoor() {
+        }
+
         public bool Enter() {
             return false;
         }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TriviaMaze_CSCD350
-{
-    class LockedDoor : IDoor {
+namespace TriviaMaze_CSCD350 {
+
+    [Serializable]
+    public class LockedDoor : IDoor {
+
+        public LockedDoor() {
+        }
 
         public bool Enter() {
             return false;

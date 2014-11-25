@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Point {
+
+    [Serializable]
+    public class Point {
         private int row;
         private int column;
 

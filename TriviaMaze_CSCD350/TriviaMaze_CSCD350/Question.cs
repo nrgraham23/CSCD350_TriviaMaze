@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    abstract class Question : IObservable<Question> {
+
+    [Serializable]
+    public abstract class Question : IObservable<Question> {
 
         String[] questionChoices = new String[4] { "", "", "", "" };
         String questionText, questionAuxFile;
         int questionAnswer, questionType, questionAuxiliary;
+        [NonSerialized]
         protected static List<IObserver<Question>> observers;
 
         public Question() {
@@ -107,7 +110,9 @@ namespace TriviaMaze_CSCD350 {
         //allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
+            [NonSerialized]
             private List<IObserver<Question>> _observers;
+            [NonSerialized]
             private IObserver<Question> _observer;
 
             public Unsubscriber(List<IObserver<Question>> observers, IObserver<Question> observer) {

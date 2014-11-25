@@ -21,6 +21,7 @@ namespace TriviaMaze_CSCD350 {
      * NOTES:
      *      
      */
+    
     public partial class MainWindow : Window, IObserver<Maze>, IObserver<Question> {
         private GameCore gameCore;
         private Question subscribeQuestion;
@@ -405,13 +406,29 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void saveGameMenuItemClick(object sender, RoutedEventArgs e) {
+            SaveGameWindow saveGameWindow = new SaveGameWindow(this);
+            saveGameWindow.Show();
+        }
 
+        //=====================================================================
+        
+        public void SaveGameInput(String fileName) {
+            this.gameCore.SaveGame(fileName);
         }
 
         //=====================================================================
 
         private void loadGameMenuItemClick(object sender, RoutedEventArgs e) {
+            LoadGameWindow loadGameWindow = new LoadGameWindow(this);
+            loadGameWindow.Show();
+        }
 
+        //=====================================================================
+        
+        public void LoadGameInput(String fileName) {
+            if (!this.gameCore.LoadGame(fileName)) {
+                MessageBox.Show("The file you specified does not exist!");
+            }
         }
 
         //=====================================================================

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 
 namespace TriviaMaze_CSCD350 {
+
     class QuestionDatabase {
 
         /* [DATABASE SETUP]

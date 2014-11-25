@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    interface IDoor {
+    public interface IDoor {
 
         bool Enter(); 
         String GetFileName();

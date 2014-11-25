@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
+
     class RandomQuestionFactory {
         public Question GetRandQuestion() {
             Random rand = new Random();

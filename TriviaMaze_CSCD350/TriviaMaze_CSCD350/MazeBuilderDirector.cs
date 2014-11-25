@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
+
     class MazeBuilderDirector {
         public Maze Construct() {
             MazeBuilder builder = new MazeBuilder();

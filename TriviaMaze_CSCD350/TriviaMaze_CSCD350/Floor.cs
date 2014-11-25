@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class Floor {
+
+    [Serializable]
+    public class Floor {
         private int size;
         private Room[,] floor;
 
