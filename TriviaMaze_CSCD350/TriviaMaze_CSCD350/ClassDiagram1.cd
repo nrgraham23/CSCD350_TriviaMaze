@@ -48,16 +48,8 @@
   </Class>
   <Class Name="TriviaMaze_CSCD350.Maze" Collapsed="true">
     <Position X="8" Y="2.5" Width="1.5" />
-    <NestedTypes>
-      <Class Name="TriviaMaze_CSCD350.Maze.Unsubscriber" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Maze.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Lollipop Position="0.2" />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAACABAAAJEAIAACgAgIAYAAgCgAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAACABAAAJEAIAACgAgIAYgAiCgAAAA=</HashCode>
       <FileName>Maze.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
