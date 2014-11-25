@@ -21,14 +21,17 @@ namespace TriviaMaze_CSCD350 {
      * NOTES:
      *      
      */
-    public partial class MainWindow : Window, IObserver<Maze>, IObserver<IQuestion> {
+    public partial class MainWindow : Window, IObserver<Maze>, IObserver<Question> {
         private GameCore gameCore;
+        private Question subscribeQuestion;
 
         public MainWindow() {
             InitializeComponent();
             DrawMiniMap();
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
+            this.subscribeQuestion = new QuestionTF();
+            this.subscribeQuestion.Subscribe(this);
             this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
         }
 
@@ -542,20 +545,21 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnCompleted() {
+        void IObserver<Question>.OnCompleted() {
             //not used in this context
         }
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnError(Exception error) {
+        void IObserver<Question>.OnError(Exception error) {
             //not used in this context
         }
 
         //=====================================================================
         //
-        void IObserver<IQuestion>.OnNext(IQuestion value) {
-
+        void IObserver<Question>.OnNext(Question value) {
+            MessageBox.Show("Im not implemented yet but I am getting called and will be able to show you a question!");
+            // $$$$ here is where you update the question window
         }
 
         //=====================================================================
