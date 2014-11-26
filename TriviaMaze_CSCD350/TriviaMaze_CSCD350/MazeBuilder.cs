@@ -23,10 +23,10 @@ namespace TriviaMaze_CSCD350 {
                 for (int j = 0; j < floor.GetSize(); j++) {
                     curRoom = floor.GetRoom(new Point(i, j));
                     if (i != floor.GetSize() - 1) {  //south doors
-                        curRoom.SetSDoor(new ClosedDoor());
+                        curRoom.SetSDoor(new OpenedDoor());
                     }
                     if (j < floor.GetSize() - 1) {  //east doors
-                        curRoom.SetEDoor(new ClosedDoor());
+                        curRoom.SetEDoor(new OpenedDoor());
                     }
                     if (i != 0) {  //north doors
                         curRoom.SetNDoor(floor.GetRoom(new Point(i - 1, j)).GetSDoor());

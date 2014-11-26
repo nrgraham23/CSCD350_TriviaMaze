@@ -447,6 +447,7 @@ namespace TriviaMaze_CSCD350 {
             }
             this.gameCore.GetMaze().Subscribe(this);
             this.gameCore.UpdateMazeView();
+            DrawMiniMap();
         }
 
         //=====================================================================
@@ -460,8 +461,6 @@ namespace TriviaMaze_CSCD350 {
 
         private void aboutGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("Welcome to the Trivia maze!\n\nDeveloped by the Twenty Hats team!\nVersion 1.0", "About");
-
-
         }
 
         //=====================================================================
