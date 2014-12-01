@@ -262,10 +262,10 @@ namespace TriviaMaze_CSCD350 {
                 rightTriangle.Y2 = 30;
             }
 
-            Canvas.SetLeft(leftTriangle, 50 + (row * 50));
+            Canvas.SetLeft(leftTriangle, 20 + (row * 50));
             Canvas.SetTop(leftTriangle, 10 + (col * 50));
 
-            Canvas.SetLeft(rightTriangle, 50 + (row * 50));
+            Canvas.SetLeft(rightTriangle, 20 + (row * 50));
             Canvas.SetTop(rightTriangle, 10 + (col * 50));
 
             MapCanvas.Children.Add(leftTriangle);
@@ -285,7 +285,7 @@ namespace TriviaMaze_CSCD350 {
                 verticleDoor.Fill = new SolidColorBrush(Colors.Red);
             else
                 verticleDoor.Fill = new SolidColorBrush(Colors.Green);
-            Canvas.SetLeft(verticleDoor, 95 + (row * 50));
+            Canvas.SetLeft(verticleDoor, 65 + (row * 50));
             Canvas.SetTop(verticleDoor, 30 + (column * 50));
             MapCanvas.Children.Add(verticleDoor);
         }
@@ -303,7 +303,7 @@ namespace TriviaMaze_CSCD350 {
                 horizontalDoor.Fill = new SolidColorBrush(Colors.Red);
             else
                 horizontalDoor.Fill = new SolidColorBrush(Colors.Green);
-            Canvas.SetLeft(horizontalDoor, 70 + (row * 50));
+            Canvas.SetLeft(horizontalDoor, 40 + (row * 50));
             Canvas.SetTop(horizontalDoor, 55 + (column * 50));
             MapCanvas.Children.Add(horizontalDoor);
         }
@@ -318,7 +318,7 @@ namespace TriviaMaze_CSCD350 {
             outline.Width = 250;
             outline.Height = 250;
             outline.StrokeThickness = 2;
-            Canvas.SetLeft(outline, 50);
+            Canvas.SetLeft(outline, 20);
             Canvas.SetTop(outline, 10);
             MapCanvas.Children.Add(outline);
         }
@@ -343,7 +343,7 @@ namespace TriviaMaze_CSCD350 {
             line.Width = 50;
             line.Height = 50;
             line.Fill = new SolidColorBrush(Colors.LawnGreen);
-            Canvas.SetLeft(line, 50 + (x * 50));
+            Canvas.SetLeft(line, 20 + (x * 50));
             Canvas.SetTop(line, 10 + (y * 50));
             MapCanvas.Children.Add(line);
         }
@@ -368,7 +368,7 @@ namespace TriviaMaze_CSCD350 {
             verticleDoor.Width = 10;
             verticleDoor.Height = 10;
             verticleDoor.Fill = new SolidColorBrush(Colors.White);
-            Canvas.SetLeft(verticleDoor, 95 + (x * 50));
+            Canvas.SetLeft(verticleDoor, 65 + (x * 50));
             Canvas.SetTop(verticleDoor, 30 + (y * 50));
             MapCanvas.Children.Add(verticleDoor);
         }
@@ -393,7 +393,7 @@ namespace TriviaMaze_CSCD350 {
             horizontalDoor.Width = 10;
             horizontalDoor.Height = 10;
             horizontalDoor.Fill = new SolidColorBrush(Colors.White);
-            Canvas.SetLeft(horizontalDoor, 70 + (x * 50));
+            Canvas.SetLeft(horizontalDoor, 40 + (x * 50));
             Canvas.SetTop(horizontalDoor, 55 + (y * 50));
             MapCanvas.Children.Add(horizontalDoor);
         }
@@ -407,7 +407,7 @@ namespace TriviaMaze_CSCD350 {
             exit.Width = 15;
             exit.Height = 15;
             exit.Fill = new SolidColorBrush(Colors.Chocolate);
-            Canvas.SetLeft(exit, 85 + (4 * 50));
+            Canvas.SetLeft(exit, 55 + (4 * 50));
             Canvas.SetTop(exit, 25 + (row * 50));
             MapCanvas.Children.Add(exit);
         }
