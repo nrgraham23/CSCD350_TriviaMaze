@@ -596,6 +596,8 @@ namespace TriviaMaze_CSCD350 {
 
             QuestionBox.Text = value.GetText();
 
+            EnterButton.IsEnabled = true;
+
             if(value.GetQType() == 1){
                 //short
                 A_TrueRadioButton.Visibility = Visibility.Hidden;
@@ -687,6 +689,8 @@ namespace TriviaMaze_CSCD350 {
             D_RadioButton.IsEnabled         = false;
             D_RadioButton.Visibility        = Visibility.Visible;
             D_RadioButton.IsChecked         = false;
+
+            EnterButton.IsEnabled = false;
 
             AnswerBox.IsEnabled = false;
             AnswerBox.Visibility = Visibility.Visible;

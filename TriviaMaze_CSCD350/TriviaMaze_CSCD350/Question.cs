@@ -81,7 +81,7 @@ namespace TriviaMaze_CSCD350 {
 
         public String GetChoice(int index) {
             if (index >= 1 && index <= 4)
-                return questionChoices[index];
+                return questionChoices[index-1];
             return "";
         }
 
