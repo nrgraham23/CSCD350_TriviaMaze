@@ -26,6 +26,7 @@ namespace TriviaMaze_CSCD350 {
         private GameCore gameCore;
         private Question subscribeQuestion;
         private Question currentQuestion;
+        private IDoor currentDoor; //Why Can I Do this ?
 
         public MainWindow() {
             InitializeComponent();
@@ -644,6 +645,7 @@ namespace TriviaMaze_CSCD350 {
 
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.RightDoorClick();
+            this.currentDoor = this.gameCore.GetcurDoor();
         }
 
         private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -735,12 +737,16 @@ namespace TriviaMaze_CSCD350 {
             //Chec kif quesiton is correct. + Open or Lock Door
             if(this.currentQuestion.CheckAnswer(CurrentAnswer)){
                 MessageBox.Show("CORRECT!");
+                this.gameCore.SetcurDoor(new OpenedDoor());
+
             }
             else{
                 MessageBox.Show("INCORRECT!");
+                this.gameCore.SetcurDoor(new LockedDoor());
             }
 
             //unlock mov. controls.
+
             //reset question boxes
             resetQuestion();
         }
