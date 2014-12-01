@@ -750,5 +750,25 @@ namespace TriviaMaze_CSCD350 {
             //reset question boxes
             resetQuestion();
         }
+
+        private void Floor1Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+
+        }
+
+        private void Floor2Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+
+        }
+
+        private void Floor3Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+
+        }
+
+        private void Floor4Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+
+        }
+
+        private void Floor5Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+
+        }
     }
 }
