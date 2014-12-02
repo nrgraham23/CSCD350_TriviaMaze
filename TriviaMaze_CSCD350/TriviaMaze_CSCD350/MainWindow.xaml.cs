@@ -646,6 +646,7 @@ namespace TriviaMaze_CSCD350 {
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.RightDoorClick();
             this.currentDoor = this.gameCore.GetcurDoor();
+            
         }
 
         private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -749,6 +750,7 @@ namespace TriviaMaze_CSCD350 {
 
             //reset question boxes
             resetQuestion();
+            this.gameCore.GetMaze().Update();
         }
 
         private void Floor1Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
