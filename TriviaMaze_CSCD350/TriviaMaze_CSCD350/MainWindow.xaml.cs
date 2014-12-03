@@ -45,6 +45,7 @@ namespace TriviaMaze_CSCD350 {
             DrawLines();
             DrawVerticleDoors();
             DrawHorizontalDoors();
+            
         }
 
         //=====================================================================
@@ -414,8 +415,9 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void newGameMenuItemClick(object sender, RoutedEventArgs e) {
+        public void newGameMenuItemClick(object sender, RoutedEventArgs e) {
             DrawMiniMap();
+            MapCanvas.IsEnabled = true;
             this.gameCore = new GameCore();
             this.gameCore.GetMaze().Subscribe(this);
         }
@@ -753,24 +755,26 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore.GetMaze().Update();
         }
 
-        private void Floor1Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+        private void Floor1Button_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void Floor2Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+        private void Floor2Button_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void Floor3Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+        private void Floor3Button_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void Floor4Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+        private void Floor4Button_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void Floor5Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+        private void Floor5Button_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        
     }
 }
