@@ -34,11 +34,11 @@
         <Rectangle x:Name="DoorImageRectangle" Fill="#FFC5BFBF" HorizontalAlignment="Left" Height="523" Margin="410,30,0,0" Stroke="Black" StrokeThickness="4" VerticalAlignment="Top" Width="374"/>
         <Rectangle x:Name="MapRectangle" HorizontalAlignment="Left" Height="292" Margin="10,261,0,0" Stroke="Black" VerticalAlignment="Top" Width="382" StrokeThickness="5" Fill="#FFC5BFBF"/>
         <Canvas x:Name="MapCanvas" HorizontalAlignment="Left" Height="274" Margin="20,270,0,0" VerticalAlignment="Top" Width="362" Background="#FF8B8080" IsEnabled="False">
-            <Button x:Name="Floor1Button" Content="Floor 1" Canvas.Left="286" Canvas.Top="51" Width="50" IsDefault="True" IsEnabled="True" Click="Floor1Button_Click"/>
-            <Button x:Name="Floor2Button" Content="Floor 2" Canvas.Left="286" Canvas.Top="91" Width="50" IsEnabled="True" Click="Floor2Button_Click"/>
-            <Button x:Name="Floor3Button" Content="Floor 3" Canvas.Left="286" Canvas.Top="128" Width="50" IsEnabled="True" Click="Floor3Button_Click"/>
-            <Button x:Name="Floor4Button" Content="Floor 4" Canvas.Left="286" Canvas.Top="165" Width="50" IsEnabled="True" Click="Floor4Button_Click"/>
-            <Button x:Name="Floor5Button" Content="Floor 5" Canvas.Left="286" Canvas.Top="202" Width="50" IsEnabled="True" Click="Floor5Button_Click"/>
+            <Rectangle x:Name="Floor1Select" Fill="#FFF4F4F5" Height="35" Canvas.Left="283" Stroke="Black" Canvas.Top="19" Width="35" MouseLeftButtonDown="Floor1Select_MouseLeftButtonDown"/>
+            <Rectangle x:Name="Floor2Select"  Fill="#FFF4F4F5" Height="35" Canvas.Left="283" Stroke="Black" Canvas.Top="68" Width="35" MouseLeftButtonDown="Floor2Select_MouseLeftButtonDown"/>
+            <Rectangle x:Name="Floor3Select" Fill="#FFF4F4F5" Height="35" Canvas.Left="283" Stroke="Black" Canvas.Top="117" Width="35" MouseLeftButtonDown="Floor3Select_MouseLeftButtonDown"/>
+            <Rectangle x:Name="Floor4Select" Fill="#FFF4F4F5" Height="35" Canvas.Left="283" Stroke="Black" Canvas.Top="164" Width="35" MouseLeftButtonDown="Floor4Select_MouseLeftButtonDown"/>
+            <Rectangle x:Name="Floor5Select" Fill="#FFF4F4F5" Height="35" Canvas.Left="283" Stroke="Black" Canvas.Top="213" Width="35" MouseLeftButtonDown="Floor5Select_MouseLeftButtonDown"/>
         </Canvas>
         <Canvas x:Name="CDoorCanvas" HorizontalAlignment="Left" Height="378" Margin="508,39,0,0" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="CDoorCanvas_MouseLeftButtonDown"/>
         <Canvas x:Name="LDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="419,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="LDoorCanvas_MouseLeftButtonDown"/>

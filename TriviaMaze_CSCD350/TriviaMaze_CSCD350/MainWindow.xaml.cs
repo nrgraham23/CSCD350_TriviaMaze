@@ -753,26 +753,24 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore.GetMaze().Update();
         }
 
-        private void Floor1Button_Click(object sender, RoutedEventArgs e) {
+        private void Floor1Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
 
         }
 
-        private void Floor2Button_Click(object sender, RoutedEventArgs e) {
+        private void Floor2Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
 
         }
 
-        private void Floor3Button_Click(object sender, RoutedEventArgs e) {
+        private void Floor3Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
 
         }
 
-        private void Floor4Button_Click(object sender, RoutedEventArgs e) {
+        private void Floor4Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
 
         }
 
-        private void Floor5Button_Click(object sender, RoutedEventArgs e) {
+        private void Floor5Select_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
 
         }
-
-        
     }
 }
