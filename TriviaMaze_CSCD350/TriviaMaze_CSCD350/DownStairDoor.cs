@@ -12,28 +12,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class DownStairDoor : IDoor {
+
+    [Serializable]
+    public class DownStairDoor : IDoor {
 
         //=====================================================================
-        //Comment-
+        
         public bool Enter() {
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        
         public string GetFileName() {
             return "door_down.png";
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Passable() {
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        
         public int FloorChange() {
             return -1;
         }

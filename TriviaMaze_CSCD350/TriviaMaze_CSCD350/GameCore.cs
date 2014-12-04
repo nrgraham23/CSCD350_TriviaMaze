@@ -25,21 +25,21 @@ namespace TriviaMaze_CSCD350 {
         private String clickDirection;
 
         //=====================================================================
-        //Comment- Constructor
+        
         public GameCore() {
             MazeBuilderDirector director = new MazeBuilderDirector();
             
-            this.maze = director.Construct();
+            this.maze = director.Construct(0);
         }
 
         //=====================================================================
-        //Comment- Get methods
+        
         public IDoor GetCurDoor() {
             return this.curDoor;
         }
 
         //=====================================================================
-        //Comment- Not a normal set, when the curdoor is set it also sets
+        // Not a normal set, when the curdoor is set it also sets
         // the rooms door as well and to do that you need to find the entered
         // from direction and the direction you click.
         public void SetCurDoor(IDoor door){
@@ -113,7 +113,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool RightDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
             this.clickDirection = "right";

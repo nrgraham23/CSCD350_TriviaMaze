@@ -19,13 +19,13 @@ namespace TriviaMaze_CSCD350 {
         private Maze maze;
 
         //=====================================================================
-        //Comment- Consturctor
+        
         public MazeBuilder() {
             this.maze = new Maze();
         }
 
         //=====================================================================
-        //Comment-
+        
         public void MakeWalls() {
             for (int floorNum = 0; floorNum < this.maze.GetNumFloors(); floorNum++) {
                 Floor mazeFloor = this.maze.GetFloor(floorNum);
@@ -45,7 +45,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-initializes walls by sharing walls between rooms.
+        //initializes walls by sharing walls between rooms.
         public void InitDoors() {
             for (int floorNum = 0; floorNum < this.maze.GetNumFloors(); floorNum++) {
                 Floor floor = maze.GetFloor(floorNum);
@@ -72,7 +72,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public void PlaceStairs() {
             int upY, upX, downY, downX, direction;
             int floorSize = this.maze.GetFloor(0).GetSize();
@@ -102,7 +102,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void SetNorthStairs(int floorNum, int y, int x) {
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetNDoor(new UpStairDoor());
             this.maze.GetFloor(floorNum).GetRoom(new Point(y - 1, x)).SetSWall(new Wall());
@@ -115,7 +115,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void SetEastStairs(int floorNum, int y, int x) {
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetEDoor(new UpStairDoor());
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x + 1)).SetWWall(new Wall());
@@ -128,7 +128,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void SetSouthStairs(int floorNum, int y, int x) {
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetSDoor(new UpStairDoor());
             this.maze.GetFloor(floorNum).GetRoom(new Point(y + 1, x)).SetNWall(new Wall());
@@ -141,7 +141,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void SetWestStairs(int floorNum, int y, int x) {
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetWDoor(new UpStairDoor());
             this.maze.GetFloor(floorNum).GetRoom(new Point(y, x - 1)).SetEWall(new Wall());
@@ -154,7 +154,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public void PlaceExit() {
             Random rand = new Random();
             int size = this.maze.GetFloor(0).GetSize();
@@ -167,7 +167,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public void PlaceStart() {
             Random rand = new Random();
             Point startRoom = new Point(rand.Next(this.maze.GetFloor(0).GetSize()), 0);
@@ -179,7 +179,13 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+
+        public void CloseDoors() {
+
+        }
+
+        //=====================================================================
+        
         public Maze GetMaze() {
             return this.maze;
         }

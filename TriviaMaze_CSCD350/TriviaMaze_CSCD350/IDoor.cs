@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 namespace TriviaMaze_CSCD350 {
     public interface IDoor {
 
-        bool Enter(); 
-        String GetFileName();
-        bool Passable();
-        int FloorChange();
+        bool Enter(); //returns true if the user can enter the door 
+        String GetFileName(); 
+        bool Passable(); //returns true if the door is not locked or a wall
+        int FloorChange(); //returns an int to be added to the current floor number variable in maze
     }
 }
