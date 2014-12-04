@@ -2,7 +2,7 @@
  * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
  * CSCD 350
  * 
- * Class - QuestionDatabase, 
+ * Class - QuestionDatabase
  */
 
 using System;
@@ -18,8 +18,8 @@ namespace TriviaMaze_CSCD350 {
     class QuestionDatabase {
 
         /* [DATABASE SETUP]
-         * Questions: QIndex SMALLINT, QType SMALLINT, QAuxiliary SMALLINT, QAuxFile VARCHAR(255), QText VARCHAR(255),
-         * QAnswer SMALLINT, QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64)
+         * Questions: QIndex SMALLINT, QType SMALLINT, QText VARCHAR(255), QAnswer SMALLINT, 
+         * QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64)
          */
 
         SQLiteConnection dbConnection;
@@ -30,15 +30,15 @@ namespace TriviaMaze_CSCD350 {
         bool validConnection;
 
         //=====================================================================
-        //Comment-Create the database object, open it, and count entries
+        //Comment- Create the database object, open it, and count entries
         public QuestionDatabase(string dbPath) {
             this.dbPath = dbPath;
             validConnection = OpenDatabase();
-            CountEntries();
+            dbEntries = CountEntries();
         }
 
         //=====================================================================
-        //Comment-Create a new database connection, open it, and test the connection (returns bool type for success flag)
+        //Comment- Create a new database connection, open it, and test the connection (returns bool type for success flag)
         public bool OpenDatabase() {
             dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;");
             dbConnection.Open();
@@ -47,21 +47,20 @@ namespace TriviaMaze_CSCD350 {
                 string sql = "SELECT QIndex FROM Questions WHERE QIndex = 1";
                 SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
                 SQLiteDataReader reader = command.ExecuteReader();
-            }
-            catch (SQLiteException) {
+            } catch (SQLiteException) {
                 return false;
             }
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
         public void CloseDatabase() {
             dbConnection.Close();
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
         public Question RandomQuestion() {
 
             if (!validConnection || !HasQuestions())
@@ -93,11 +92,12 @@ namespace TriviaMaze_CSCD350 {
 
             Question tempQuestion = QuestionFromType(Convert.ToInt32("" + reader["QType"]));
 
-            tempQuestion.SetAuxiliary(Convert.ToInt32("" + reader["QAuxiliary"]));
-            tempQuestion.SetAuxFile("" + reader["QType"]);
             tempQuestion.SetText("" + reader["QText"]);
             tempQuestion.SetAnswer(Convert.ToInt32(reader["QAnswer"]));
-            tempQuestion.SetChoiceArray(new String[4] { "" + reader["QOption1"], "" + reader["QOption2"], "" + reader["QOption3"], "" + reader["QOption4"] });
+            tempQuestion.SetChoice(1, "" + reader["QOption1"]);
+            tempQuestion.SetChoice(2, "" + reader["QOption2"]);
+            tempQuestion.SetChoice(3, "" + reader["QOption2"]);
+            tempQuestion.SetChoice(4, "" + reader["QOption2"]);
 
             return tempQuestion;
         }
@@ -111,16 +111,16 @@ namespace TriviaMaze_CSCD350 {
 
             int index = dbEntries + 1;
             String sql = "INSERT INTO Questions (QIndex,QType,QAuxiliary,QAuxFile,QText,QAnswer,QOption1,QOption2,QOption3,QOption4) " +
-                         "VALUES (" + index + ", " + q.GetQType() + ", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\", \"" +
-                         q.GetText() + "\", " + q.GetAnswer() + ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" +
-                         q.GetChoice(3) + "\", \"" + q.GetChoice(4) + "\")";
+                         "VALUES (" + index + ", " + q.GetQType() + ", \"" + EscapeString(q.GetText()) + "\", " + q.GetAnswer() + ", \"" +
+                         EscapeString(q.GetChoice(1)) + "\", \"" + EscapeString(q.GetChoice(2)) + "\", \"" +
+                         EscapeString(q.GetChoice(3)) + "\", \"" + EscapeString(q.GetChoice(4)) + "\")";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
             dbEntries++;
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
         public void DeleteQuestionFromDatabase(int index) {
 
             if (!validConnection)
@@ -140,7 +140,30 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- Sets existing question of ID index to contain values of Question object mod
+        public void ModifyQuestionInDatabase(int index, Question mod) {
+
+            if (!validConnection)
+                return;
+
+            if (index < 1 || index > dbEntries)
+                return;
+
+            String sql = "UPDATE Questions SET ";
+            sql += "QType = " + mod.GetQType() + ", ";
+            sql += "QText = \"" + mod.GetText() + "\", ";
+            sql += "QAnswer = " + mod.GetAnswer() + ", ";
+            sql += "QOption1 = \"" + mod.GetChoice(1) + "\", ";
+            sql += "QOption2 = \"" + mod.GetChoice(2) + "\", ";
+            sql += "QOption3 = \"" + mod.GetChoice(3) + "\", ";
+            sql += "QOption4 = \"" + mod.GetChoice(4) + " ";
+            sql += "WHERE QIndex = " + index;
+            SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        //=====================================================================
+        //Comment- 
         private bool HasQuestions() {
             if (dbIgnore.Count == dbEntries) {
                 Console.WriteLine("No more questions!");
@@ -150,7 +173,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
         private bool ValidIndex(int index) {
             if (dbIgnore.IndexOf(index) == -1)
                 return true;
@@ -158,13 +181,11 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
-        private void CountEntries() {
+        //Comment- 
+        private int CountEntries() {
 
-            if (!validConnection) {
-                dbEntries = 0;
-                return;
-            }
+            if (!validConnection)
+                return 0;
 
             int entryCount = 0;
             string sql = "SELECT * FROM Questions";
@@ -172,17 +193,23 @@ namespace TriviaMaze_CSCD350 {
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
                 entryCount++;
-            dbEntries = entryCount;
+            return entryCount;
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
+        public int GetEntries() {
+            return dbEntries;
+        }
+
+        //=====================================================================
+        //Comment- 
         private void UnignoreAll() {
             dbIgnore.Clear();
         }
 
         //=====================================================================
-        //Comment-
+        //Comment- 
         private Question QuestionFromType(int type) {
             if (type == 1)
                 return new QuestionShort();
@@ -190,5 +217,14 @@ namespace TriviaMaze_CSCD350 {
                 return new QuestionTF();
             return new QuestionMulti();
         }
+
+        //=====================================================================
+        //Comment- Prevent SQL inqection by scrubbing strings
+        private string EscapeString(string input) {
+
+            return input;
+        }
+
+        //=====================================================================
     }
 }

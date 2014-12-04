@@ -21,10 +21,8 @@ namespace TriviaMaze_CSCD350 {
         public QuestionShort() {
             SetChoiceArray(new String[4] { "correct", "", "", "" });
             SetText("DEFAULT: The answer is correct.");
-            SetAuxFile("NULL");
             SetAnswer(1);
             SetQType(1);
-            SetAuxiliary(1);
         }
 
         //=====================================================================

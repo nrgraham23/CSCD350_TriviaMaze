@@ -20,11 +20,9 @@ namespace TriviaMaze_CSCD350 {
         //Comment- Constructor
         public QuestionTF() {
             SetChoiceArray(new String[4] { "TRUE", "FALSE", "", "" });
-            SetText("DEFAULT: This is a true or false question - Answer is TRUE");
-            SetAuxFile("NULL");
+            SetText("DEFAULT: This is a true or false question.");
             SetAnswer(1);
             SetQType(2);
-            SetAuxiliary(1);
         }
 
         //=====================================================================
