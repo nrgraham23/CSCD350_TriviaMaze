@@ -19,17 +19,32 @@ using System.Windows.Markup;
 
 namespace TriviaMaze_CSCD350 {
 
-    class GameCore {
+    public class GameCore {
         private Maze maze;
         private IDoor curDoor;
         private String clickDirection;
+        private MainWindow mainWindow;
 
         //=====================================================================
         
-        public GameCore() {
+        public GameCore(MainWindow mainWindow) {
+            GetDifficulty();
+            this.mainWindow = mainWindow;
+        }
+
+        //=====================================================================
+
+        private void GetDifficulty() {
+            DifficultyInput difficultyInput = new DifficultyInput(this);
+            difficultyInput.Show();
+        }
+
+        //=====================================================================
+
+        public void InitializeMaze(int difficulty) {
             MazeBuilderDirector director = new MazeBuilderDirector();
-            
-            this.maze = director.Construct(0);
+            this.maze = director.Construct(difficulty);
+            this.mainWindow.SubscribeToMaze();
         }
 
         //=====================================================================
@@ -135,7 +150,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool CenterDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
             this.clickDirection = "center";
@@ -157,7 +172,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool LeftDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
             this.clickDirection = "left";
@@ -179,7 +194,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool BackDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
             this.clickDirection = "back";
@@ -201,7 +216,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- help for serialization found at: http://msdn.microsoft.com/en-us/library/et91as27.aspx
+        //help for serialization found at: http://msdn.microsoft.com/en-us/library/et91as27.aspx
         public bool LoadGame(String fileName) {
             String path = @"..\..\SaveFiles\" + fileName + ".bin";
             if (File.Exists(path)) {
@@ -215,14 +230,14 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public void UpdateMazeView() {
 
             this.maze.Update();
         }
 
         //=====================================================================
-        //Comment- help for serialization found at: http://msdn.microsoft.com/en-us/library/et91as27.aspx
+        //help for serialization found at: http://msdn.microsoft.com/en-us/library/et91as27.aspx
         public void SaveGame(String fileName) {
             String path = @"..\..\SaveFiles\" + fileName + ".bin";
 
@@ -233,7 +248,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- should only ever be used for subscription purposes
+        //should only ever be used for subscription purposes
         public Maze GetMaze() {
             return this.maze;
         }

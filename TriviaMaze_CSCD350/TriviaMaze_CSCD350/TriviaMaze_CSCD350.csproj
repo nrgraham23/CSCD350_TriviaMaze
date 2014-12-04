@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DifficultyInput.xaml.cs">
+      <DependentUpon>DifficultyInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DownStairDoor.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="GameCore.cs" />
@@ -100,6 +103,10 @@
       <DependentUpon>ViewQuestionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wall.cs" />
+    <Page Include="DifficultyInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoadGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

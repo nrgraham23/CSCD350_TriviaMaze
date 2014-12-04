@@ -1,0 +1,11 @@
+﻿<Window x:Class="TriviaMaze_CSCD350.DifficultyInput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DifficultyInput" Height="210.416" Width="355.208">
+    <Grid>
+        <Label Content="Enter the difficulty level you would like to play on in the&#xD;&#xA;box bellow.  You may enter &quot;1&quot; or &quot;easy&quot; for an easy maze,&#xD;&#xA;or a &quot;2&quot; or &quot;hard&quot; for a more difficult version where some&#xD;&#xA;doors will be replaced with walls to make the game&#xD;&#xA;more maze like." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="96" Width="327"/>
+        <TextBox x:Name="DifficultInputTextBox" Height="20" Margin="89,106,89,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="DifficultInputButton" Content="OK" Margin="136,143,136,0" VerticalAlignment="Top" Click="DifficultInputButton_Click"/>
+
+    </Grid>
+</Window>

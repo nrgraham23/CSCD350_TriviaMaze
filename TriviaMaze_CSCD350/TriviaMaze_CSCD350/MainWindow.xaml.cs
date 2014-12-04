@@ -32,11 +32,8 @@ namespace TriviaMaze_CSCD350 {
         public MainWindow() {
             InitializeComponent();
             DrawMiniMap();
-            this.gameCore = new GameCore();
-            this.gameCore.GetMaze().Subscribe(this);
             this.subscribeQuestion = new QuestionTF();
             this.subscribeQuestion.Subscribe(this);
-            this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
         }
 
         //=====================================================================
@@ -420,7 +417,12 @@ namespace TriviaMaze_CSCD350 {
         public void newGameMenuItemClick(object sender, RoutedEventArgs e) {
             DrawMiniMap();
             MapCanvas.IsEnabled = true;
-            this.gameCore = new GameCore();
+            this.gameCore = new GameCore(this);
+        }
+
+        //=====================================================================
+
+        public void SubscribeToMaze() {
             this.gameCore.GetMaze().Subscribe(this);
         }
 
@@ -540,6 +542,7 @@ namespace TriviaMaze_CSCD350 {
             } else {
                 throw new Exception(); //TODO: find the right exception to throw
             }
+            this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
         }
 
         //=====================================================================
@@ -695,21 +698,21 @@ namespace TriviaMaze_CSCD350 {
             B_FalseRadioButton.IsChecked = false;
             B_FalseRadioButton.Content = "B / False";
 
-            C_RadioButton.IsEnabled         = false;
-            C_RadioButton.Visibility        = Visibility.Visible;
-            C_RadioButton.IsChecked         = false;
+            C_RadioButton.IsEnabled = false;
+            C_RadioButton.Visibility = Visibility.Visible;
+            C_RadioButton.IsChecked = false;
 
-            D_RadioButton.IsEnabled         = false;
-            D_RadioButton.Visibility        = Visibility.Visible;
-            D_RadioButton.IsChecked         = false;
+            D_RadioButton.IsEnabled = false;
+            D_RadioButton.Visibility = Visibility.Visible;
+            D_RadioButton.IsChecked = false;
 
             EnterButton.IsEnabled = false;
 
             AnswerBox.IsEnabled = false;
             AnswerBox.Visibility = Visibility.Visible;
-            AnswerBox.Text                  = "Enter Answer";
+            AnswerBox.Text = "Enter Answer";
 
-            QuestionBox.Text                = "Question....";
+            QuestionBox.Text = "Question....";
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e) {
