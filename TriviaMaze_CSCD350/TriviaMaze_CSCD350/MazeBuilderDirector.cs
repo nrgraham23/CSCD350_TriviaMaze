@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - MazeBuilderDirector, 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

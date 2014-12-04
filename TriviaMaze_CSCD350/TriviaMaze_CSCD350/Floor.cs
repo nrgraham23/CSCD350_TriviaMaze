@@ -1,4 +1,13 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - Floor, in our game we have multi floors
+ * floors hold rooms. So the main point of floors
+ * is to make our maze 3D.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +22,8 @@ namespace TriviaMaze_CSCD350 {
         Point entry;
         Point exit;
 
+        //=====================================================================
+        //Comment-
         public Floor() {
             this.size = 5;
             this.floor = new Room[size, size];
@@ -20,7 +31,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         private void InitFloor() {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -30,7 +41,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- Get methods
         public int GetSize() {
             return this.size;
         }
@@ -45,7 +56,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- Set methods
         public void SetEntry(Point entry) {
             this.entry = entry;
         }

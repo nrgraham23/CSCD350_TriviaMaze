@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - Maze, this is the highest level of the core
+ * of the game, maze is the gateway to most of the classes.
+ * As it holds floors, current pos, current room, and
+ * current clicked door.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +28,8 @@ namespace TriviaMaze_CSCD350 {
         [NonSerialized]
         private List<IObserver<Maze>> observers;
 
+        //=====================================================================
+        //Comment- Constructor
         public Maze() {
             this.observers = new List<IObserver<Maze>>();
             this.numFloors = 5;
@@ -25,6 +37,8 @@ namespace TriviaMaze_CSCD350 {
             InitFloors();
         }
 
+        //=====================================================================
+        //Comment-
         private void InitFloors() {
             this.mazeFloors = new Floor[this.numFloors];
             for (int i = 0; i < this.numFloors; i++) {
@@ -33,7 +47,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public bool IsSolvable() {
             for (int i = this.curFloorNum; i < this.numFloors; i++) {
                 int size = mazeFloors[i].GetSize();
@@ -55,7 +69,9 @@ namespace TriviaMaze_CSCD350 {
             }
             return true;
         }
-        //recursive part of IsSolvable
+
+        //=====================================================================
+        //Comment- recursive part of IsSolvable
         private bool RecurseSearch(bool[,] visitedMap, int testYCoord, int testXCoord, int testZCoord, int exitY, int exitX) {
             Room curTestRoom = mazeFloors[testZCoord].GetRoom(new Point(testYCoord, testXCoord));
 
@@ -90,7 +106,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- Get methods
         public Room GetCurRoom() {
             return this.curRoom;
         }
@@ -105,7 +121,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- Set methods
         public void SetCurRoom(Room curRoom) {
             this.curRoom = curRoom;
         }
@@ -114,7 +130,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
@@ -128,7 +144,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
@@ -142,7 +158,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
@@ -156,7 +172,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
@@ -170,13 +186,13 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public void Update() {
             observers[0].OnNext(this);
         }
 
         //=====================================================================
-        //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
+        //Comment- taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         public IDisposable Subscribe(IObserver<Maze> observer) {
             if (this.observers == null) {
                 this.observers = new List<IObserver<Maze>>();
@@ -189,7 +205,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //allows for the removal of an observer
+        //Comment- allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
             [NonSerialized]

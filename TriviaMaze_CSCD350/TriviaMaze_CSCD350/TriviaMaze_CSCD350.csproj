@@ -77,7 +77,6 @@
     <Compile Include="DownStairDoor.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="GameCore.cs" />
-    <Compile Include="IQuestion.cs" />
     <Compile Include="LoadGameWindow.xaml.cs">
       <DependentUpon>LoadGameWindow.xaml</DependentUpon>
     </Compile>

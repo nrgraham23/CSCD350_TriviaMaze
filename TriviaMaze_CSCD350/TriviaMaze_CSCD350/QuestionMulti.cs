@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - QuestionMulti, is the multipule choice question.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +16,8 @@ namespace TriviaMaze_CSCD350 {
     [Serializable]
     public class QuestionMulti : Question {
 
+        //=====================================================================
+        //Comment-
         public QuestionMulti() {
             SetChoiceArray(new String[4] { "Apple", "Orange", "Cherry", "Strawberry" });
             SetText("DEFAULT: Which of these fruits is not red? - Answer is B \nA.Apple\nB.Orange\nC.Cherry\nD.Strawberry");
@@ -18,11 +27,15 @@ namespace TriviaMaze_CSCD350 {
             SetAuxiliary(1);
         }
 
+        //=====================================================================
+        //Comment-
         public override String ToString() {
             String result = GetText() + "\n\tA. " + GetChoice(1) + "\n\tB. " + GetChoice(2) + "\n\tC. " + GetChoice(3) + "\n\tD. " + GetChoice(4);
             return result;
         }
 
+        //=====================================================================
+        //Comment-
         public override bool CheckAnswer(String answer) {
             if ((answer.Equals("A") && GetAnswer() == 1) || (answer.Equals("B") && GetAnswer() == 2) ||
                 (answer.Equals("C") && GetAnswer() == 3) || (answer.Equals("D") && GetAnswer() == 4))

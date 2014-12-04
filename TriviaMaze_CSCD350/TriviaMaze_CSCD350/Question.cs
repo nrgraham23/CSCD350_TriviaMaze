@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - Question, is the abstract class that is the
+ * parent for the child questions.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +23,8 @@ namespace TriviaMaze_CSCD350 {
         [NonSerialized]
         protected static List<IObserver<Question>> observers;
 
+        //=====================================================================
+        //Comment- Constructor
         public Question() {
             if (observers == null) {
                 observers = new List<IObserver<Question>>();
@@ -22,7 +32,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // SET METHODS
+        //Comment- Set Methods
         public void SetText(String text) {
             questionText = text;
         }
@@ -54,7 +64,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // GET METHODS
+        //Comment- Get Methods
         public String GetText() {
             return questionText;
         }
@@ -86,19 +96,19 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // ABSTRACT METHODS
+        //Comment- Abstract Methods
         public abstract override String ToString();
 
         public abstract bool CheckAnswer(String answer);
 
         //=====================================================================
-
+        //Comment-
         public void AskQuestion() {
             observers[0].OnNext(this);
         }
 
         //=====================================================================
-
+        //Comment-
         public IDisposable Subscribe(IObserver<Question> observer) {
             if (!Question.observers.Contains(observer)) {
                 observers.Add(observer);
@@ -107,7 +117,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //allows for the removal of an observer
+        //Comment- allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
             [NonSerialized]
@@ -126,6 +136,8 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+        //Comment-
         public virtual void SetMultiChoiceList(String[] newList) {
             throw new NotImplementedException();
         }

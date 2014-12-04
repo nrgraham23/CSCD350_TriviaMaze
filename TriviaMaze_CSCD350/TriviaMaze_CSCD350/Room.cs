@@ -1,4 +1,14 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - Room, The Room class holds walls which in turn
+ * holds doors, and an enterfrom char. The enterfrom is
+ * important because thats how we determin the direction
+ * of the doors.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,31 +25,25 @@ namespace TriviaMaze_CSCD350 {
         private char enteredFrom;
 
         //=====================================================================
-
+        //Comment- Enter Methods
         public void EnterNorth() {
             this.nWall.GetDoor().Enter();
         }
-
-        //=====================================================================
 
         public void EnterEast() {
             this.eWall.GetDoor().Enter();
         }
 
-        //=====================================================================
-
         public void EnterSouth() {
             this.sWall.GetDoor().Enter();
         }
-
-        //=====================================================================
 
         public void EnterWest() {
             this.wWall.GetDoor().Enter();
         }
 
         //=====================================================================
-
+        //Comment- Get Methods
         public bool GetNPassable() {
             return this.nWall.GetDoor().Passable();
         }
@@ -81,7 +85,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- Set Methods
         public void SetNDoor(IDoor door) {
             this.nWall.SetDoor(door);
         }

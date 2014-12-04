@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * Class - QuestionDatabase, 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -23,7 +30,7 @@ namespace TriviaMaze_CSCD350 {
         bool validConnection;
 
         //=====================================================================
-        // Create the database object, open it, and count entries
+        //Comment-Create the database object, open it, and count entries
         public QuestionDatabase(string dbPath) {
             this.dbPath = dbPath;
             validConnection = OpenDatabase();
@@ -31,7 +38,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // Create a new database connection, open it, and test the connection (returns bool type for success flag)
+        //Comment-Create a new database connection, open it, and test the connection (returns bool type for success flag)
         public bool OpenDatabase() {
             dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;");
             dbConnection.Open();
@@ -48,13 +55,13 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public void CloseDatabase() {
             dbConnection.Close();
         }
 
         //=====================================================================
-
+        //Comment-
         public Question RandomQuestion() {
 
             if (!validConnection || !HasQuestions())
@@ -71,7 +78,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // Grabs a question object from the database and returns it.
+        //Comment- Grabs a question object from the database and returns it.
         public Question GetQuestion(int index) {
 
             if (!HasQuestions() || !ValidIndex(index) || !validConnection)
@@ -96,7 +103,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment- 
         public void AddQuestionToDatabase(Question q) {
 
             if (!validConnection)
@@ -113,7 +120,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         public void DeleteQuestionFromDatabase(int index) {
 
             if (!validConnection)
@@ -133,7 +140,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         private bool HasQuestions() {
             if (dbIgnore.Count == dbEntries) {
                 Console.WriteLine("No more questions!");
@@ -143,7 +150,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         private bool ValidIndex(int index) {
             if (dbIgnore.IndexOf(index) == -1)
                 return true;
@@ -151,7 +158,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         private void CountEntries() {
 
             if (!validConnection) {
@@ -169,13 +176,13 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-
+        //Comment-
         private void UnignoreAll() {
             dbIgnore.Clear();
         }
 
         //=====================================================================
-
+        //Comment-
         private Question QuestionFromType(int type) {
             if (type == 1)
                 return new QuestionShort();
@@ -183,7 +190,5 @@ namespace TriviaMaze_CSCD350 {
                 return new QuestionTF();
             return new QuestionMulti();
         }
-
-        //=====================================================================
     }
 }
