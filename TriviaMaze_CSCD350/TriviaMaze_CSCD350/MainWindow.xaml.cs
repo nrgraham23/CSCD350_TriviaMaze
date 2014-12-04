@@ -26,7 +26,6 @@ namespace TriviaMaze_CSCD350 {
         private GameCore gameCore;
         private Question subscribeQuestion;
         private Question currentQuestion;
-        private IDoor currentDoor; //Why Can I Do this ?
 
         public MainWindow() {
             InitializeComponent();
@@ -647,8 +646,6 @@ namespace TriviaMaze_CSCD350 {
 
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.RightDoorClick();
-            this.currentDoor = this.gameCore.GetcurDoor();
-            
         }
 
         private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {

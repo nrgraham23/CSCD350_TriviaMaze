@@ -14,6 +14,7 @@ namespace TriviaMaze_CSCD350 {
     class GameCore {
         private Maze maze;
         private IDoor curDoor;
+        private String clickDirection;
 
         public GameCore() {
             MazeBuilderDirector director = new MazeBuilderDirector();
@@ -28,14 +29,77 @@ namespace TriviaMaze_CSCD350 {
         //Change this at COMMENT
         public void SetcurDoor(IDoor door){
             this.curDoor = door;
-            this.maze.GetCurRoom().SetEDoor(door);//#
-            this.maze.GetCurRoom().SetWDoor(door);//#
-            this.maze.GetCurRoom().SetNDoor(door);//#
-            this.maze.GetCurRoom().SetSDoor(door);//#
+
+            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+
+
+            if(this.clickDirection.Equals("right")){
+                if (dirEntered == 'n') {
+                    this.maze.GetCurRoom().SetWDoor(door);//#
+                }
+                else if (dirEntered == 'w') {
+                    this.maze.GetCurRoom().SetSDoor(door);//#
+                }
+                else if (dirEntered == 's') {
+                    this.maze.GetCurRoom().SetEDoor(door);//#
+                }
+                else if (dirEntered == 'e') {
+                    this.maze.GetCurRoom().SetNDoor(door);//#
+                }
+                else {
+                    Console.WriteLine("*Error* - setdoor");
+                }
+            }
+            else if (this.clickDirection.Equals("center")) {
+                if (dirEntered == 'n') {
+                    this.maze.GetCurRoom().SetSDoor(door);//#
+                }
+                else if (dirEntered == 'w') {
+                    this.maze.GetCurRoom().SetEDoor(door);//#
+                }
+                else if (dirEntered == 's') {
+                    this.maze.GetCurRoom().SetNDoor(door);//#
+                }
+                else if (dirEntered == 'e') {
+                    this.maze.GetCurRoom().SetWDoor(door);//#
+                }
+            }
+            else if (this.clickDirection.Equals("left")) {
+                if (dirEntered == 'n') {
+                    this.maze.GetCurRoom().SetEDoor(door);//#
+                }
+                else if (dirEntered == 'w') {
+                    this.maze.GetCurRoom().SetNDoor(door);//#
+                }
+                else if (dirEntered == 's') {
+                    this.maze.GetCurRoom().SetWDoor(door);//#
+                }
+                else if (dirEntered == 'e') {
+                    this.maze.GetCurRoom().SetSDoor(door);//#
+                }
+            }
+            else if (this.clickDirection.Equals("back")) {
+                if (dirEntered == 'n') {
+                    this.maze.GetCurRoom().SetNDoor(door);//#
+                }
+                else if (dirEntered == 'w') {
+                    this.maze.GetCurRoom().SetWDoor(door);//#
+                }
+                else if (dirEntered == 's') {
+                    this.maze.GetCurRoom().SetSDoor(door);//#
+                }
+                else if (dirEntered == 'e') {
+                    this.maze.GetCurRoom().SetEDoor(door);//#
+                }
+            }
+            else {
+                Console.WriteLine("*Error* - setdoor");
+            }
         }
 
         public bool RightDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+            this.clickDirection = "right";
 
             if (dirEntered == 'n') {
                 this.curDoor=this.maze.GetCurRoom().GetWDoor();
@@ -55,14 +119,19 @@ namespace TriviaMaze_CSCD350 {
 
         public bool CenterDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+            this.clickDirection = "center";
 
             if (dirEntered == 'n') {
+                this.curDoor = this.maze.GetCurRoom().GetSDoor();
                 return this.maze.MoveSouth();
             } else if (dirEntered == 'w') {
+                this.curDoor = this.maze.GetCurRoom().GetEDoor();
                 return this.maze.MoveEast();
             } else if (dirEntered == 's') {
+                this.curDoor = this.maze.GetCurRoom().GetNDoor();
                 return this.maze.MoveNorth();
             } else if (dirEntered == 'e') {
+                this.curDoor = this.maze.GetCurRoom().GetWDoor();
                 return this.maze.MoveWest();
             }
             return false;
@@ -70,14 +139,19 @@ namespace TriviaMaze_CSCD350 {
 
         public bool LeftDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+            this.clickDirection = "left";
 
             if (dirEntered == 'n') {
+                this.curDoor = this.maze.GetCurRoom().GetEDoor();
                 return this.maze.MoveEast();
             } else if (dirEntered == 'w') {
+                this.curDoor = this.maze.GetCurRoom().GetNDoor();
                 return this.maze.MoveNorth();
             } else if (dirEntered == 's') {
+                this.curDoor = this.maze.GetCurRoom().GetWDoor();
                 return this.maze.MoveWest();
             } else if (dirEntered == 'e') {
+                this.curDoor = this.maze.GetCurRoom().GetSDoor();
                 return this.maze.MoveSouth();
             }
             return false;
@@ -85,14 +159,19 @@ namespace TriviaMaze_CSCD350 {
 
         public bool BackDoorClick() {
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
+            this.clickDirection = "back";
 
             if (dirEntered == 'n') {
+                this.curDoor = this.maze.GetCurRoom().GetNDoor();
                 return this.maze.MoveNorth();
             } else if (dirEntered == 'w') {
+                this.curDoor = this.maze.GetCurRoom().GetWDoor();
                 return this.maze.MoveWest();
             } else if (dirEntered == 's') {
+                this.curDoor = this.maze.GetCurRoom().GetSDoor();
                 return this.maze.MoveSouth();
             } else if (dirEntered == 'e') {
+                this.curDoor = this.maze.GetCurRoom().GetEDoor();
                 return this.maze.MoveEast();
             }
             return false;
