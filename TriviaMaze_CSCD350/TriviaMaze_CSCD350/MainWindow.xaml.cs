@@ -506,7 +506,7 @@ namespace TriviaMaze_CSCD350 {
         void IObserver<Maze>.OnNext(Maze value) {
             Room curRoom = value.GetCurRoom();
             Point curPosition = value.GetCurPoint();
-            Point exit = value.GetExit();
+            Point exit = new Point(0, 4); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!This MUST be changed.  Temp fix
 
             int playerRow = curPosition.GetRow();
             int playerCol = curPosition.GetCol();
@@ -773,6 +773,18 @@ namespace TriviaMaze_CSCD350 {
 
         }
 
+        //=====================================================================
+
+        public static void GameWon() {
+            MessageBox.Show("You won!");
+            //add more game won stuff here
+        }
+
+        //=====================================================================
+
+        public static void GameLost() {
+            //add game lost stuff here
+        }
         
     }
 }

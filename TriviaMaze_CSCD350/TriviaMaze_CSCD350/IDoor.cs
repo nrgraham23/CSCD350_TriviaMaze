@@ -10,5 +10,6 @@ namespace TriviaMaze_CSCD350 {
         bool Enter(); 
         String GetFileName();
         bool Passable();
+        int FloorChange();
     }
 }

@@ -11,6 +11,9 @@ namespace TriviaMaze_CSCD350 {
             MazeBuilder builder = new MazeBuilder();
             builder.MakeWalls();
             builder.InitDoors();
+            builder.PlaceStairs();
+            builder.PlaceExit();
+            builder.PlaceStart();
 
             return builder.GetMaze();
         }

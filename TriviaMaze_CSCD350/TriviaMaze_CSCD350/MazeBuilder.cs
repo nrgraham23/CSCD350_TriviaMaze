@@ -16,44 +16,155 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void MakeWalls() {
-            Floor mazeFloor = this.maze.GetFloor();
+            for (int floorNum = 0; floorNum < this.maze.GetNumFloors(); floorNum++) {
+                Floor mazeFloor = this.maze.GetFloor(floorNum);
 
-            int size = mazeFloor.GetSize();
-            for (int i = 0; i < size; i++) {
-                mazeFloor.GetRoom(new Point(0, i)).SetNWall(new Wall());
-                mazeFloor.GetRoom(new Point(0, i)).SetNDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(i, size - 1)).SetEWall(new Wall());
-                mazeFloor.GetRoom(new Point(i, size - 1)).SetEDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(size - 1, i)).SetSWall(new Wall());
-                mazeFloor.GetRoom(new Point(size - 1, i)).SetSDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(i, 0)).SetWWall(new Wall());
-                mazeFloor.GetRoom(new Point(i, 0)).SetWDoor(new NullDoor());
+                int size = mazeFloor.GetSize();
+                for (int i = 0; i < size; i++) {
+                    mazeFloor.GetRoom(new Point(0, i)).SetNWall(new Wall());
+                    mazeFloor.GetRoom(new Point(0, i)).SetNDoor(new NullDoor());
+                    mazeFloor.GetRoom(new Point(i, size - 1)).SetEWall(new Wall());
+                    mazeFloor.GetRoom(new Point(i, size - 1)).SetEDoor(new NullDoor());
+                    mazeFloor.GetRoom(new Point(size - 1, i)).SetSWall(new Wall());
+                    mazeFloor.GetRoom(new Point(size - 1, i)).SetSDoor(new NullDoor());
+                    mazeFloor.GetRoom(new Point(i, 0)).SetWWall(new Wall());
+                    mazeFloor.GetRoom(new Point(i, 0)).SetWDoor(new NullDoor());
+                }
             }
         }
 
         //=====================================================================
         //initializes walls by sharing walls between rooms.
         public void InitDoors() {
-            Floor floor = maze.GetFloor();
-            Room curRoom;
+            for (int floorNum = 0; floorNum < this.maze.GetNumFloors(); floorNum++) {
+                Floor floor = maze.GetFloor(floorNum);
+                Room curRoom;
 
-            for (int i = 0; i < floor.GetSize(); i++) {
-                for (int j = 0; j < floor.GetSize(); j++) {
-                    curRoom = floor.GetRoom(new Point(i, j));
-                    if (i != floor.GetSize() - 1) {  //south walls
-                        curRoom.SetSWall(new Wall());
-                    }
-                    if (j < floor.GetSize() - 1) {  //east walls
-                        curRoom.SetEWall(new Wall());
-                    }
-                    if (i != 0) {  //north walls
-                        curRoom.SetNWall(floor.GetRoom(new Point(i - 1, j)).GetSWall());
-                    }
-                    if (j != 0) {  //west walls
-                        curRoom.SetWWall(floor.GetRoom(new Point(i, j - 1)).GetEWall());
+                for (int i = 0; i < floor.GetSize(); i++) {
+                    for (int j = 0; j < floor.GetSize(); j++) {
+                        curRoom = floor.GetRoom(new Point(i, j));
+                        if (i != floor.GetSize() - 1) {  //south walls
+                            curRoom.SetSWall(new Wall());
+                        }
+                        if (j < floor.GetSize() - 1) {  //east walls
+                            curRoom.SetEWall(new Wall());
+                        }
+                        if (i != 0) {  //north walls
+                            curRoom.SetNWall(floor.GetRoom(new Point(i - 1, j)).GetSWall());
+                        }
+                        if (j != 0) {  //west walls
+                            curRoom.SetWWall(floor.GetRoom(new Point(i, j - 1)).GetEWall());
+                        }
                     }
                 }
             }
+        }
+
+        //=====================================================================
+
+        public void PlaceStairs() {
+            int upY, upX, downY, downX, direction;
+            int floorSize = this.maze.GetFloor(0).GetSize();
+            Random rand = new Random();
+            downX = downY = -1;
+
+            for (int i = 0; i < this.maze.GetNumFloors() - 1; i++) {
+                do {
+                    upY = rand.Next(floorSize - 2) + 1;
+                    upX = rand.Next(floorSize - 2) + 1;
+                } while (upY == downY && upX == downX);
+
+                direction = rand.Next(4);
+
+                if (direction == 0) {
+                    SetNorthStairs(i, upY, upX);
+                } else if (direction == 1) {
+                    SetEastStairs(i, upY, upX);
+                } else if (direction == 2) {
+                    SetSouthStairs(i, upY, upX);
+                } else {
+                    SetWestStairs(i, upY, upX);
+                }
+                downX = upX;
+                downY = upY;
+            }
+        }
+
+        //=====================================================================
+
+        private void SetNorthStairs(int floorNum, int y, int x) {
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetNDoor(new UpStairDoor());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y - 1, x)).SetSWall(new Wall());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y - 1, x)).SetSDoor(new NullDoor());
+
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y - 1, x)).SetSWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y - 1, x)).SetSDoor(new DownStairDoor());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetNWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetNDoor(new NullDoor());
+        }
+
+        //=====================================================================
+
+        private void SetEastStairs(int floorNum, int y, int x) {
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetEDoor(new UpStairDoor());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x + 1)).SetWWall(new Wall());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x + 1)).SetWDoor(new NullDoor());
+
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x + 1)).SetWWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x + 1)).SetWDoor(new DownStairDoor());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetEWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetEDoor(new NullDoor());
+        }
+
+        //=====================================================================
+
+        private void SetSouthStairs(int floorNum, int y, int x) {
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetSDoor(new UpStairDoor());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y + 1, x)).SetNWall(new Wall());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y + 1, x)).SetNDoor(new NullDoor());
+
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y + 1, x)).SetNWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y + 1, x)).SetNDoor(new DownStairDoor());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetSWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetSDoor(new NullDoor());
+        }
+
+        //=====================================================================
+
+        private void SetWestStairs(int floorNum, int y, int x) {
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x)).SetWDoor(new UpStairDoor());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x - 1)).SetEWall(new Wall());
+            this.maze.GetFloor(floorNum).GetRoom(new Point(y, x - 1)).SetEDoor(new NullDoor());
+
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x - 1)).SetEWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x - 1)).SetEDoor(new DownStairDoor());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetWWall(new Wall());
+            this.maze.GetFloor(floorNum + 1).GetRoom(new Point(y, x)).SetWDoor(new NullDoor());
+        }
+
+        //=====================================================================
+
+        public void PlaceExit() {
+            Random rand = new Random();
+            int size = this.maze.GetFloor(0).GetSize();
+
+            int exitRow = rand.Next(size);
+            Point exitPoint = new Point(exitRow, size - 1);
+
+            this.maze.GetFloor(this.maze.GetNumFloors() - 1).GetRoom(exitPoint).SetEDoor(new VictoryDoor());
+            this.maze.GetFloor(this.maze.GetNumFloors() - 1).SetExit(exitPoint);
+        }
+
+        //=====================================================================
+
+        public void PlaceStart() {
+            Random rand = new Random();
+            Point startRoom = new Point(rand.Next(this.maze.GetFloor(0).GetSize()), 0);
+
+            this.maze.SetCurRoom(this.maze.GetFloor(0).GetRoom(startRoom));
+            this.maze.GetCurRoom().SetEnteredFrom('w');
+            this.maze.SetCurPoint(startRoom);
+            this.maze.GetFloor(0).SetEntry(startRoom);
         }
 
         //=====================================================================

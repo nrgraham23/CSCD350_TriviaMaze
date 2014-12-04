@@ -14,22 +14,6 @@ namespace TriviaMaze_CSCD350 {
         private Wall wWall;
         private char enteredFrom;
 
-        public Room() {
-            /*  Note: if you want the doors to all be open, change the closed doors to open doors in the initdoors method of MazeBuilder class
-            this.nDoor = new OpenedDoor();
-            this.eDoor = new OpenedDoor();
-            this.sDoor = new OpenedDoor();
-            this.wDoor = new OpenedDoor();
-
-            /* commented out for testing
-            this.nDoor = new ClosedDoor();
-            this.eDoor = new ClosedDoor();
-            this.sDoor = new ClosedDoor();
-            this.wDoor = new ClosedDoor();
-             * */
-        }
-
-
         //=====================================================================
 
         public void EnterNorth() {

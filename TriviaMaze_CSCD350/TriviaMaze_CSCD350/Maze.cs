@@ -8,82 +8,80 @@ namespace TriviaMaze_CSCD350 {
 
     [Serializable]
     public class Maze : IObservable<Maze> {
-        private Floor mazeFloor;
+        private Floor[] mazeFloors;
         private Room curRoom;
-        private Point exit;
         private Point curPoint;
-        private IDoor clickedDoor;
+        private int curFloorNum;
+        private IDoor clickedDoor; //move functionality currently in gamecore to here
+        private int numFloors;
 
         [NonSerialized]
         private List<IObserver<Maze>> observers;
 
         public Maze() {
-            this.mazeFloor = new Floor();
             this.observers = new List<IObserver<Maze>>();
-            PlaceExit();
-            PickStart();
+            this.numFloors = 5;
+            this.curFloorNum = 0;
+            InitFloors();
         }
 
-        
-
-        //=====================================================================
-
-        private void PlaceExit() {
-            Random rand = new Random();
-            int size = mazeFloor.GetSize();
-
-            int exitRow = rand.Next(size);
-            exit = new Point(exitRow, size - 1);
-        }
-
-        //=====================================================================
-
-        private void PickStart() {
-            Random rand = new Random();
-            Point startRoom = new Point(rand.Next(mazeFloor.GetSize()), 0);
-            
-            curRoom = mazeFloor.GetRoom(startRoom);
-            curRoom.SetEnteredFrom('w');
-            curPoint = startRoom;
+        private void InitFloors() {
+            this.mazeFloors = new Floor[this.numFloors];
+            for (int i = 0; i < this.numFloors; i++) {
+                this.mazeFloors[i] = new Floor();
+            }
         }
 
         //=====================================================================
 
         public bool IsSolvable() {
-            int size = mazeFloor.GetSize();
-            bool[,] visitedMap = new bool[size, size]; //keep track of visited rooms
-            int testYCoord = this.curPoint.GetRow();
-            int testXCoord = this.curPoint.GetCol();
+            for (int i = this.curFloorNum; i < this.numFloors; i++) {
+                int size = mazeFloors[i].GetSize();
+                int testYCoord, testXCoord;
+                bool[,] visitedMap = new bool[size, size]; //keep track of visited rooms
+                if (i == this.curFloorNum) {
+                    testYCoord = this.curPoint.GetRow();
+                    testXCoord = this.curPoint.GetCol();
+                } else {
+                    testYCoord = mazeFloors[i].GetEntry().GetRow();
+                    testXCoord = mazeFloors[i].GetEntry().GetCol();
+                }
+                int exitY = mazeFloors[i].GetExit().GetRow();
+                int exitX = mazeFloors[i].GetExit().GetCol();
 
-            return RecurseSearch(visitedMap, testYCoord, testXCoord);
+                if (!RecurseSearch(visitedMap, testYCoord, testXCoord, i, exitY, exitX)) {
+                    return false;
+                }
+            }
+            return true;
         }
         //recursive part of IsSolvable
-        private bool RecurseSearch(bool[,] visitedMap, int testYCoord, int testXCoord) {
-            Room curTestRoom = mazeFloor.GetRoom(new Point(testYCoord, testXCoord));
+        private bool RecurseSearch(bool[,] visitedMap, int testYCoord, int testXCoord, int testZCoord, int exitY, int exitX) {
+            Room curTestRoom = mazeFloors[testZCoord].GetRoom(new Point(testYCoord, testXCoord));
 
-            if (testYCoord == exit.GetRow() && testXCoord == exit.GetCol()) { //check for exit first
+            if (testZCoord == numFloors - 1 && testYCoord == exitY && testXCoord == exitX) { //check for exit first
                 return true;
             }
 
             visitedMap[testYCoord, testXCoord] = true; //update visited
 
             if (curTestRoom.GetNPassable() && !visitedMap[testYCoord - 1, testXCoord]) { //try north
-                if (RecurseSearch(visitedMap, (testYCoord - 1), testXCoord)) {
+                if (RecurseSearch(visitedMap, (testYCoord - 1), testXCoord, testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
             if (curTestRoom.GetEPassable() && !visitedMap[testYCoord, testXCoord + 1]) { //try east
-                if (RecurseSearch(visitedMap, testYCoord, (testXCoord + 1))) {
+                if (RecurseSearch(visitedMap, testYCoord, (testXCoord + 1), testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
             if (curTestRoom.GetSPassable() && !visitedMap[testYCoord + 1, testXCoord]) { //try south
-                if (RecurseSearch(visitedMap, (testYCoord + 1), testXCoord)) {
+                if (RecurseSearch(visitedMap, (testYCoord + 1), testXCoord, testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
             if (curTestRoom.GetWPassable() && !visitedMap[testYCoord, testXCoord - 1]) { //try west
-                if (RecurseSearch(visitedMap, testYCoord, (testXCoord - 1))) {
+                if (RecurseSearch(visitedMap, testYCoord, (testXCoord - 1), testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
@@ -96,16 +94,32 @@ namespace TriviaMaze_CSCD350 {
         public Room GetCurRoom() {
             return this.curRoom;
         }
-        public Floor GetFloor() {
-            return this.mazeFloor;
+        public Floor GetFloor(int floorNum) {
+            return this.mazeFloors[floorNum];
+        }
+        public int GetNumFloors() {
+            return this.numFloors;
+        }
+        public Point GetCurPoint() {
+            return this.curPoint;
+        }
+
+        //=====================================================================
+
+        public void SetCurRoom(Room curRoom) {
+            this.curRoom = curRoom;
+        }
+        public void SetCurPoint(Point curPoint) {
+            this.curPoint = curPoint;
         }
 
         //=====================================================================
 
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
+                this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
                 this.curPoint.SetRow(this.curPoint.GetRow() - 1);
-                this.curRoom = this.mazeFloor.GetRoom(curPoint);
+                this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('s');
                 observers[0].OnNext(this);
                 return true;
@@ -117,8 +131,9 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
+                this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
                 this.curPoint.SetCol(this.curPoint.GetCol() + 1);
-                this.curRoom = this.mazeFloor.GetRoom(curPoint);
+                this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('w');
                 observers[0].OnNext(this);
                 return true;
@@ -130,8 +145,9 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
+                this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
                 this.curPoint.SetRow(this.curPoint.GetRow() + 1);
-                this.curRoom = this.mazeFloor.GetRoom(curPoint);
+                this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('n');
                 observers[0].OnNext(this);
                 return true;
@@ -143,8 +159,9 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
+                this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
                 this.curPoint.SetCol(this.curPoint.GetCol() - 1);
-                this.curRoom = this.mazeFloor.GetRoom(curPoint);
+                this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('e');
                 observers[0].OnNext(this);
                 return true;
@@ -156,15 +173,6 @@ namespace TriviaMaze_CSCD350 {
 
         public void Update() {
             observers[0].OnNext(this);
-        }
-
-        //=====================================================================
-
-        public Point GetCurPoint() {
-            return this.curPoint;
-        }
-        public Point GetExit() {
-            return this.exit;
         }
 
         //=====================================================================

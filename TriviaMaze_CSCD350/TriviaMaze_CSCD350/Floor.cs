@@ -10,6 +10,8 @@ namespace TriviaMaze_CSCD350 {
     public class Floor {
         private int size;
         private Room[,] floor;
+        Point entry;
+        Point exit;
 
         public Floor() {
             this.size = 5;
@@ -34,6 +36,21 @@ namespace TriviaMaze_CSCD350 {
         }
         public Room GetRoom(Point point) {
             return floor[point.GetRow(), point.GetCol()];
+        }
+        public Point GetEntry() {
+            return this.entry;
+        }
+        public Point GetExit() {
+            return this.exit;
+        }
+
+        //=====================================================================
+
+        public void SetEntry(Point entry) {
+            this.entry = entry;
+        }
+        public void SetExit(Point exit) {
+            this.exit = exit;
         }
     }
 }

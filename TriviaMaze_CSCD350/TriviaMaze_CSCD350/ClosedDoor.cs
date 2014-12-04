@@ -32,5 +32,11 @@ namespace TriviaMaze_CSCD350 {
         public bool Passable() {
             return true;
         }
+
+        //=====================================================================
+
+        public int FloorChange() {
+            return 0;
+        }
     }
 }

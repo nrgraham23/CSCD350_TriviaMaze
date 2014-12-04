@@ -6,16 +6,28 @@ using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
     class VictoryDoor : IDoor {
+
         public bool Enter() {
-            throw new NotImplementedException();
+            MainWindow.GameWon();
+            return false;
         }
 
+        //=====================================================================
+
         public string GetFileName() {
-            throw new NotImplementedException();
+            return "door_victory.png";
         }
+
+        //=====================================================================
 
         public bool Passable() {
             return true;
+        }
+
+        //=====================================================================
+
+        public int FloorChange() {
+            return 0;
         }
     }
 }

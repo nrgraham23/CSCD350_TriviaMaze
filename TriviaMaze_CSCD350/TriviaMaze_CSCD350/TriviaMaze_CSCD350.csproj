@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DownStairDoor.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="GameCore.cs" />
     <Compile Include="IQuestion.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="SaveGameWindow.xaml.cs">
       <DependentUpon>SaveGameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StairDoor.cs" />
+    <Compile Include="UpStairDoor.cs" />
     <Compile Include="VictoryDoor.cs" />
     <Compile Include="Wall.cs" />
     <Page Include="LoadGameWindow.xaml">

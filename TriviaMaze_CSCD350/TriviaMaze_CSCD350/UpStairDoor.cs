@@ -5,17 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TriviaMaze_CSCD350 {
-    class StairDoor : IDoor {
+    class UpStairDoor : IDoor {
+
         public bool Enter() {
-            throw new NotImplementedException();
+            return true;
         }
 
         public string GetFileName() {
-            throw new NotImplementedException();
+            return "door_up.png";
         }
 
         public bool Passable() {
             return true;
+        }
+
+        //=====================================================================
+
+        public int FloorChange() {
+            return 1;
         }
     }
 }
