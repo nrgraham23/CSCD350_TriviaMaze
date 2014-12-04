@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
+using System.Windows.Threading;
 
 namespace TriviaMaze_CSCD350 {
     /// <summary>
@@ -480,13 +482,21 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void addQuestionGameMenuItemClick(object sender, RoutedEventArgs e) {
-
+            //MessageBox.Show("Add Question Game");
+            //
+            //
+            //
+            //
+            //
+            //
+            
         }
 
         //=====================================================================
 
         private void viewQuestionsGameMenuItemClick(object sender, RoutedEventArgs e) {
-
+            ViewQuestionWindow newWindwo = new ViewQuestionWindow();
+            newWindwo.Show();
         }
 
         //=====================================================================
@@ -597,7 +607,7 @@ namespace TriviaMaze_CSCD350 {
         void IObserver<Question>.OnNext(Question value) {
             this.currentQuestion = value;
 
-            QuestionBox.Text = value.GetText();
+            QuestionBox.Text = value.ToString();
 
             EnterButton.IsEnabled = true;
 
@@ -736,7 +746,7 @@ namespace TriviaMaze_CSCD350 {
             }
 
             //Check if quesiton is correct + Open or Lock Door
-            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){
                 MessageBox.Show("CORRECT!");
                 this.gameCore.SetCurDoor(new OpenedDoor());
 
