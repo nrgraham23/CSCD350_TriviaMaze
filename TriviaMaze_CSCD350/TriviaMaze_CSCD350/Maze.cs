@@ -12,6 +12,8 @@ namespace TriviaMaze_CSCD350 {
         private Room curRoom;
         private Point exit;
         private Point curPoint;
+        private IDoor clickedDoor;
+
         [NonSerialized]
         private List<IObserver<Maze>> observers;
 
@@ -20,7 +22,6 @@ namespace TriviaMaze_CSCD350 {
             this.observers = new List<IObserver<Maze>>();
             PlaceExit();
             PickStart();
-            MakeWalls();
         }
 
         
@@ -44,18 +45,6 @@ namespace TriviaMaze_CSCD350 {
             curRoom = mazeFloor.GetRoom(startRoom);
             curRoom.SetEnteredFrom('w');
             curPoint = startRoom;
-        }
-
-        //=====================================================================
-
-        private void MakeWalls() {
-            int size = this.mazeFloor.GetSize();
-            for (int i = 0; i < size; i++) {
-                mazeFloor.GetRoom(new Point(0, i)).SetNDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(i, size - 1)).SetEDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(size - 1, i)).SetSDoor(new NullDoor());
-                mazeFloor.GetRoom(new Point(i, 0)).SetWDoor(new NullDoor());
-            }
         }
 
         //=====================================================================

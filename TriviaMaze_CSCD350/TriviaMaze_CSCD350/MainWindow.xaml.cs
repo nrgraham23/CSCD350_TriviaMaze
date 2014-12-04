@@ -201,6 +201,7 @@ namespace TriviaMaze_CSCD350 {
                 DrawHorizontalDoor(row - 1, col);
             }
         }
+
         //=====================================================================
 
         private void DrawTriangle(int row, int col, char enteredFrom) {
@@ -704,7 +705,7 @@ namespace TriviaMaze_CSCD350 {
         private void EnterButton_Click(object sender, RoutedEventArgs e) {
            
             //Get Current Answer
-            String CurrentAnswer = "A"; ;
+            String CurrentAnswer = "A";
 
             if(this.currentQuestion.GetQType() == 1){
                 //Short
@@ -734,15 +735,15 @@ namespace TriviaMaze_CSCD350 {
                 Console.WriteLine("*Error* - EnterButton_Click If Statment");
             }
 
-            //Chec kif quesiton is correct. + Open or Lock Door
-            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){
+            //Check if quesiton is correct + Open or Lock Door
+            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 MessageBox.Show("CORRECT!");
-                this.gameCore.SetcurDoor(new OpenedDoor());
+                this.gameCore.SetCurDoor(new OpenedDoor());
 
             }
             else{
                 MessageBox.Show("INCORRECT!");
-                this.gameCore.SetcurDoor(new LockedDoor());
+                this.gameCore.SetCurDoor(new LockedDoor());
             }
 
             //unlock mov. controls.

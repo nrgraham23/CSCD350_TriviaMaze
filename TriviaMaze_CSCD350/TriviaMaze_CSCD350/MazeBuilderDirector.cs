@@ -9,6 +9,7 @@ namespace TriviaMaze_CSCD350 {
     class MazeBuilderDirector {
         public Maze Construct() {
             MazeBuilder builder = new MazeBuilder();
+            builder.MakeWalls();
             builder.InitDoors();
 
             return builder.GetMaze();

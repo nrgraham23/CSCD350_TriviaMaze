@@ -94,6 +94,9 @@
     <Compile Include="SaveGameWindow.xaml.cs">
       <DependentUpon>SaveGameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StairDoor.cs" />
+    <Compile Include="VictoryDoor.cs" />
+    <Compile Include="Wall.cs" />
     <Page Include="LoadGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -22,12 +22,12 @@ namespace TriviaMaze_CSCD350 {
             this.maze = director.Construct();
         }
 
-        public IDoor GetcurDoor() {
+        public IDoor GetCurDoor() {
             return this.curDoor;
         }
 
         //Change this at COMMENT
-        public void SetcurDoor(IDoor door){
+        public void SetCurDoor(IDoor door){
             this.curDoor = door;
 
             char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
@@ -102,7 +102,7 @@ namespace TriviaMaze_CSCD350 {
             this.clickDirection = "right";
 
             if (dirEntered == 'n') {
-                this.curDoor=this.maze.GetCurRoom().GetWDoor();
+                this.curDoor = this.maze.GetCurRoom().GetWDoor();
                 return this.maze.MoveWest();
             } else if (dirEntered == 'w') {
                 this.curDoor = this.maze.GetCurRoom().GetSDoor();

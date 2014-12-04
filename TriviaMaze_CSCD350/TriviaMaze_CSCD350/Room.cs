@@ -8,10 +8,10 @@ namespace TriviaMaze_CSCD350 {
 
     [Serializable]
     public class Room {
-        private IDoor nDoor;
-        private IDoor eDoor;
-        private IDoor sDoor;
-        private IDoor wDoor;
+        private Wall nWall;
+        private Wall eWall;
+        private Wall sWall;
+        private Wall wWall;
         private char enteredFrom;
 
         public Room() {
@@ -33,70 +33,94 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void EnterNorth() {
-            nDoor.Enter();
+            this.nWall.GetDoor().Enter();
         }
 
         //=====================================================================
 
         public void EnterEast() {
-            eDoor.Enter();
+            this.eWall.GetDoor().Enter();
         }
 
         //=====================================================================
 
         public void EnterSouth() {
-            sDoor.Enter();
+            this.sWall.GetDoor().Enter();
         }
 
         //=====================================================================
 
         public void EnterWest() {
-            wDoor.Enter();
+            this.wWall.GetDoor().Enter();
         }
 
         //=====================================================================
 
         public bool GetNPassable() {
-            return nDoor.Passable();
+            return this.nWall.GetDoor().Passable();
         }
         public bool GetEPassable() {
-            return eDoor.Passable();
+            return this.eWall.GetDoor().Passable();
         }
         public bool GetSPassable() {
-            return sDoor.Passable();
+            return this.sWall.GetDoor().Passable();
         }
         public bool GetWPassable() {
-            return wDoor.Passable();
+            return this.wWall.GetDoor().Passable();
         }
         public char GetEnteredFrom() {
             return this.enteredFrom;
         }
         public IDoor GetNDoor() {
-            return this.nDoor;
+            return this.nWall.GetDoor();
         }
         public IDoor GetEDoor() {
-            return this.eDoor;
+            return this.eWall.GetDoor();
         }
         public IDoor GetSDoor() {
-            return this.sDoor;
+            return this.sWall.GetDoor();
         }
         public IDoor GetWDoor() {
-            return this.wDoor;
+            return this.wWall.GetDoor();
+        }
+        public Wall GetNWall() {
+            return this.nWall;
+        }
+        public Wall GetEWall() {
+            return this.eWall;
+        }
+        public Wall GetSWall() {
+            return this.sWall;
+        }
+        public Wall GetWWall() {
+            return this.wWall;
         }
 
         //=====================================================================
 
         public void SetNDoor(IDoor door) {
-            this.nDoor = door;
+            this.nWall.SetDoor(door);
         }
         public void SetEDoor(IDoor door) {
-            this.eDoor = door;
+            this.eWall.SetDoor(door);
         }
         public void SetSDoor(IDoor door) {
-            this.sDoor = door;
+            this.sWall.SetDoor(door);
         }
         public void SetWDoor(IDoor door) {
-            this.wDoor = door;
+            this.wWall.SetDoor(door);
+        }
+        public void SetNWall(Wall wall) {
+            this.nWall = wall;
+        }
+        public void SetEWall(Wall wall) {
+            this.eWall = wall;
+        }
+        public void SetSWall(Wall wall) {
+            this.sWall = wall;
+        }
+        public void SetWWall(Wall wall) {
+            this.wWall = wall;
         }
         public void SetEnteredFrom(char direction) {
             this.enteredFrom = direction;
