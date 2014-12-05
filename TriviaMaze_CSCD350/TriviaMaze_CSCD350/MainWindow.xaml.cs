@@ -374,7 +374,7 @@ namespace TriviaMaze_CSCD350 {
 
         public void LoadGameInput(String fileName) {
             if (this.gameCore == null) {
-
+                this.gameCore = new GameCore(this, 1);
             }
             if (!this.gameCore.LoadGame(fileName)) {
                 MessageBox.Show("The file you specified does not exist!");

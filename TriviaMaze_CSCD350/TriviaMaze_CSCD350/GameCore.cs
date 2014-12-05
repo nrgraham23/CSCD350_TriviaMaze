@@ -34,6 +34,14 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
+        public GameCore(MainWindow mainWindow, int difficulty) {
+            this.mainWindow = mainWindow;
+            MazeBuilderDirector builder = new MazeBuilderDirector();
+            this.maze = builder.Construct(difficulty);
+        }
+
+        //=====================================================================
+
         private void GetDifficulty() {
             DifficultyInput difficultyInput = new DifficultyInput(this);
             difficultyInput.Show();
