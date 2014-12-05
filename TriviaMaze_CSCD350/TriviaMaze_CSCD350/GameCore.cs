@@ -55,6 +55,12 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
+        public String getClickDirection() {
+            return clickDirection;
+        }
+
+        //=====================================================================
+
         public void QuestionAnswered(bool correct) {
             if (correct) {
                 this.maze.OpenDoor();

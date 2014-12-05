@@ -770,12 +770,17 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         //Check if quesiton is correct + Open or Lock Door
         private void CheckQuestionAnswer(String currentAnswer) {
+            char from = this.gameCore.GetMaze().GetCurRoom().GetEnteredFrom();
+            int col = this.gameCore.GetMaze().GetCurPoint().GetCol();
+            int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
             if (this.currentQuestion.CheckAnswer(currentAnswer)) {
-                MessageBox.Show("CORRECT!");
+                MessageBox.Show("CORRECT!");                
                 this.gameCore.QuestionAnswered(true);
+                questionAnswered(row, col, from, false);
             } else {
                 MessageBox.Show("INCORRECT!");
                 this.gameCore.QuestionAnswered(false);
+                questionAnswered(row, col, from, true);
             }
 
             this.askingQuestion = false;
@@ -784,6 +789,65 @@ namespace TriviaMaze_CSCD350 {
             resetQuestion();
         }
 
+        private void questionAnswered(int row, int col, char from, bool incorrect) {
+            if (from == 'n') {
+                if (this.gameCore.getClickDirection().Equals("center")) {
+                    FillInHorizonalDoor(col, row - 1, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("back")) {
+                    FillInHorizonalDoor(col, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("left")) {
+                    FillInVerticleDoor(col - 1, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("right")) {
+                    FillInVerticleDoor(col, row, incorrect);
+                }
+            }
+            if (from == 'e') {
+                if (this.gameCore.getClickDirection().Equals("center")){
+                    FillInVerticleDoor(col - 1, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("back")){
+                    FillInVerticleDoor(col, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("left")) {
+                    FillInHorizonalDoor(col, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("right")) {
+                    FillInHorizonalDoor(col, row - 1, incorrect);
+                }
+            }
+            if (from == 's') {
+                if (this.gameCore.getClickDirection().Equals("center")) {
+                    FillInHorizonalDoor(col, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("back")) {
+                    FillInHorizonalDoor(col, row - 1, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("left")) {
+                    FillInVerticleDoor(col - 1, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("right")) {
+                    FillInVerticleDoor(col, row, incorrect);
+                }
+            }
+            if (from == 'w') {
+                if (this.gameCore.getClickDirection().Equals("center")){
+                    FillInVerticleDoor(col, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("back")){
+                    FillInVerticleDoor(col - 1, row, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("left")){
+                    FillInHorizonalDoor(col, row - 1, incorrect);
+                }
+                else if (this.gameCore.getClickDirection().Equals("right")){
+                    FillInHorizonalDoor(col, row, incorrect);
+                }
+            }
+            
+        }
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
