@@ -28,8 +28,10 @@ namespace TriviaMaze_CSCD350 {
         private GameCore gameCore;
         private Question subscribeQuestion;
         private Question currentQuestion;
+        private bool askingQuestion;
 
         public MainWindow() {
+            this.askingQuestion = false;
             InitializeComponent();
             DrawMiniMap();
             this.subscribeQuestion = new QuestionTF();
@@ -416,6 +418,8 @@ namespace TriviaMaze_CSCD350 {
             DrawMiniMap();
             MapCanvas.IsEnabled = true;
             this.gameCore = new GameCore(this);
+            this.askingQuestion = false;
+            resetQuestion();
         }
 
         //=====================================================================
@@ -607,6 +611,7 @@ namespace TriviaMaze_CSCD350 {
         //Question Changes here
         void IObserver<Question>.OnNext(Question value) {
             this.currentQuestion = value;
+            this.askingQuestion = true;
 
             QuestionBox.Text = value.ToString();
 
@@ -652,36 +657,55 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            this.gameCore.RightDoorClick();
+            if (!this.askingQuestion) {
+                this.gameCore.RightDoorClick();
+            } else {
+                MessageBox.Show("You must answer the question before proceeding!");
+            }
         }
 
         private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            this.gameCore.CenterDoorClick();
+            if (!this.askingQuestion) {
+                this.gameCore.CenterDoorClick();
+            } else {
+                MessageBox.Show("You must answer the question before proceeding!");
+            }
         }
 
         private void LDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            this.gameCore.LeftDoorClick();
+            if (!this.askingQuestion) {
+                this.gameCore.LeftDoorClick();
+            } else {
+                MessageBox.Show("You must answer the question before proceeding!");
+            }
         }
 
         private void BDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            this.gameCore.BackDoorClick();
+            if (!this.askingQuestion) {
+                this.gameCore.BackDoorClick();
+            } else {
+                MessageBox.Show("You must answer the question before proceeding!");
+            }
         }
 
         //=====================================================================
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
+            if (!this.askingQuestion) {
+                try {
+                    if (e.Key == Key.Up)
+                        this.gameCore.CenterDoorClick();
+                    if (e.Key == Key.Right)
+                        this.gameCore.RightDoorClick();
+                    if (e.Key == Key.Down)
+                        this.gameCore.BackDoorClick();
+                    if (e.Key == Key.Left)
+                        this.gameCore.LeftDoorClick();
+                } catch (NullReferenceException) {
 
-            try {
-                if (e.Key == Key.Up)
-                    this.gameCore.CenterDoorClick();
-                if (e.Key == Key.Right)
-                    this.gameCore.RightDoorClick();
-                if (e.Key == Key.Down)
-                    this.gameCore.BackDoorClick();
-                if (e.Key == Key.Left)
-                    this.gameCore.LeftDoorClick();
-            } catch (NullReferenceException) {
-
+                }
+            } else if (e.Key == Key.A || e.Key == Key.W || e.Key == Key.S || e.Key == Key.D) {
+                MessageBox.Show("You must answer the question before proceeding!");
             }
         }
 
@@ -721,33 +745,37 @@ namespace TriviaMaze_CSCD350 {
         private void EnterButton_Click(object sender, RoutedEventArgs e) {
 
             //Get Current Answer
-            String CurrentAnswer = "A";
+            String currentAnswer = "A";
 
             if (this.currentQuestion.GetQType() == 1) { //Short
-                CurrentAnswer = AnswerBox.Text;
+                currentAnswer = AnswerBox.Text;
             } else if (this.currentQuestion.GetQType() == 2) { //True/False
                 if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
-                    CurrentAnswer = "TRUE";
+                    currentAnswer = "TRUE";
                 } else {
-                    CurrentAnswer = "FALSE";
+                    currentAnswer = "FALSE";
                 }
             } else if (this.currentQuestion.GetQType() == 3) { //Multiple Choice
                 if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
-                    CurrentAnswer = "A";
+                    currentAnswer = "A";
                 } else if (B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
-                    CurrentAnswer = "B";
+                    currentAnswer = "B";
                 } else if (C_RadioButton.IsChecked.HasValue && C_RadioButton.IsChecked.Value) {
-                    CurrentAnswer = "C";
+                    currentAnswer = "C";
                 } else if (D_RadioButton.IsChecked.HasValue && D_RadioButton.IsChecked.Value) {
-                    CurrentAnswer = "D";
+                    currentAnswer = "D";
                 }
 
             } else {
                 Console.WriteLine("*Error* - EnterButton_Click If Statment");
             }
+            CheckQuestionAnswer(currentAnswer);
+        }
 
-            //Check if quesiton is correct + Open or Lock Door
-            if (this.currentQuestion.CheckAnswer(CurrentAnswer)) { 
+        //=====================================================================
+        //Check if quesiton is correct + Open or Lock Door
+        private void CheckQuestionAnswer(String currentAnswer) {
+            if (this.currentQuestion.CheckAnswer(currentAnswer)) {
                 MessageBox.Show("CORRECT!");
                 this.gameCore.QuestionAnswered(true);
             } else {
@@ -755,12 +783,13 @@ namespace TriviaMaze_CSCD350 {
                 this.gameCore.QuestionAnswered(false);
             }
 
-            //unlock mov. controls.
+            this.askingQuestion = false;
 
             //reset question boxes
             resetQuestion();
-            this.gameCore.GetMaze().Update();
         }
+
+        //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
 

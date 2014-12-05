@@ -200,12 +200,14 @@ namespace TriviaMaze_CSCD350 {
             if (!this.IsSolvable()) {
                 MainWindow.GameLost();
             }
+            Update();
         }
 
         //=====================================================================
         //for use when a question is answered correctly
         public void OpenDoor() {
             this.clickedWall.SetDoor(new OpenedDoor());
+            Update();
         }
 
         //=====================================================================
