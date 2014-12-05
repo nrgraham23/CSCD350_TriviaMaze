@@ -92,6 +92,7 @@
     <Compile Include="QuestionMulti.cs" />
     <Compile Include="QuestionShort.cs" />
     <Compile Include="QuestionTF.cs" />
+    <Compile Include="RandomProvider.cs" />
     <Compile Include="RandomQuestionFactory.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="SaveGameWindow.xaml.cs">

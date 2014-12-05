@@ -17,10 +17,13 @@ namespace TriviaMaze_CSCD350 {
     class RandomQuestionFactory {
 
         //=====================================================================
-        //Comment-
+
         public Question GetRandQuestion() {
-            Random rand = new Random();
-            int type = rand.Next(3);
+
+            Random ran = RandomProvider.GetThreadRandom();
+            int type = ran.Next(3);
+
+            Console.WriteLine(type);
 
             if (type == 0) {
                 return new QuestionMulti();
