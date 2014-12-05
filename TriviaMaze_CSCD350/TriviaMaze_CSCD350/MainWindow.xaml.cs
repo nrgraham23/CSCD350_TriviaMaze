@@ -400,7 +400,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void DrawExit(int row) {
+        /*private void DrawExit(int row) {
             System.Windows.Shapes.Rectangle exit;
             exit = new System.Windows.Shapes.Rectangle();
             exit.Stroke = new SolidColorBrush(Colors.Black);
@@ -410,7 +410,7 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetLeft(exit, 55 + (4 * 50));
             Canvas.SetTop(exit, 25 + (row * 50));
             MapCanvas.Children.Add(exit);
-        }
+        }*/
 
         //=====================================================================
 
@@ -520,14 +520,9 @@ namespace TriviaMaze_CSCD350 {
         void IObserver<Maze>.OnNext(Maze value) {
             Room curRoom = value.GetCurRoom();
             Point curPosition = value.GetCurPoint();
-            Point exit = new Point(0, 4); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!This MUST be changed.  Temp fix
-
+            
             int playerRow = curPosition.GetRow();
             int playerCol = curPosition.GetCol();
-
-            int exitRow = exit.GetRow();
-            DrawExit(exitRow);
-
 
             if (curRoom.GetEnteredFrom() == 'n') {
                 NorthEntry(curRoom); ;
