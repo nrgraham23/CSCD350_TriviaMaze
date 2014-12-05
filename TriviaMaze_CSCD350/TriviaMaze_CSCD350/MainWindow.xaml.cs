@@ -29,6 +29,7 @@ namespace TriviaMaze_CSCD350 {
         private Question subscribeQuestion;
         private Question currentQuestion;
         private bool askingQuestion;
+        private static bool flagEndGame = false;
 
         public MainWindow() {
             this.askingQuestion = false;
@@ -342,6 +343,13 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore = new GameCore(this);
             this.askingQuestion = false;
             resetQuestion();
+
+            CDoorCanvas.IsEnabled = true;
+            RDoorCanvas.IsEnabled = true;
+            LDoorCanvas.IsEnabled = true;
+            BDoorCanvas.IsEnabled = true;
+            flagEndGame = false;
+            
         }
 
         //=====================================================================
@@ -462,6 +470,7 @@ namespace TriviaMaze_CSCD350 {
                 throw new Exception(); //TODO: find the right exception to throw
             }
             this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
+            
         }
 
         //=====================================================================
@@ -574,33 +583,37 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            if (!this.askingQuestion) {
+            if (!this.askingQuestion && !GameEnds()) {
                 this.gameCore.RightDoorClick();
-            } else {
+            }
+            else if (this.askingQuestion) {
                 MessageBox.Show("You must answer the question before proceeding!");
             }
         }
 
         private void CDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            if (!this.askingQuestion) {
+            if (!this.askingQuestion && !GameEnds()) {
                 this.gameCore.CenterDoorClick();
-            } else {
+            }
+            else if (this.askingQuestion) {
                 MessageBox.Show("You must answer the question before proceeding!");
             }
         }
 
         private void LDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            if (!this.askingQuestion) {
+            if (!this.askingQuestion && !GameEnds()) {
                 this.gameCore.LeftDoorClick();
-            } else {
+            }
+            else if (this.askingQuestion) {
                 MessageBox.Show("You must answer the question before proceeding!");
             }
         }
 
         private void BDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            if (!this.askingQuestion) {
+            if (!this.askingQuestion && !GameEnds()) {
                 this.gameCore.BackDoorClick();
-            } else {
+            }
+            else if (this.askingQuestion) {
                 MessageBox.Show("You must answer the question before proceeding!");
             }
         }
@@ -795,7 +808,9 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public static void GameWon() {
-            MessageBox.Show("You won!");
+            MessageBox.Show("You Won!");
+            flagEndGame = true;
+
             //add more game won stuff here
         }
 
@@ -803,8 +818,22 @@ namespace TriviaMaze_CSCD350 {
 
         public static void GameLost() {
             MessageBox.Show("You lost!");
+            flagEndGame = true;
+
             //add game lost stuff here
         }
 
+        public bool GameEnds() {
+            if (flagEndGame) {
+                CDoorCanvas.IsEnabled = false;
+                RDoorCanvas.IsEnabled = false;
+                LDoorCanvas.IsEnabled = false;
+                BDoorCanvas.IsEnabled = false;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 }

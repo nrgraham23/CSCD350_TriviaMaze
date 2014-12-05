@@ -25,7 +25,7 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         
         public Wall() {
-            this.door = new ClosedDoor();  //this is where you change to open door if you want all doors to be open
+            this.door = new OpenedDoor();  //this is where you change to open door if you want all doors to be open
         }
 
         //=====================================================================
