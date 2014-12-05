@@ -193,5 +193,11 @@ namespace TriviaMaze_CSCD350 {
         public Maze GetMaze() {
             return this.maze;
         }
+
+        //=====================================================================
+        //for minimap use
+        public Floor GetMazeFloor(int floorNum) {
+            return this.maze.GetFloor(floorNum);
+        }
     }
 }
