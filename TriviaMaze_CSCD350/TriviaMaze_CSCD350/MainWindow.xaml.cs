@@ -634,7 +634,7 @@ namespace TriviaMaze_CSCD350 {
                 } catch (NullReferenceException) {
 
                 }
-            } else if (e.Key == Key.A || e.Key == Key.W || e.Key == Key.S || e.Key == Key.D) {
+            } else if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Right || e.Key == Key.Left) {
                 MessageBox.Show("You must answer the question before proceeding!");
             }
         }
@@ -711,11 +711,11 @@ namespace TriviaMaze_CSCD350 {
             if (this.currentQuestion.CheckAnswer(currentAnswer)) {
                 MessageBox.Show("CORRECT!");                
                 this.gameCore.QuestionAnswered(true);
-                questionAnswered(row, col, from, 2);
+                QuestionAnswered(row, col, from, 2);
             } else {
                 MessageBox.Show("INCORRECT!");
                 this.gameCore.QuestionAnswered(false);
-                questionAnswered(row, col, from, 1);
+                QuestionAnswered(row, col, from, 1);
             }
 
             this.askingQuestion = false;
@@ -724,7 +724,7 @@ namespace TriviaMaze_CSCD350 {
             ResetQuestion();
         }
 
-        private void questionAnswered(int row, int col, char from, int incorrect) {
+        private void QuestionAnswered(int row, int col, char from, int incorrect) {
             if (from == 'n') {
                 if (this.gameCore.getClickDirection().Equals("center")) {
                     DrawHorizontalDoor(col, row - 1, incorrect);
