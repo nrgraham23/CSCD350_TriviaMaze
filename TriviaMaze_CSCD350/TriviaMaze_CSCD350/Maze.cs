@@ -22,14 +22,14 @@ namespace TriviaMaze_CSCD350 {
         private Room curRoom;
         private Point curPoint;
         private int curFloorNum;
-        private IDoor clickedDoor; //move functionality currently in gamecore to here
+        private Wall clickedWall;
         private int numFloors;
 
         [NonSerialized]
         private List<IObserver<Maze>> observers;
 
         //=====================================================================
-        //Comment- Constructor
+        
         public Maze() {
             this.observers = new List<IObserver<Maze>>();
             this.numFloors = 5;
@@ -38,7 +38,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void InitFloors() {
             this.mazeFloors = new Floor[this.numFloors];
             for (int i = 0; i < this.numFloors; i++) {
@@ -47,7 +47,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool IsSolvable() {
             for (int i = this.curFloorNum; i < this.numFloors; i++) {
                 int size = mazeFloors[i].GetSize();
@@ -71,7 +71,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- recursive part of IsSolvable
+        //recursive part of IsSolvable
         private bool RecurseSearch(bool[,] visitedMap, int testYCoord, int testXCoord, int testZCoord, int exitY, int exitX) {
             Room curTestRoom = mazeFloors[testZCoord].GetRoom(new Point(testYCoord, testXCoord));
 
@@ -106,7 +106,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Get methods
+        
         public Room GetCurRoom() {
             return this.curRoom;
         }
@@ -121,7 +121,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Set methods
+        
         public void SetCurRoom(Room curRoom) {
             this.curRoom = curRoom;
         }
@@ -130,7 +130,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
@@ -139,12 +139,14 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('s');
                 observers[0].OnNext(this);
                 return true;
+            } else {
+                this.clickedWall = this.curRoom.GetNWall();
             }
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
@@ -153,12 +155,14 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('w');
                 observers[0].OnNext(this);
                 return true;
+            } else {
+                this.clickedWall = this.curRoom.GetEWall();
             }
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
@@ -167,12 +171,14 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('n');
                 observers[0].OnNext(this);
                 return true;
+            } else {
+                this.clickedWall = this.curRoom.GetSWall();
             }
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
@@ -181,18 +187,35 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('e');
                 observers[0].OnNext(this);
                 return true;
+            } else {
+                this.clickedWall = this.curRoom.GetWWall();
             }
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        //for use when a question is answered wrong
+        public void LockDoor() {
+            this.clickedWall.SetDoor(new LockedDoor());
+            if (!this.IsSolvable()) {
+                MainWindow.GameLost();
+            }
+        }
+
+        //=====================================================================
+        //for use when a question is answered correctly
+        public void OpenDoor() {
+            this.clickedWall.SetDoor(new OpenedDoor());
+        }
+
+        //=====================================================================
+        
         public void Update() {
             observers[0].OnNext(this);
         }
 
         //=====================================================================
-        //Comment- taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
+        //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         public IDisposable Subscribe(IObserver<Maze> observer) {
             if (this.observers == null) {
                 this.observers = new List<IObserver<Maze>>();

@@ -20,14 +20,14 @@ namespace TriviaMaze_CSCD350 {
         private int column;
 
         //=====================================================================
-        //Comment- Constructor
+        
         public Point(int row, int col) {
             this.row = row;
             this.column = col;
         }
 
         //=====================================================================
-        //Comment- Get Methods
+        
         public int GetRow() {
             return this.row;
         }
@@ -36,7 +36,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Set Methods
+       
         public void SetRow(int row) {
             this.row = row;
         }

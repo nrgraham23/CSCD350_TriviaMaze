@@ -23,7 +23,7 @@ namespace TriviaMaze_CSCD350 {
      * NOTES:
      *      
      */
-    
+
     public partial class MainWindow : Window, IObserver<Maze>, IObserver<Question> {
         private GameCore gameCore;
         private Question subscribeQuestion;
@@ -43,7 +43,7 @@ namespace TriviaMaze_CSCD350 {
             DrawLines();
             DrawVerticleDoors();
             DrawHorizontalDoors();
-            
+
         }
 
         //=====================================================================
@@ -66,6 +66,8 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+
         private void EnteredFromN(int row, int col, char enteredFrom) {
             if (row == 0) {
                 DrawTriangle(row, col, enteredFrom);
@@ -74,16 +76,14 @@ namespace TriviaMaze_CSCD350 {
                     DrawHorizontalDoor(row, col - 2);
                 DrawHorizontalDoor(row, col - 1);
                 DrawVerticleDoor(row, col - 1);
-            }
-            else if (row == 4) {
+            } else if (row == 4) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col - 1);
                 if (col - 1 > 0)
                     DrawHorizontalDoor(row, col - 2);
                 DrawHorizontalDoor(row, col - 1);
                 DrawVerticleDoor(row - 1, col - 1);
-            }
-            else if (col == 4) {
+            } else if (col == 4) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col - 1);
                 DrawHorizontalDoor(row, col - 2);
@@ -91,8 +91,7 @@ namespace TriviaMaze_CSCD350 {
                 DrawVerticleDoor(row - 1, col - 1);
                 if (col - 1 > 0)
                     DrawVerticleDoor(row, col - 1);
-            }
-            else {
+            } else {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col - 1);
                 if (col - 1 > 0)
@@ -103,6 +102,8 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+
         private void EnteredFromE(int row, int col, char enteredFrom) {
             if (col == 0) {
                 DrawTriangle(row, col, enteredFrom);
@@ -111,16 +112,14 @@ namespace TriviaMaze_CSCD350 {
                 DrawVerticleDoor(row, col);
                 if (row + 1 < 4)
                     DrawVerticleDoor(row + 1, col);
-            }
-            else if (col == 4) {
+            } else if (col == 4) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row + 1, col);
                 DrawHorizontalDoor(row + 1, col - 1);
                 DrawVerticleDoor(row, col);
                 if (row + 1 < 4)
                     DrawVerticleDoor(row + 1, col);
-            }
-            else {
+            } else {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row + 1, col);
                 if (row + 1 < 4) {
@@ -133,6 +132,8 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+
         private void EnteredFromS(int row, int col, char enteredFrom) {
             if (row == 0) {
                 DrawTriangle(row, col, enteredFrom);
@@ -141,8 +142,7 @@ namespace TriviaMaze_CSCD350 {
                 if (col + 1 < 4)
                     DrawHorizontalDoor(row, col + 1);
                 DrawVerticleDoor(row, col + 1);
-            }
-            else if (row == 4) {
+            } else if (row == 4) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col + 1);
                 DrawHorizontalDoor(row, col);
@@ -151,16 +151,14 @@ namespace TriviaMaze_CSCD350 {
                 DrawVerticleDoor(row - 1, col + 1);
                 DrawVerticleDoor(row - 1, col);
 
-            }
-            else if (col == 0) {
+            } else if (col == 0) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col + 1);
                 DrawHorizontalDoor(row, col);
                 DrawHorizontalDoor(row, col + 1);
                 DrawVerticleDoor(row, col + 1);
                 DrawVerticleDoor(row - 1, col + 1);
-            }
-            else {
+            } else {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row, col + 1);
                 if (col + 1 < 4)
@@ -171,7 +169,9 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
-        private void EnteredFromW(int row, int col, char enteredFrom){
+        //=====================================================================
+
+        private void EnteredFromW(int row, int col, char enteredFrom) {
             if (row == 0)
                 DrawTriangle(row, col, enteredFrom);
             else if (col == 0) {
@@ -181,16 +181,14 @@ namespace TriviaMaze_CSCD350 {
                 if (row - 1 > 0)
                     DrawVerticleDoor(row - 2, col);
                 DrawHorizontalDoor(row - 1, col);
-            }
-            else if (col == 4) {
+            } else if (col == 4) {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row - 1, col);
                 DrawVerticleDoor(row - 1, col);
                 if (row - 1 > 0)
                     DrawVerticleDoor(row - 2, col);
                 DrawHorizontalDoor(row - 1, col - 1);
-            }
-            else {
+            } else {
                 DrawTriangle(row, col, enteredFrom);
                 DrawLine(row - 1, col);
                 DrawVerticleDoor(row - 1, col);
@@ -434,7 +432,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public void SaveGameInput(String fileName) {
             this.gameCore.SaveGame(fileName);
         }
@@ -447,12 +445,12 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public void LoadGameInput(String fileName) {
             if (!this.gameCore.LoadGame(fileName)) {
                 MessageBox.Show("The file you specified does not exist!");
             }
-            this.gameCore.GetMaze().Subscribe(this);            
+            this.gameCore.GetMaze().Subscribe(this);
             DrawMiniMap();
             this.gameCore.UpdateMazeView();
         }
@@ -491,7 +489,7 @@ namespace TriviaMaze_CSCD350 {
             //
             //
             //
-            
+
         }
 
         //=====================================================================
@@ -594,19 +592,19 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //
+
         void IObserver<Question>.OnCompleted() {
             //not used in this context
         }
 
         //=====================================================================
-        //
+
         void IObserver<Question>.OnError(Exception error) {
             //not used in this context
         }
 
         //=====================================================================
-        //Question CHanges here
+        //Question Changes here
         void IObserver<Question>.OnNext(Question value) {
             this.currentQuestion = value;
 
@@ -614,7 +612,7 @@ namespace TriviaMaze_CSCD350 {
 
             EnterButton.IsEnabled = true;
 
-            if(value.GetQType() == 1){
+            if (value.GetQType() == 1) {
                 //short
                 A_TrueRadioButton.Visibility = Visibility.Hidden;
                 B_FalseRadioButton.Visibility = Visibility.Hidden;
@@ -623,7 +621,7 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.IsEnabled = true;
                 AnswerBox.Text = "";
 
-            }else if(value.GetQType() == 2){
+            } else if (value.GetQType() == 2) {
                 //TF
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "True";
@@ -633,8 +631,7 @@ namespace TriviaMaze_CSCD350 {
                 D_RadioButton.Visibility = Visibility.Hidden;
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
-            }
-            else if (value.GetQType() == 3) {
+            } else if (value.GetQType() == 3) {
                 //Multi
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "A";
@@ -646,17 +643,13 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.IsEnabled = false;
 
 
-            }else{
+            } else {
                 Console.WriteLine("*Error* - MainWindow - Question.OnNext - getType");
             }
-            
+
         }
 
         //=====================================================================
-        //
-        private void toolsMenuItem_Click(object sender, RoutedEventArgs e) {
-
-        }
 
         private void RDoorCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             this.gameCore.RightDoorClick();
@@ -674,6 +667,7 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore.BackDoorClick();
         }
 
+        //=====================================================================
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
 
@@ -686,11 +680,12 @@ namespace TriviaMaze_CSCD350 {
                     this.gameCore.BackDoorClick();
                 if (e.Key == Key.Left)
                     this.gameCore.LeftDoorClick();
-            }
-            catch (NullReferenceException) {
+            } catch (NullReferenceException) {
 
             }
         }
+
+        //=====================================================================
 
         private void resetQuestion() {
 
@@ -721,48 +716,43 @@ namespace TriviaMaze_CSCD350 {
             QuestionBox.Text = "Question....";
         }
 
+        //=====================================================================
+
         private void EnterButton_Click(object sender, RoutedEventArgs e) {
-           
+
             //Get Current Answer
             String CurrentAnswer = "A";
 
-            if(this.currentQuestion.GetQType() == 1){
-                //Short
+            if (this.currentQuestion.GetQType() == 1) { //Short
                 CurrentAnswer = AnswerBox.Text;
-            }else if(this.currentQuestion.GetQType() == 2){
-                //TF
-                if(A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value){
+            } else if (this.currentQuestion.GetQType() == 2) { //True/False
+                if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
                     CurrentAnswer = "TRUE";
-                }
-                else{
+                } else {
                     CurrentAnswer = "FALSE";
                 }
-            }
-            else if (this.currentQuestion.GetQType() == 3) {
-                //Multi
+            } else if (this.currentQuestion.GetQType() == 3) { //Multiple Choice
                 if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
                     CurrentAnswer = "A";
-                }else if(B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
+                } else if (B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
                     CurrentAnswer = "B";
-                }else if(C_RadioButton.IsChecked.HasValue && C_RadioButton.IsChecked.Value){
+                } else if (C_RadioButton.IsChecked.HasValue && C_RadioButton.IsChecked.Value) {
                     CurrentAnswer = "C";
-                }else if(D_RadioButton.IsChecked.HasValue && D_RadioButton.IsChecked.Value){
+                } else if (D_RadioButton.IsChecked.HasValue && D_RadioButton.IsChecked.Value) {
                     CurrentAnswer = "D";
                 }
 
-            }else{
+            } else {
                 Console.WriteLine("*Error* - EnterButton_Click If Statment");
             }
 
             //Check if quesiton is correct + Open or Lock Door
-            if(this.currentQuestion.CheckAnswer(CurrentAnswer)){
+            if (this.currentQuestion.CheckAnswer(CurrentAnswer)) { 
                 MessageBox.Show("CORRECT!");
-                this.gameCore.SetCurDoor(new OpenedDoor());
-
-            }
-            else{
+                this.gameCore.QuestionAnswered(true);
+            } else {
                 MessageBox.Show("INCORRECT!");
-                this.gameCore.SetCurDoor(new LockedDoor());
+                this.gameCore.QuestionAnswered(false);
             }
 
             //unlock mov. controls.
@@ -802,8 +792,9 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public static void GameLost() {
+            MessageBox.Show("You lost!");
             //add game lost stuff here
         }
-        
+
     }
 }

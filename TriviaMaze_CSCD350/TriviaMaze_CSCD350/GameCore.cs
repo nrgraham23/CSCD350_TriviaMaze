@@ -54,79 +54,15 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        // Not a normal set, when the curdoor is set it also sets
-        // the rooms door as well and to do that you need to find the entered
-        // from direction and the direction you click.
-        public void SetCurDoor(IDoor door){
-            this.curDoor = door;
 
-            char dirEntered = this.maze.GetCurRoom().GetEnteredFrom();
-
-
-            if(this.clickDirection.Equals("right")){
-                if (dirEntered == 'n') {
-                    this.maze.GetCurRoom().SetWDoor(door);//#
-                }
-                else if (dirEntered == 'w') {
-                    this.maze.GetCurRoom().SetSDoor(door);//#
-                }
-                else if (dirEntered == 's') {
-                    this.maze.GetCurRoom().SetEDoor(door);//#
-                }
-                else if (dirEntered == 'e') {
-                    this.maze.GetCurRoom().SetNDoor(door);//#
-                }
-                else {
-                    Console.WriteLine("*Error* - setdoor");
-                }
-            }
-            else if (this.clickDirection.Equals("center")) {
-                if (dirEntered == 'n') {
-                    this.maze.GetCurRoom().SetSDoor(door);//#
-                }
-                else if (dirEntered == 'w') {
-                    this.maze.GetCurRoom().SetEDoor(door);//#
-                }
-                else if (dirEntered == 's') {
-                    this.maze.GetCurRoom().SetNDoor(door);//#
-                }
-                else if (dirEntered == 'e') {
-                    this.maze.GetCurRoom().SetWDoor(door);//#
-                }
-            }
-            else if (this.clickDirection.Equals("left")) {
-                if (dirEntered == 'n') {
-                    this.maze.GetCurRoom().SetEDoor(door);//#
-                }
-                else if (dirEntered == 'w') {
-                    this.maze.GetCurRoom().SetNDoor(door);//#
-                }
-                else if (dirEntered == 's') {
-                    this.maze.GetCurRoom().SetWDoor(door);//#
-                }
-                else if (dirEntered == 'e') {
-                    this.maze.GetCurRoom().SetSDoor(door);//#
-                }
-            }
-            else if (this.clickDirection.Equals("back")) {
-                if (dirEntered == 'n') {
-                    this.maze.GetCurRoom().SetNDoor(door);//#
-                }
-                else if (dirEntered == 'w') {
-                    this.maze.GetCurRoom().SetWDoor(door);//#
-                }
-                else if (dirEntered == 's') {
-                    this.maze.GetCurRoom().SetSDoor(door);//#
-                }
-                else if (dirEntered == 'e') {
-                    this.maze.GetCurRoom().SetEDoor(door);//#
-                }
-            }
-            else {
-                Console.WriteLine("*Error* - setdoor");
+        public void QuestionAnswered(bool correct) {
+            if (correct) {
+                this.maze.OpenDoor();
+            } else {
+                this.maze.LockDoor();
             }
         }
-
+        
         //=====================================================================
         
         public bool RightDoorClick() {
@@ -232,7 +168,6 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         
         public void UpdateMazeView() {
-
             this.maze.Update();
         }
 

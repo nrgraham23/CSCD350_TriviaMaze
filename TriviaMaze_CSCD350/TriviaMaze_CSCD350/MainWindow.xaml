@@ -19,7 +19,7 @@
                 <MenuItem x:Name="aboutMenuItem" Header="_About" Click="aboutGameMenuItemClick"/>
                 <MenuItem x:Name="ctrlsMenuItem" Header="_Controls" Click="controlsGameMenuItemClick"/>
             </MenuItem>
-            <MenuItem Header="_Tools" x:Name="toolsMenuItem" Click="toolsMenuItem_Click">
+            <MenuItem Header="_Tools" x:Name="toolsMenuItem">
                 <MenuItem x:Name="addQMenuItem" Header="_Add Question" Click="addQuestionGameMenuItemClick"/>
                 <MenuItem x:Name="viewQuestionsMenuItem" Header="_View Questions" Click="viewQuestionsGameMenuItemClick"/>
             </MenuItem>

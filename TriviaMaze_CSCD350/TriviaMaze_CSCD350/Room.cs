@@ -25,25 +25,31 @@ namespace TriviaMaze_CSCD350 {
         private char enteredFrom;
 
         //=====================================================================
-        //Comment- Enter Methods
+        
         public void EnterNorth() {
             this.nWall.GetDoor().Enter();
         }
+
+        //=====================================================================
 
         public void EnterEast() {
             this.eWall.GetDoor().Enter();
         }
 
+        //=====================================================================
+
         public void EnterSouth() {
             this.sWall.GetDoor().Enter();
         }
+
+        //=====================================================================
 
         public void EnterWest() {
             this.wWall.GetDoor().Enter();
         }
 
         //=====================================================================
-        //Comment- Get Methods
+        
         public bool GetNPassable() {
             return this.nWall.GetDoor().Passable();
         }
@@ -85,7 +91,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Set Methods
+        
         public void SetNDoor(IDoor door) {
             this.nWall.SetDoor(door);
         }
