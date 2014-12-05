@@ -676,14 +676,20 @@ namespace TriviaMaze_CSCD350 {
 
 
         private void Window_KeyDown(object sender, KeyEventArgs e) {
-            if (e.Key == Key.Up)
-                this.gameCore.CenterDoorClick();
-            if (e.Key == Key.Right)
-                this.gameCore.RightDoorClick();
-            if (e.Key == Key.Down)
-                this.gameCore.BackDoorClick();
-            if (e.Key == Key.Left)
-                this.gameCore.LeftDoorClick();
+
+            try {
+                if (e.Key == Key.Up)
+                    this.gameCore.CenterDoorClick();
+                if (e.Key == Key.Right)
+                    this.gameCore.RightDoorClick();
+                if (e.Key == Key.Down)
+                    this.gameCore.BackDoorClick();
+                if (e.Key == Key.Left)
+                    this.gameCore.LeftDoorClick();
+            }
+            catch (NullReferenceException) {
+
+            }
         }
 
         private void resetQuestion() {
