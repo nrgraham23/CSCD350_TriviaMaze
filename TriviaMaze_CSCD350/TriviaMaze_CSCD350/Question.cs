@@ -18,8 +18,8 @@ namespace TriviaMaze_CSCD350 {
     public abstract class Question : IObservable<Question> {
 
         String[] questionChoices = new String[4] { "", "", "", "" };
-        String questionText;
-        int questionAnswer, questionType;
+        String questionText, questionAuxFile;
+        int questionAnswer, questionType, questionAuxiliary;
         [NonSerialized]
         protected static List<IObserver<Question>> observers;
 
@@ -55,6 +55,14 @@ namespace TriviaMaze_CSCD350 {
                 questionChoices[index-1] = choice;
         }
 
+        public void SetAuxiliary(int aux) {
+            questionAuxiliary = aux;
+        }
+
+        public void SetAuxFile(String path) {
+            questionAuxFile = path;
+        }
+
         //=====================================================================
         //Comment- Get Methods
         public String GetText() {
@@ -77,6 +85,14 @@ namespace TriviaMaze_CSCD350 {
             if (index >= 1 && index <= 4)
                 return questionChoices[index-1];
             return "";
+        }
+
+        public int GetAuxiliary() {
+            return questionAuxiliary;
+        }
+
+        public String GetAuxFile() {
+            return questionAuxFile;
         }
 
         //=====================================================================

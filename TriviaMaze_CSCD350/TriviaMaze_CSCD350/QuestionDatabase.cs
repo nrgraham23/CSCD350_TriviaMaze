@@ -18,8 +18,8 @@ namespace TriviaMaze_CSCD350 {
     class QuestionDatabase {
 
         /* [DATABASE SETUP]
-         * Questions: QIndex SMALLINT, QType SMALLINT, QText VARCHAR(255), QAnswer SMALLINT, 
-         * QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64)
+         * Questions: QIndex SMALLINT, QType SMALLINT, QAuxiliary SMALLINT, QAuxFile VARCHAR(255), QText VARCHAR(255),
+         * QAnswer SMALLINT, QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64)
          */
 
         SQLiteConnection dbConnection;
@@ -98,6 +98,8 @@ namespace TriviaMaze_CSCD350 {
             tempQuestion.SetChoice(2, "" + reader["QOption2"]);
             tempQuestion.SetChoice(3, "" + reader["QOption2"]);
             tempQuestion.SetChoice(4, "" + reader["QOption2"]);
+            tempQuestion.SetAuxiliary(Convert.ToInt32("" + reader["QAuxiliary"]));
+            tempQuestion.SetAuxFile("" + reader["QType"]);
 
             return tempQuestion;
         }
@@ -111,9 +113,9 @@ namespace TriviaMaze_CSCD350 {
 
             int index = dbEntries + 1;
             String sql = "INSERT INTO Questions (QIndex,QType,QAuxiliary,QAuxFile,QText,QAnswer,QOption1,QOption2,QOption3,QOption4) " +
-                         "VALUES (" + index + ", " + q.GetQType() + ", \"" + EscapeString(q.GetText()) + "\", " + q.GetAnswer() + ", \"" +
-                         EscapeString(q.GetChoice(1)) + "\", \"" + EscapeString(q.GetChoice(2)) + "\", \"" +
-                         EscapeString(q.GetChoice(3)) + "\", \"" + EscapeString(q.GetChoice(4)) + "\")";
+                         "VALUES (" + index + ", " + q.GetQType() + ", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\", \"" +
+                         q.GetText() + "\", " + q.GetAnswer() + ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" +
+                         q.GetChoice(3) + "\", \"" + q.GetChoice(4) + "\")";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
             dbEntries++;
@@ -152,6 +154,8 @@ namespace TriviaMaze_CSCD350 {
             String sql = "UPDATE Questions SET ";
             sql += "QType = " + mod.GetQType() + ", ";
             sql += "QText = \"" + mod.GetText() + "\", ";
+            sql += "QAuxiliary = " + mod.GetAuxiliary() + ", ";
+            sql += "QAuxFile = \"" + mod.GetAuxFile() + "\", ";
             sql += "QAnswer = " + mod.GetAnswer() + ", ";
             sql += "QOption1 = \"" + mod.GetChoice(1) + "\", ";
             sql += "QOption2 = \"" + mod.GetChoice(2) + "\", ";

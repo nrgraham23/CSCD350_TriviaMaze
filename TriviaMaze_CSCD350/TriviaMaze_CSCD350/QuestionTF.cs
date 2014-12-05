@@ -23,6 +23,8 @@ namespace TriviaMaze_CSCD350 {
             SetText("DEFAULT: This is a true or false question.");
             SetAnswer(1);
             SetQType(2);
+            SetAuxiliary(1);
+            SetAuxFile("NULL");
         }
 
         //=====================================================================
