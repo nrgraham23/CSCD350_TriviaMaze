@@ -34,6 +34,14 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
+        public GameCore(MainWindow mainWindow, int difficulty) {
+            this.mainWindow = mainWindow;
+            MazeBuilderDirector builder = new MazeBuilderDirector();
+            this.maze = builder.Construct(difficulty);
+        }
+
+        //=====================================================================
+
         private void GetDifficulty() {
             DifficultyInput difficultyInput = new DifficultyInput(this);
             difficultyInput.Show();
@@ -192,6 +200,12 @@ namespace TriviaMaze_CSCD350 {
         //should only ever be used for subscription purposes
         public Maze GetMaze() {
             return this.maze;
+        }
+
+        //=====================================================================
+        //for minimap use
+        public Floor GetMazeFloor(int floorNum) {
+            return this.maze.GetFloor(floorNum);
         }
     }
 }

@@ -342,7 +342,7 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.IsEnabled = true;
             this.gameCore = new GameCore(this);
             this.askingQuestion = false;
-            resetQuestion();
+            ResetQuestion();
 
             CDoorCanvas.IsEnabled = true;
             RDoorCanvas.IsEnabled = true;
@@ -641,7 +641,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void resetQuestion() {
+        private void ResetQuestion() {
 
             A_TrueRadioButton.IsEnabled = false;
             A_TrueRadioButton.Visibility = Visibility.Visible;
@@ -721,7 +721,7 @@ namespace TriviaMaze_CSCD350 {
             this.askingQuestion = false;
 
             //reset question boxes
-            resetQuestion();
+            ResetQuestion();
         }
 
         private void questionAnswered(int row, int col, char from, int incorrect) {
