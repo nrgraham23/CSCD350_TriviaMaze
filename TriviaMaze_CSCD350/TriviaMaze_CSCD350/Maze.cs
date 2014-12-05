@@ -75,7 +75,7 @@ namespace TriviaMaze_CSCD350 {
         private bool RecurseSearch(bool[,] visitedMap, int testYCoord, int testXCoord, int testZCoord, int exitY, int exitX) {
             Room curTestRoom = mazeFloors[testZCoord].GetRoom(new Point(testYCoord, testXCoord));
 
-            if (testZCoord == numFloors - 1 && testYCoord == exitY && testXCoord == exitX) { //check for exit first
+            if (testYCoord == exitY && testXCoord == exitX) { //check for exit first
                 return true;
             }
 

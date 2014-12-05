@@ -72,7 +72,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+        //as part of setting the stairs, the entry and exit point for each floor is set
         public void PlaceStairs() {
             int upY, upX, downY, downX, direction;
             int floorSize = this.maze.GetFloor(0).GetSize();
@@ -80,6 +80,9 @@ namespace TriviaMaze_CSCD350 {
             downX = downY = -1;
 
             for (int i = 0; i < this.maze.GetNumFloors() - 1; i++) {
+                if(downX != -1 && downY != -1) {
+                    SetFloorEntry(i, downY, downX);
+                }
                 do {
                     upY = rand.Next(floorSize - 2) + 1;
                     upX = rand.Next(floorSize - 2) + 1;
@@ -96,9 +99,25 @@ namespace TriviaMaze_CSCD350 {
                 } else {
                     SetWestStairs(i, upY, upX);
                 }
+
+                SetFloorExit(i, upY, upX);
+
                 downX = upX;
                 downY = upY;
             }
+            SetFloorEntry(4, downY, downX); //set top floor's entry
+        }
+
+        //=====================================================================
+
+        private void SetFloorEntry(int floorNum, int row, int col) {
+            this.maze.GetFloor(floorNum).SetEntry(new Point(row, col));
+        }
+
+        //=====================================================================
+
+        private void SetFloorExit(int floorNum, int row, int col) {
+            this.maze.GetFloor(floorNum).SetExit(new Point(row, col));
         }
 
         //=====================================================================
@@ -181,7 +200,75 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void CloseDoors() {
+            Random rand = new Random();
+            char directionToClose; 
+            int row, col, floor;
+            int numOfClosed = CalcNumDoorClose();
+            int mazeSize = this.maze.GetFloor(0).GetSize();
 
+            for (int i = 0; i < numOfClosed; i++) {
+                row = rand.Next(mazeSize);
+                col = rand.Next(mazeSize);
+                floor = rand.Next(mazeSize);
+
+                directionToClose = GetRandomDirection();
+
+                if (directionToClose == 'n') {
+                    if (this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetNPassable()
+                        && this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetNDoor().FloorChange() == 0) { //if its not a wall or victory door and not a stairs
+                            this.maze.GetFloor(floor).GetRoom(new Point(row, col)).SetNDoor(new NullDoor());
+                    } else {
+                        i--;
+                    }
+                } else if (directionToClose == 'e') {
+                    if (this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetEPassable()
+                        && this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetEDoor().FloorChange() == 0) { //if its not a wall or victory door and not a stairs
+                        this.maze.GetFloor(floor).GetRoom(new Point(row, col)).SetEDoor(new NullDoor());
+                    } else {
+                        i--;
+                    }
+                } else if (directionToClose == 's') {
+                    if (this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetSPassable()
+                        && this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetSDoor().FloorChange() == 0) { //if its not a wall or victory door and not a stairs
+                        this.maze.GetFloor(floor).GetRoom(new Point(row, col)).SetSDoor(new NullDoor());
+                    } else {
+                        i--;
+                    }
+                } else { //west
+                    if (this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetWPassable()
+                        && this.maze.GetFloor(floor).GetRoom(new Point(row, col)).GetWDoor().FloorChange() == 0) { //if its not a wall or victory door and not a stairs
+                        this.maze.GetFloor(floor).GetRoom(new Point(row, col)).SetWDoor(new NullDoor());
+                    } else {
+                        i--;
+                    }
+                }
+            }
+        }
+
+        //=====================================================================
+
+        private int CalcNumDoorClose() {
+            double percentToClose = .2;  //percentage of rooms to close a door in
+            int mazeSize = this.maze.GetFloor(0).GetSize();
+            double totalRooms = mazeSize * mazeSize * mazeSize;
+            return (int)(totalRooms * percentToClose);
+        }
+
+        //=====================================================================
+
+        private char GetRandomDirection() {
+            Random rand = new Random();
+            int direction = rand.Next(4);
+
+            if (direction == 0) {
+                return 'n';
+            } else if (direction == 1) {
+                return 'e';
+            } else if (direction == 2) {
+                return 's';
+            } else {
+                return 'w';
+            }
         }
 
         //=====================================================================
