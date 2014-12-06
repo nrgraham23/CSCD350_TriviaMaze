@@ -18,5 +18,6 @@ namespace TriviaMaze_CSCD350 {
         String GetFileName(); 
         bool Passable(); //returns true if the door is not locked or a wall
         int FloorChange(); //returns an int to be added to the current floor number variable in maze
+        bool IsOpen();
     }
 }

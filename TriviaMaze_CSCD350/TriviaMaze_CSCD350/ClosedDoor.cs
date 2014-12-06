@@ -20,7 +20,7 @@ namespace TriviaMaze_CSCD350 {
         //Random ran = new Random();
 
         //=====================================================================
-        //Comment-
+        
         public ClosedDoor() {
             //ran = new Random();
             //int temp = ran.Next(3);
@@ -29,28 +29,34 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Enter() {
             this.question.AskQuestion();
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public String GetFileName() {
             return "door_closed.png";
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Passable() {
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        
         public int FloorChange() {
             return 0;
+        }
+
+        //=====================================================================
+
+        public bool IsOpen() {
+            return false;
         }
     }
 }

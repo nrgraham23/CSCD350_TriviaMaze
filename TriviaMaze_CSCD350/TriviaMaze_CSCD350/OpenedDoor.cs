@@ -17,7 +17,7 @@ namespace TriviaMaze_CSCD350 {
     public class OpenedDoor : IDoor {
 
         //=====================================================================
-        //Comment- Constructor
+        
         public OpenedDoor() {
 
         }
@@ -44,6 +44,12 @@ namespace TriviaMaze_CSCD350 {
         //Comment-
         public int FloorChange() {
             return 0;
+        }
+
+        //=====================================================================
+
+        public bool IsOpen() {
+            return true;
         }
     }
 }

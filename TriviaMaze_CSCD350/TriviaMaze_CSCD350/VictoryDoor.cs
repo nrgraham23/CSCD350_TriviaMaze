@@ -40,5 +40,11 @@ namespace TriviaMaze_CSCD350 {
         public int FloorChange() {
             return 0;
         }
+
+        //=====================================================================
+
+        public bool IsOpen() {
+            return false;
+        }
     }
 }
