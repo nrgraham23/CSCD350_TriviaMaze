@@ -37,6 +37,7 @@ namespace TriviaMaze_CSCD350 {
             DrawMiniMap();
             this.subscribeQuestion = new QuestionTF();
             this.subscribeQuestion.Subscribe(this);
+            ResetQuestion();
         }
 
         //=====================================================================
@@ -558,11 +559,24 @@ namespace TriviaMaze_CSCD350 {
             this.currentQuestion = value;
             this.askingQuestion = true;
 
-            QuestionBox.Text = value.ToString();
+            
+
+            /*Test Block
+            QuestionMulti tempQuestion = new QuestionMulti();
+
+            tempQuestion.SetAuxFile("door_closed.png");
+            tempQuestion.SetQType(4);
+
+
+
+            this.currentQuestion = tempQuestion;
+            */
+
+            QuestionBox.Text = this.currentQuestion.ToString();
 
             EnterButton.IsEnabled = true;
 
-            if (value.GetQType() == 1) {
+            if (this.currentQuestion.GetQType() == 1) {
                 //short
                 A_TrueRadioButton.Visibility = Visibility.Hidden;
                 B_FalseRadioButton.Visibility = Visibility.Hidden;
@@ -571,7 +585,7 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.IsEnabled = true;
                 AnswerBox.Text = "";
 
-            } else if (value.GetQType() == 2) {
+            } else if (this.currentQuestion.GetQType() == 2) {
                 //TF
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "True";
@@ -581,7 +595,7 @@ namespace TriviaMaze_CSCD350 {
                 D_RadioButton.Visibility = Visibility.Hidden;
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
-            } else if (value.GetQType() == 3) {
+            } else if (this.currentQuestion.GetQType() == 3) {
                 //Multi
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "A";
@@ -592,8 +606,20 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
 
-
-            } else {
+            } else if(this.currentQuestion.GetQType() == 4) {
+                //Picture & Sound
+                A_TrueRadioButton.IsEnabled = true;
+                A_TrueRadioButton.Content = "A";
+                B_FalseRadioButton.IsEnabled = true;
+                B_FalseRadioButton.Content = "B";
+                C_RadioButton.IsEnabled = true;
+                D_RadioButton.IsEnabled = true;
+                AnswerBox.Visibility = Visibility.Hidden;
+                AnswerBox.IsEnabled = false;
+                PlayButton.IsEnabled = true;
+                PlayButton.Visibility = Visibility.Visible;
+            }
+            else {
                 Console.WriteLine("*Error* - MainWindow - Question.OnNext - getType");
             }
 
@@ -685,6 +711,9 @@ namespace TriviaMaze_CSCD350 {
             AnswerBox.IsEnabled = false;
             AnswerBox.Visibility = Visibility.Visible;
             AnswerBox.Text = "Enter Answer";
+
+            PlayButton.IsEnabled = false;
+            PlayButton.Visibility = Visibility.Hidden;
 
             QuestionBox.Text = "Question....";
         }
@@ -853,6 +882,15 @@ namespace TriviaMaze_CSCD350 {
             else {
                 return false;
             }
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e) {
+            ViewPictureWindow tempNewWindow = new ViewPictureWindow();
+            tempNewWindow.Show();
+
+            String qFilePath = @"..\..\Images\r" + this.currentQuestion.GetAuxFile();
+
+            tempNewWindow.PictureCanvas.Background = new ImageBrush(new BitmapImage(new Uri(qFilePath, UriKind.Relative)));
         }
     }
 }

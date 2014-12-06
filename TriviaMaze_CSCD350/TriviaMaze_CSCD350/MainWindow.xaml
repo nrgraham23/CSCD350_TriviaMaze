@@ -46,6 +46,7 @@
         <Canvas x:Name="RDoorCanvas" HorizontalAlignment="Left" Height="505" Margin="686,39,0,0" VerticalAlignment="Top" Width="89" MouseLeftButtonDown="RDoorCanvas_MouseLeftButtonDown"/>
         <Canvas x:Name="BDoorCanvas" HorizontalAlignment="Left" Height="126" Margin="508,417,0,0" VerticalAlignment="Top" Width="178" MouseLeftButtonDown="BDoorCanvas_MouseLeftButtonDown"/>
         <Button x:Name="EnterButton" Content="Confirm!" HorizontalAlignment="Left" Margin="149,216,0,0" VerticalAlignment="Top" Width="51" Height="20" Click="EnterButton_Click" IsEnabled="False"/>
+        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="307,177,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
 
 
 

@@ -100,6 +100,9 @@
     </Compile>
     <Compile Include="UpStairDoor.cs" />
     <Compile Include="VictoryDoor.cs" />
+    <Compile Include="ViewPictureWindow.xaml.cs">
+      <DependentUpon>ViewPictureWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewQuestionWindow.xaml.cs">
       <DependentUpon>ViewQuestionWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SaveGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewPictureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +188,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HTMLPage1.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
