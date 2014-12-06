@@ -51,17 +51,29 @@ namespace TriviaMaze_CSCD350 {
         }
 
         private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
+            for (int x = 0; x < 5; x++) {
+                for (int y = 0; y < 4; y++) {
+                    Point newPoint = new Point(x, y);
+                    Room aRoom = curFloor.GetRoom(newPoint);
+                    if (aRoom.GetEDoor().Passable() == false) {
+                        DrawVerticleDoor(y, x, 1);
+                    }
+                    //if (aRoom.GetWDoor().Passable() == false) {
+                       // DrawVerticleDoor(y, x, 1);
+                    //} 
+                }
+            }
+
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 5; y++) {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
-
-                    if (aRoom.GetWPassable() == false) {
-                        DrawVerticleDoor(x, y, 2);
+                    if (aRoom.GetSDoor().Passable() == false) {
+                        DrawHorizontalDoor(y, x, 1);
                     }
-                    if (aRoom.GetWPassable() == false) {
-                        DrawVerticleDoor(x, y, 2);
-                    }
+                    //if (aRoom.GetNDoor().Passable() == false) {
+                      //  DrawHorizontalDoor(y, x, 1);
+                    //}
                 }
             }
         }
@@ -81,27 +93,27 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.Children.Add(line);
         }
 
-        private void MoveTriangle(int row, int col, char enteredFrom, int color) {
+        private void MoveTriangle(int row, int col, char enteredFrom) {
 
             DrawTriangle(row, col, enteredFrom);
 
             if (enteredFrom == 'n') {
-                EnteredFromN(row, col, enteredFrom, color);
+                EnteredFromN(row, col, enteredFrom);
             }
             if (enteredFrom == 'e') {
-                EnteredFromE(row, col, enteredFrom, color);
+                EnteredFromE(row, col, enteredFrom);
             }
             if (enteredFrom == 's') {
-                EnteredFromS(row, col, enteredFrom, color);
+                EnteredFromS(row, col, enteredFrom);
             }
             if (enteredFrom == 'w') {
-                EnteredFromW(row, col, enteredFrom, color);
+                EnteredFromW(row, col, enteredFrom);
             }
         }
 
         //=====================================================================
 
-        private void EnteredFromN(int row, int col, char enteredFrom, int color) {
+        private void EnteredFromN(int row, int col, char enteredFrom) {
             if (row == 0) {
                 DrawTriangle(row, col, enteredFrom);
                 ReDrawLine(row, col - 1);                
@@ -119,7 +131,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void EnteredFromE(int row, int col, char enteredFrom, int color) {
+        private void EnteredFromE(int row, int col, char enteredFrom) {
             if (col == 0) {
                 DrawTriangle(row, col, enteredFrom);
                 ReDrawLine(row + 1, col);                
@@ -134,7 +146,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void EnteredFromS(int row, int col, char enteredFrom, int color) {
+        private void EnteredFromS(int row, int col, char enteredFrom) {
             if (row == 0) {
                 DrawTriangle(row, col, enteredFrom);
                 ReDrawLine(row, col + 1);                
@@ -152,7 +164,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void EnteredFromW(int row, int col, char enteredFrom, int color) {
+        private void EnteredFromW(int row, int col, char enteredFrom) {
             if (row == 0)
                 DrawTriangle(row, col, enteredFrom);
             else if (col == 0) {
@@ -476,16 +488,16 @@ namespace TriviaMaze_CSCD350 {
 
             if (curRoom.GetEnteredFrom() == 'n') {
                 NorthEntry(curRoom); ;
-                MoveTriangle(playerCol, playerRow, 'n', 2);
+                MoveTriangle(playerCol, playerRow, 'n');
             } else if (curRoom.GetEnteredFrom() == 'e') {
                 EastEntry(curRoom);
-                MoveTriangle(playerCol, playerRow, 'e', 2);
+                MoveTriangle(playerCol, playerRow, 'e');
             } else if (curRoom.GetEnteredFrom() == 's') {
                 SouthEntry(curRoom);
-                MoveTriangle(playerCol, playerRow, 's', 2);
+                MoveTriangle(playerCol, playerRow, 's');
             } else if (curRoom.GetEnteredFrom() == 'w') {
                 WestEntry(curRoom);
-                MoveTriangle(playerCol, playerRow, 'w',2);
+                MoveTriangle(playerCol, playerRow, 'w');
             } else {
                 throw new Exception(); //TODO: find the right exception to throw
             }
