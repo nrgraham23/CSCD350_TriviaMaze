@@ -36,10 +36,10 @@
                 <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" FontWeight="Bold" Text="Question" />
                 <TextBox Grid.Row="0" Grid.Column="2" IsEnabled="False" FontWeight="Bold" Text="Type" />
                 <TextBox Grid.Row="0" Grid.Column="3" IsEnabled="False" FontWeight="Bold" Text="Answer" />
-                <TextBox Grid.Row="0" Grid.Column="4" IsEnabled="False" FontWeight="Bold" Text="Option A" />
-                <TextBox Grid.Row="0" Grid.Column="5" IsEnabled="False" FontWeight="Bold" Text="Option B" />
-                <TextBox Grid.Row="0" Grid.Column="6" IsEnabled="False" FontWeight="Bold" Text="Option C" />
-                <TextBox Grid.Row="0" Grid.Column="7" IsEnabled="False" FontWeight="Bold" Text="Option D" />
+                <TextBox Grid.Row="0" Grid.Column="4" IsEnabled="False" FontWeight="Bold" Text="Option 1" />
+                <TextBox Grid.Row="0" Grid.Column="5" IsEnabled="False" FontWeight="Bold" Text="Option 2" />
+                <TextBox Grid.Row="0" Grid.Column="6" IsEnabled="False" FontWeight="Bold" Text="Option 3" />
+                <TextBox Grid.Row="0" Grid.Column="7" IsEnabled="False" FontWeight="Bold" Text="Option 4" />
                 <TextBox Grid.Row="0" Grid.Column="8" IsEnabled="False" FontWeight="Bold" Text="Aux Type" />
                 <TextBox Grid.Row="0" Grid.Column="9" IsEnabled="False" FontWeight="Bold" Text="Aux File"/>
                 
@@ -108,24 +108,24 @@
         <!--NAVIGATE ENTRIES-->
         <Button HorizontalAlignment="Left" Margin="542,208,0,0" VerticalAlignment="Top" Width="40" Content="--&gt;" x:Name="Button_Prev"/>
         <Button HorizontalAlignment="Left" Margin="57,208,0,0" VerticalAlignment="Top" Width="40" Content="&lt;--" x:Name="Button_Next"/>
-        <Slider HorizontalAlignment="Left" Margin="102,207,0,0" VerticalAlignment="Top" Width="435"/>
+        <Slider HorizontalAlignment="Left" Margin="102,207,0,0" VerticalAlignment="Top" Width="435" x:Name="Slider"/>
 
         <!--SELECT QUESTION-->
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="15,50,0,0" Stroke="#FFACACAC" VerticalAlignment="Top" Width="27"/>
         <Button HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="46" Content="Edit" x:Name="Button_Edit"/>
         <Button HorizontalAlignment="Left" Margin="6,180,0,0" VerticalAlignment="Top" Width="46" Content="Delete" x:Name="Button_Delete"/>
-        <RadioButton Margin="22,77,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Button_Row1"/>
-        <RadioButton Margin="22,99,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Button_Row2"/>
-        <RadioButton Margin="22,120,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Button_Row3"/>
-        <RadioButton Margin="22,141,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Button_Row4"/>
-        <RadioButton Margin="22,163,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Button_Row5"/>
+        <RadioButton Margin="22,77,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row1"/>
+        <RadioButton Margin="22,99,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row2"/>
+        <RadioButton Margin="22,120,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row3"/>
+        <RadioButton Margin="22,141,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row4"/>
+        <RadioButton Margin="22,163,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row5"/>
 
         <!--CREATE QUESTION-->
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="34" Margin="58,6,0,0" Stroke="#FFACACAC" VerticalAlignment="Top" Width="523"/>
-        <Button HorizontalAlignment="Left" Margin="66,12,0,0" VerticalAlignment="Top" Width="105" Content="New Question" />
-        <RadioButton HorizontalAlignment="Left" Margin="309,15,0,0" VerticalAlignment="Top" Content=" Short Answer" Width="108" />
-        <RadioButton HorizontalAlignment="Left" Margin="201,15,0,0" VerticalAlignment="Top" Content=" True/False" Width="89" />
-        <RadioButton HorizontalAlignment="Left" Margin="432,15,0,0" VerticalAlignment="Top" Content=" Multiple Choice" Width="123" />
+        <Button HorizontalAlignment="Left" Margin="66,12,0,0" VerticalAlignment="Top" Width="105" Content="New Question" x:Name="Button_New" Click="Button_New_Click"/>
+        <RadioButton HorizontalAlignment="Left" Margin="309,15,0,0" VerticalAlignment="Top" Content=" True/False" Width="108" x:Name="Radio_Short"/>
+        <RadioButton HorizontalAlignment="Left" Margin="201,15,0,0" VerticalAlignment="Top" Content=" Short Answer" Width="89" x:Name="Radio_TF"/>
+        <RadioButton HorizontalAlignment="Left" Margin="432,15,0,0" VerticalAlignment="Top" Content=" Multiple Choice" Width="123" x:Name="Radio_Multi"/>
         
     </Grid>
 </Window>

@@ -18,8 +18,9 @@ namespace TriviaMaze_CSCD350 {
     class QuestionDatabase {
 
         /* [DATABASE SETUP]
-         * Questions: QIndex SMALLINT, QType SMALLINT, QAuxiliary SMALLINT, QAuxFile VARCHAR(255), QText VARCHAR(255),
-         * QAnswer SMALLINT, QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64)
+         * Questions: QIndex SMALLINT, QType SMALLINT, QText VARCHAR(255), QAnswer SMALLINT,
+         * QOption1 VARCHAR(64), QOption2 VARCHAR(64), QOption3 VARCHAR(64), QOption4 VARCHAR(64),
+         * QAuxiliary SMALLINT, QAuxFile VARCHAR(255)
          */
 
         SQLiteConnection dbConnection;
@@ -29,9 +30,17 @@ namespace TriviaMaze_CSCD350 {
         Random rand = new Random();
         bool validConnection;
 
+        private static QuestionDatabase dbInstance = null;
+
+        public static QuestionDatabase GetInstance() {
+            if (dbInstance == null)
+                dbInstance = new QuestionDatabase("../../gameqs.db");
+            return dbInstance;
+        }
+
         //=====================================================================
         //Comment- Create the database object, open it, and count entries
-        public QuestionDatabase(string dbPath) {
+        private QuestionDatabase(string dbPath) {
             this.dbPath = dbPath;
             validConnection = OpenDatabase();
             dbEntries = CountEntries();
@@ -39,7 +48,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
         //Comment- Create a new database connection, open it, and test the connection (returns bool type for success flag)
-        public bool OpenDatabase() {
+        private bool OpenDatabase() {
             dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;");
             dbConnection.Open();
 
@@ -80,7 +89,7 @@ namespace TriviaMaze_CSCD350 {
         //Comment- Grabs a question object from the database and returns it.
         public Question GetQuestion(int index) {
 
-            if (!HasQuestions() || !ValidIndex(index) || !validConnection)
+            if (!HasQuestions() || !ValidIndex(index) || !validConnection || (index < 1 || index > dbEntries))
                 return null;
 
             string sql = "SELECT * FROM Questions WHERE QIndex = " + index;
@@ -88,18 +97,16 @@ namespace TriviaMaze_CSCD350 {
             SQLiteDataReader reader = command.ExecuteReader();
             reader.Read();
 
-
-
             Question tempQuestion = QuestionFromType(Convert.ToInt32("" + reader["QType"]));
 
             tempQuestion.SetText("" + reader["QText"]);
             tempQuestion.SetAnswer(Convert.ToInt32(reader["QAnswer"]));
             tempQuestion.SetChoice(1, "" + reader["QOption1"]);
             tempQuestion.SetChoice(2, "" + reader["QOption2"]);
-            tempQuestion.SetChoice(3, "" + reader["QOption2"]);
-            tempQuestion.SetChoice(4, "" + reader["QOption2"]);
+            tempQuestion.SetChoice(3, "" + reader["QOption3"]);
+            tempQuestion.SetChoice(4, "" + reader["QOption4"]);
             tempQuestion.SetAuxiliary(Convert.ToInt32("" + reader["QAuxiliary"]));
-            tempQuestion.SetAuxFile("" + reader["QType"]);
+            tempQuestion.SetAuxFile("" + reader["QAuxFile"]);
 
             return tempQuestion;
         }
@@ -112,10 +119,10 @@ namespace TriviaMaze_CSCD350 {
                 return;
 
             int index = dbEntries + 1;
-            String sql = "INSERT INTO Questions (QIndex,QType,QAuxiliary,QAuxFile,QText,QAnswer,QOption1,QOption2,QOption3,QOption4) " +
-                         "VALUES (" + index + ", " + q.GetQType() + ", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\", \"" +
-                         q.GetText() + "\", " + q.GetAnswer() + ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" +
-                         q.GetChoice(3) + "\", \"" + q.GetChoice(4) + "\")";
+            String sql = "INSERT INTO Questions (QIndex,QType,QText,QAnswer,QOption1,QOption2,QOption3,QOption4,QAuxiliary,QAuxFile) " +
+                         "VALUES (" + index + ", " + q.GetQType() + ", \"" + q.GetText() + "\", " + q.GetAnswer() +
+                         ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" + q.GetChoice(3) + "\", \"" + q.GetChoice(4) +
+                         "\", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\")";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
             dbEntries++;
@@ -154,13 +161,13 @@ namespace TriviaMaze_CSCD350 {
             String sql = "UPDATE Questions SET ";
             sql += "QType = " + mod.GetQType() + ", ";
             sql += "QText = \"" + mod.GetText() + "\", ";
-            sql += "QAuxiliary = " + mod.GetAuxiliary() + ", ";
-            sql += "QAuxFile = \"" + mod.GetAuxFile() + "\", ";
             sql += "QAnswer = " + mod.GetAnswer() + ", ";
             sql += "QOption1 = \"" + mod.GetChoice(1) + "\", ";
             sql += "QOption2 = \"" + mod.GetChoice(2) + "\", ";
             sql += "QOption3 = \"" + mod.GetChoice(3) + "\", ";
-            sql += "QOption4 = \"" + mod.GetChoice(4) + " ";
+            sql += "QOption4 = \"" + mod.GetChoice(4) + ", ";
+            sql += "QAuxiliary = " + mod.GetAuxiliary() + ", ";
+            sql += "QAuxFile = \"" + mod.GetAuxFile() + "\" ";
             sql += "WHERE QIndex = " + index;
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();

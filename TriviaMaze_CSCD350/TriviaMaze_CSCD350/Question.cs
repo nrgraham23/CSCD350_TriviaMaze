@@ -2,8 +2,7 @@
  * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
  * CSCD 350
  * 
- * Class - Question, is the abstract class that is the
- * parent for the child questions.
+ * Class - Question, is the abstract class that is the parent for the child questions.
  */
 
 using System;
@@ -19,7 +18,9 @@ namespace TriviaMaze_CSCD350 {
 
         String[] questionChoices = new String[4] { "", "", "", "" };
         String questionText, questionAuxFile;
-        int questionAnswer, questionType, questionAuxiliary;
+        int questionAnswer;     // 1-4 (corresponds to A-D)
+        int questionType;       // 1 = Short, 2 = T/F, 3 = Multi
+        int questionAuxiliary;  // 1 = Text, 2 = Image, 3 = Sound
         [NonSerialized]
         protected static List<IObserver<Question>> observers;
 
