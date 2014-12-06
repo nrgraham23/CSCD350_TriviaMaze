@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using System.Windows.Threading;
+using System.Media;
 
 namespace TriviaMaze_CSCD350 {
     /// <summary>
@@ -576,13 +577,14 @@ namespace TriviaMaze_CSCD350 {
             /*Test Block
             QuestionMulti tempQuestion = new QuestionMulti();
 
-            tempQuestion.SetAuxFile("door_closed.png");
-            tempQuestion.SetQType(4);
+            //tempQuestion.SetAuxFile("door_closed.png");
+            tempQuestion.SetAuxFile("test_sound.wav");
+            tempQuestion.SetQType(5);
 
 
 
             this.currentQuestion = tempQuestion;
-            */
+            //*/
 
             QuestionBox.Text = this.currentQuestion.ToString();
 
@@ -618,7 +620,7 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
 
-            } else if(this.currentQuestion.GetQType() == 4) {
+            } else if(this.currentQuestion.GetQType() == 4 || this.currentQuestion.GetQType() == 5) {
                 //Picture & Sound
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "A";
@@ -745,7 +747,8 @@ namespace TriviaMaze_CSCD350 {
                 } else {
                     currentAnswer = "FALSE";
                 }
-            } else if (this.currentQuestion.GetQType() == 3) { //Multiple Choice
+            }
+            else if (this.currentQuestion.GetQType() == 3 || this.currentQuestion.GetQType() == 4 || this.currentQuestion.GetQType() == 5) { //Multiple Choice
                 if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
                     currentAnswer = "A";
                 } else if (B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
@@ -897,12 +900,21 @@ namespace TriviaMaze_CSCD350 {
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e) {
-            ViewPictureWindow tempNewWindow = new ViewPictureWindow();
-            tempNewWindow.Show();
+            
+            if(this.currentQuestion.GetQType()==4){
+                ViewPictureWindow tempNewWindow = new ViewPictureWindow();
+                tempNewWindow.Show();
+                String qFilePath = @"..\..\Images\" + this.currentQuestion.GetAuxFile();
+                tempNewWindow.PictureCanvas.Background = new ImageBrush(new BitmapImage(new Uri(qFilePath, UriKind.Relative)));
 
-            String qFilePath = @"..\..\Images\r" + this.currentQuestion.GetAuxFile();
+            }
+            else if(this.currentQuestion.GetQType()==5){
+                String qFilePath = @"..\..\Sounds\" + this.currentQuestion.GetAuxFile();
 
-            tempNewWindow.PictureCanvas.Background = new ImageBrush(new BitmapImage(new Uri(qFilePath, UriKind.Relative)));
+
+                SoundPlayer waveFile = new SoundPlayer(qFilePath);
+                waveFile.PlaySync();
+            }
         }
     }
 }
