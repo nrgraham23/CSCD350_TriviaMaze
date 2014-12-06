@@ -49,6 +49,22 @@ namespace TriviaMaze_CSCD350 {
 
         }
 
+        private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 5; y++) {
+                    Point newPoint = new Point(x, y);
+                    Room aRoom = curFloor.GetRoom(newPoint);
+
+                    if (aRoom.GetWPassable() == false) {
+                        DrawVerticleDoor(x, y, 2);
+                    }
+                    if (aRoom.GetWPassable() == false) {
+                        DrawVerticleDoor(x, y, 2);
+                    }
+                }
+            }
+        }
+
         //=====================================================================
 
         private void ReDrawLine(int x, int y) {
@@ -450,9 +466,12 @@ namespace TriviaMaze_CSCD350 {
         void IObserver<Maze>.OnNext(Maze value) {
             Room curRoom = value.GetCurRoom();
             Point curPosition = value.GetCurPoint();
+            Floor curFloor = value.GetFloor(value.GetCurFloor());
             
             int playerRow = curPosition.GetRow();
             int playerCol = curPosition.GetCol();
+
+            FindOpenedClosedDoors(curFloor);
 
             if (curRoom.GetEnteredFrom() == 'n') {
                 NorthEntry(curRoom); ;

@@ -119,6 +119,9 @@ namespace TriviaMaze_CSCD350 {
         public Point GetCurPoint() {
             return this.curPoint;
         }
+        public int GetCurFloor() {
+            return this.curFloorNum;
+        }
 
         //=====================================================================
         
