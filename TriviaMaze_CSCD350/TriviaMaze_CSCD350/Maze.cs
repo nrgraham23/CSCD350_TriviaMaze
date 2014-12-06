@@ -29,7 +29,7 @@ namespace TriviaMaze_CSCD350 {
         private List<IObserver<Maze>> observers;
 
         //=====================================================================
-        
+
         public Maze() {
             this.observers = new List<IObserver<Maze>>();
             this.numFloors = 5;
@@ -38,7 +38,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         private void InitFloors() {
             this.mazeFloors = new Floor[this.numFloors];
             for (int i = 0; i < this.numFloors; i++) {
@@ -47,7 +47,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public bool IsSolvable() {
             for (int i = this.curFloorNum; i < this.numFloors; i++) {
                 int size = mazeFloors[i].GetSize();
@@ -56,7 +56,8 @@ namespace TriviaMaze_CSCD350 {
                 if (i == this.curFloorNum) {
                     testYCoord = this.curPoint.GetRow();
                     testXCoord = this.curPoint.GetCol();
-                } else {
+                }
+                else {
                     testYCoord = mazeFloors[i].GetEntry().GetRow();
                     testXCoord = mazeFloors[i].GetEntry().GetCol();
                 }
@@ -106,7 +107,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public Room GetCurRoom() {
             return this.curRoom;
         }
@@ -124,7 +125,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public void SetCurRoom(Room curRoom) {
             this.curRoom = curRoom;
         }
@@ -133,7 +134,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
@@ -142,14 +143,15 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('s');
                 observers[0].OnNext(this);
                 return true;
-            } else {
+            }
+            else {
                 this.clickedWall = this.curRoom.GetNWall();
             }
             return false;
         }
 
         //=====================================================================
-        
+
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
@@ -158,14 +160,15 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('w');
                 observers[0].OnNext(this);
                 return true;
-            } else {
+            }
+            else {
                 this.clickedWall = this.curRoom.GetEWall();
             }
             return false;
         }
 
         //=====================================================================
-        
+
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
@@ -174,14 +177,15 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('n');
                 observers[0].OnNext(this);
                 return true;
-            } else {
+            }
+            else {
                 this.clickedWall = this.curRoom.GetSWall();
             }
             return false;
         }
 
         //=====================================================================
-        
+
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
                 this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
@@ -190,7 +194,8 @@ namespace TriviaMaze_CSCD350 {
                 this.curRoom.SetEnteredFrom('e');
                 observers[0].OnNext(this);
                 return true;
-            } else {
+            }
+            else {
                 this.clickedWall = this.curRoom.GetWWall();
             }
             return false;
@@ -214,7 +219,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        
+
         public void Update() {
             observers[0].OnNext(this);
         }
