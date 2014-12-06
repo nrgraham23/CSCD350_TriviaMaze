@@ -57,10 +57,10 @@ namespace TriviaMaze_CSCD350 {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
                     if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
-                        DrawVerticleDoor(y, x, 2);
+                        DrawVerticleDoor(y, x, 1);
                     }
                     if (aRoom.GetEDoor().Passable() == false) {
-                       DrawVerticleDoor(y, x, 1);
+                       DrawVerticleDoor(y, x, 2);
                     } 
                 }
             }
@@ -70,10 +70,10 @@ namespace TriviaMaze_CSCD350 {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
                     if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
-                        DrawHorizontalDoor(y, x, 2);
+                        DrawHorizontalDoor(y, x, 1);
                     }
                     if (aRoom.GetSDoor().Passable() == false) {
-                        DrawHorizontalDoor(y, x, 1);
+                        DrawHorizontalDoor(y, x, 2);
                     }
                 }
             }
