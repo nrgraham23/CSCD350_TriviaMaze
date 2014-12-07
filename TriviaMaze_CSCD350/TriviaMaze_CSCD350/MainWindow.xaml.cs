@@ -57,24 +57,20 @@ namespace TriviaMaze_CSCD350 {
                 for (int y = 0; y < 4; y++) {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetVisited()) {
-                        if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
+                    //if (aRoom.GetVisited()) {
+                        if (aRoom.GetEDoor().IsOpen() == true)
+                            DrawVerticleDoor(y, x, 2);
+                        else if (aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
+                            DrawVerticleDoor(y, x, 0);
+                        else if (aRoom.GetEDoor().IsOpen() == false)
                             DrawVerticleDoor(y, x, 1);
-                        }
-                        if (aRoom.GetEDoor().Passable() == false) {
+                        else if (aRoom.GetWDoor().IsOpen() == true)
                             DrawVerticleDoor(y, x, 2);
-                        }
-                        //------------------------
-                        if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
-                            DrawVerticleDoor(y, x, 2);
-                        }
-                        if (aRoom.GetWDoor().Passable() == true && aRoom.GetWDoor().IsOpen() == true) {
-                            DrawVerticleDoor(y, x, 2);
-                        }
-                        if (aRoom.GetEDoor().Passable() == false && aRoom.GetWDoor().Passable() == false) {
+                        else if (aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
+                            DrawVerticleDoor(y, x, 0);
+                        else if (aRoom.GetWDoor().IsOpen() == false)
                             DrawVerticleDoor(y, x, 1);
-                        }
-                    }
+                    //}
                 }
             }
 
@@ -82,24 +78,20 @@ namespace TriviaMaze_CSCD350 {
                 for (int y = 0; y < 5; y++) {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetVisited()) {
-                        if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
-                            DrawHorizontalDoor(y, x, 1);
-                        }
-                        if (aRoom.GetSDoor().Passable() == false) {
-                            DrawHorizontalDoor(y, x, 2);
-                        }
-                        //------------------------
-                        if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
-                            DrawHorizontalDoor(y, x, 2);
-                        }
-                        if (aRoom.GetNDoor().Passable() == true && aRoom.GetNDoor().IsOpen() == true) {
-                            DrawHorizontalDoor(y, x, 2);
-                        }
-                        if (aRoom.GetSDoor().Passable() == false && aRoom.GetNDoor().Passable() == false) {
-                            DrawHorizontalDoor(y, x, 1);
-                        }
-                    }
+                    //if (aRoom.GetVisited()) {
+                    if (aRoom.GetSDoor().IsOpen() == true)
+                        DrawHorizontalDoor(y, x, 2);
+                    else if (aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
+                        DrawHorizontalDoor(y, x, 0);
+                    else if (aRoom.GetSDoor().IsOpen() == false)
+                        DrawHorizontalDoor(y, x, 1);
+                    else if (aRoom.GetNDoor().IsOpen() == true)
+                        DrawHorizontalDoor(y, x, 2);
+                    else if (aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
+                        DrawHorizontalDoor(y, x, 0);
+                    else if (aRoom.GetNDoor().IsOpen() == false)
+                        DrawHorizontalDoor(y, x, 1);  
+                    //}
                 }
             }
         }
@@ -108,7 +100,7 @@ namespace TriviaMaze_CSCD350 {
 
         private void ReDrawLine(int x, int y) {
             System.Windows.Shapes.Rectangle line;
-
+            
             line = new System.Windows.Shapes.Rectangle();
             //line.Stroke = new SolidColorBrush(Colors.Black);
             line.Width = 25;
@@ -463,9 +455,10 @@ namespace TriviaMaze_CSCD350 {
         private void controlsGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("The bottom left hand corner you will see a map of\n" +
                             "the maze. \n\nUse it to find your way to the exit " +
-                            "\"The Brown Square\" \nby clicking on the doorways," +
-                            "or by using the arrow keys,\nto move either forward," +
-                            "backward, left, or right. \n\nThe arrow on the minimap will show you the direction\nyou're facing", "Controls");
+                            "by clicking on the doorways,\nor by using the arrow" +
+                            "keys, to move either forward, backward, left, or right." +
+                            "\n\nThe arrow on the minimap will show you the direction\n" + 
+                            "you're facing, and a yellow button marks the floor you are on", "Controls");
 
         }
 
@@ -510,7 +503,9 @@ namespace TriviaMaze_CSCD350 {
             
             int playerRow = curPosition.GetRow();
             int playerCol = curPosition.GetCol();
+            int floor = value.GetCurFloor();
 
+            MarkCurrentFloor(floor);
             FindOpenedClosedDoors(curFloor);
 
             if (curRoom.GetEnteredFrom() == 'n') {
@@ -530,6 +525,46 @@ namespace TriviaMaze_CSCD350 {
             }
             this.BDoorCanvas.Background = new ImageBrush(new BitmapImage(new Uri(@"..\..\Images\door_back.png", UriKind.Relative)));
             
+        }
+
+        //=====================================================================
+
+        private void MarkCurrentFloor(int floor) {
+            if (floor == 0) {
+                Floor1Button.Background = new SolidColorBrush(Colors.Yellow);
+                Floor2Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor3Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor4Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor5Button.Background = new SolidColorBrush(Colors.Gray);
+            }
+            if (floor == 1) {
+                Floor1Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor2Button.Background = new SolidColorBrush(Colors.Yellow);
+                Floor3Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor4Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor5Button.Background = new SolidColorBrush(Colors.Gray);
+            }
+            if (floor == 2) {
+                Floor1Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor2Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor3Button.Background = new SolidColorBrush(Colors.Yellow);
+                Floor4Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor5Button.Background = new SolidColorBrush(Colors.Gray);
+            }
+            if (floor == 3) {
+                Floor1Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor2Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor3Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor4Button.Background = new SolidColorBrush(Colors.Yellow);
+                Floor5Button.Background = new SolidColorBrush(Colors.Gray);
+            }
+            if (floor == 4) {
+                Floor1Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor2Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor3Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor4Button.Background = new SolidColorBrush(Colors.Gray);
+                Floor5Button.Background = new SolidColorBrush(Colors.Yellow);
+            }
         }
 
         //=====================================================================
@@ -727,7 +762,7 @@ namespace TriviaMaze_CSCD350 {
                 int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
 
                 this.gameCore.QuestionAnswered(true);
-                QuestionAnswered(row, col, from, 1);
+                //QuestionAnswered(row, col, from, 1);
                 this.askingQuestion = false;
                 ResetQuestion();
             }
@@ -823,7 +858,7 @@ namespace TriviaMaze_CSCD350 {
 
             MessageBox.Show("CORRECT!");
             this.gameCore.QuestionAnswered(true);
-            QuestionAnswered(row, col, from, 2);
+            //QuestionAnswered(row, col, from, 2);
             this.askingQuestion = false;
             ResetQuestion();
         }
@@ -837,7 +872,7 @@ namespace TriviaMaze_CSCD350 {
 
             MessageBox.Show("INCORRECT!");
             this.gameCore.QuestionAnswered(false);
-            QuestionAnswered(row, col, from, 1);
+            //QuestionAnswered(row, col, from, 1);
             if (flagEndGame) {
                 this.saveGameMenuItem.IsEnabled = false;
             }
