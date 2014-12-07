@@ -34,7 +34,7 @@
         <Rectangle x:Name="MapRectangle" HorizontalAlignment="Left" Height="292" Margin="10,261,0,0" Stroke="Black" VerticalAlignment="Top" Width="382" StrokeThickness="5" Fill="#FFC5BFBF"/>
         <Canvas x:Name="MapCanvas" HorizontalAlignment="Left" Height="274" Margin="20,270,0,0" VerticalAlignment="Top" Width="362" Background="#FF8B8080" IsEnabled="False">
             <Canvas x:Name="ArrowCanvas" HorizontalAlignment="Left" Height="274" VerticalAlignment="Top" Width="362"/>
-            <Button x:Name="Floor1Button" Content="Floor 1" Canvas.Left="293" Canvas.Top="76" Width="45" IsDefault="True" Click="Floor1Button_Click"/>
+            <Button x:Name="Floor1Button" Content="Floor 1" Canvas.Left="293" Canvas.Top="76" Width="45" Click="Floor1Button_Click"/>
             <Button x:Name="Floor2Button" Content="Floor 2" Canvas.Left="293" Canvas.Top="103" Width="45" Click="Floor2Button_Click"/>
             <Button x:Name="Floor3Button" Content="Floor 3" Canvas.Left="293" Canvas.Top="130" Width="45" Click="Floor3Button_Click"/>
             <Button x:Name="Floor4Button" Content="Floor 4" Width="45" Canvas.Left="293" Canvas.Top="157" Click="Floor4Button_Click"/>
