@@ -30,8 +30,11 @@ namespace TriviaMaze_CSCD350 {
             if(input.Equals("1") || input.ToLower().Equals("easy")) {
                 gameCore.InitializeMaze(0);
                 this.Close();
-            } else if (input.Equals("2") || input.ToLower().Equals("hard")) {
+            } else if (input.Equals("2") || input.ToLower().Equals("medium")) {
                 gameCore.InitializeMaze(1);
+                this.Close();
+            }else if (input.Equals("3") || input.ToLower().Equals("hard")) {
+                gameCore.InitializeMaze(2);
                 this.Close();
             } else {
                 MessageBox.Show("You must enter a valid difficulty value in the text box above!");

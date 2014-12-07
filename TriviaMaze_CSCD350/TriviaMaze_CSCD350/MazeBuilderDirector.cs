@@ -28,7 +28,12 @@ namespace TriviaMaze_CSCD350 {
                 builder.PlaceExit();
                 builder.PlaceStart();
                 if (difficulty == 1) {
-                    builder.CloseDoors();
+                    builder.CloseDoors(.1);
+                    if (builder.GetMaze().IsSolvable()) {
+                        validMaze = true;
+                    }
+                } else if (difficulty == 2) {
+                    builder.CloseDoors(.2);
                     if (builder.GetMaze().IsSolvable()) {
                         validMaze = true;
                     }

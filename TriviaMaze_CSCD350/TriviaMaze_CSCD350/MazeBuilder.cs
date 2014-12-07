@@ -199,11 +199,11 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        public void CloseDoors() {
+        public void CloseDoors(double percentToClose) {
             Random rand = new Random();
             char directionToClose; 
             int row, col, floor;
-            int numOfClosed = CalcNumDoorClose();
+            int numOfClosed = CalcNumDoorClose(percentToClose);
             int mazeSize = this.maze.GetFloor(0).GetSize();
 
             for (int i = 0; i < numOfClosed; i++) {
@@ -247,8 +247,7 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private int CalcNumDoorClose() {
-            double percentToClose = .2;  //percentage of rooms to close a door in
+        private int CalcNumDoorClose(double percentToClose) {
             int mazeSize = this.maze.GetFloor(0).GetSize();
             double totalRooms = mazeSize * mazeSize * mazeSize;
             return (int)(totalRooms * percentToClose);
