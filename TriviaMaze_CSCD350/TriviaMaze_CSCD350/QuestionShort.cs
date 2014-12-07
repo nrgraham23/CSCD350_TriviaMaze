@@ -24,7 +24,7 @@ namespace TriviaMaze_CSCD350 {
             SetAnswer(1);
             SetQType(1);
             SetAuxiliary(1);
-            SetAuxFile("NULL");
+            SetAuxFile("");
         }
 
         //=====================================================================

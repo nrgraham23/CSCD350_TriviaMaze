@@ -120,8 +120,9 @@ namespace TriviaMaze_CSCD350 {
 
             int index = dbEntries + 1;
             String sql = "INSERT INTO Questions (QIndex,QType,QText,QAnswer,QOption1,QOption2,QOption3,QOption4,QAuxiliary,QAuxFile) " +
-                         "VALUES (" + index + ", " + q.GetQType() + ", \"" + q.GetText() + "\", " + q.GetAnswer() +
-                         ", \"" + q.GetChoice(1) + "\", \"" + q.GetChoice(2) + "\", \"" + q.GetChoice(3) + "\", \"" + q.GetChoice(4) +
+                         "VALUES (" + index + ", " + q.GetQType() + ", \"" + EscapeString(q.GetText()) + "\", " + q.GetAnswer() +
+                         ", \"" + EscapeString(q.GetChoice(1)) + "\", \"" + EscapeString(q.GetChoice(2)) +
+                         "\", \"" + EscapeString(q.GetChoice(3)) + "\", \"" + EscapeString(q.GetChoice(4)) +
                          "\", " + q.GetAuxiliary() + ", \"" + q.GetAuxFile() + "\")";
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
@@ -160,14 +161,14 @@ namespace TriviaMaze_CSCD350 {
 
             String sql = "UPDATE Questions SET ";
             sql += "QType = " + mod.GetQType() + ", ";
-            sql += "QText = \"" + mod.GetText() + "\", ";
+            sql += "QText = \"" + EscapeString(mod.GetText()) + "\", ";
             sql += "QAnswer = " + mod.GetAnswer() + ", ";
-            sql += "QOption1 = \"" + mod.GetChoice(1) + "\", ";
-            sql += "QOption2 = \"" + mod.GetChoice(2) + "\", ";
-            sql += "QOption3 = \"" + mod.GetChoice(3) + "\", ";
-            sql += "QOption4 = \"" + mod.GetChoice(4) + ", ";
+            sql += "QOption1 = \"" + EscapeString(mod.GetChoice(1)) + "\", ";
+            sql += "QOption2 = \"" + EscapeString(mod.GetChoice(2)) + "\", ";
+            sql += "QOption3 = \"" + EscapeString(mod.GetChoice(3)) + "\", ";
+            sql += "QOption4 = \"" + EscapeString(mod.GetChoice(4)) + "\", ";
             sql += "QAuxiliary = " + mod.GetAuxiliary() + ", ";
-            sql += "QAuxFile = \"" + mod.GetAuxFile() + "\" ";
+            sql += "QAuxFile = \"" + EscapeString(mod.GetAuxFile()) + "\" ";
             sql += "WHERE QIndex = " + index;
             SQLiteCommand command = new SQLiteCommand(sql, dbConnection);
             command.ExecuteNonQuery();
@@ -231,8 +232,8 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
         //Comment- Prevent SQL inqection by scrubbing strings
-        private string EscapeString(string input) {
-
+        private String EscapeString(String input) {
+            input = input.Replace("\"","''");
             return input;
         }
 
