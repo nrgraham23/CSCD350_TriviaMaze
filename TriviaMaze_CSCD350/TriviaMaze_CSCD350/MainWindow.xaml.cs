@@ -869,23 +869,23 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
-
+            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(0));
         }
 
         private void Floor2Button_Click(object sender, RoutedEventArgs e) {
-
+            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(1));
         }
 
         private void Floor3Button_Click(object sender, RoutedEventArgs e) {
-
+            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(2));
         }
 
         private void Floor4Button_Click(object sender, RoutedEventArgs e) {
-
+            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(3));
         }
 
         private void Floor5Button_Click(object sender, RoutedEventArgs e) {
-
+            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(4));
         }
 
         //=====================================================================

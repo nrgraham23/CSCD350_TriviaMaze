@@ -17,15 +17,10 @@ namespace TriviaMaze_CSCD350 {
     public class ClosedDoor : IDoor {
 
         private Question question;
-        //Random ran = new Random();
-
-        //=====================================================================
         
         public ClosedDoor() {
-            //ran = new Random();
-            //int temp = ran.Next(3);
-            RandomQuestionFactory rand = new RandomQuestionFactory();
-            this.question = rand.GetRandQuestion();
+            QuestionDatabase db = QuestionDatabase.GetInstance();
+            this.question = db.RandomQuestion();
         }
 
         //=====================================================================
