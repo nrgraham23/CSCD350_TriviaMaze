@@ -56,22 +56,24 @@ namespace TriviaMaze_CSCD350 {
                 for (int y = 0; y < 4; y++) {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
-                        DrawVerticleDoor(y, x, 1);
+                    if (aRoom.GetVisited()) {
+                        if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
+                            DrawVerticleDoor(y, x, 1);
+                        }
+                        if (aRoom.GetEDoor().Passable() == false) {
+                            DrawVerticleDoor(y, x, 2);
+                        }
+                        //------------------------
+                        if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
+                            DrawVerticleDoor(y, x, 2);
+                        }
+                        if (aRoom.GetWDoor().Passable() == true && aRoom.GetWDoor().IsOpen() == true) {
+                            DrawVerticleDoor(y, x, 2);
+                        }
+                        if (aRoom.GetEDoor().Passable() == false && aRoom.GetWDoor().Passable() == false) {
+                            DrawVerticleDoor(y, x, 1);
+                        }
                     }
-                    if (aRoom.GetEDoor().Passable() == false) {
-                       DrawVerticleDoor(y, x, 2);
-                    }
-                    //------------------------
-                    if (aRoom.GetEDoor().Passable() == true && aRoom.GetEDoor().IsOpen() == true) {
-                        DrawVerticleDoor(y, x, 2);
-                    }
-                    if (aRoom.GetWDoor().Passable() == true && aRoom.GetWDoor().IsOpen() == true) {
-                        DrawVerticleDoor(y, x, 2);
-                    }
-                    if (aRoom.GetEDoor().Passable() == false && aRoom.GetWDoor().Passable() == false) {
-                        DrawVerticleDoor(y, x, 1);
-                    } 
                 }
             }
 
@@ -79,21 +81,23 @@ namespace TriviaMaze_CSCD350 {
                 for (int y = 0; y < 5; y++) {
                     Point newPoint = new Point(x, y);
                     Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
-                        DrawHorizontalDoor(y, x, 1);
-                    }
-                    if (aRoom.GetSDoor().Passable() == false) {
-                        DrawHorizontalDoor(y, x, 2);
-                    }
-                    //------------------------
-                    if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
-                        DrawHorizontalDoor(y, x, 2);
-                    }
-                    if (aRoom.GetNDoor().Passable() == true && aRoom.GetNDoor().IsOpen() == true) {
-                        DrawHorizontalDoor(y, x, 2);
-                    }
-                    if (aRoom.GetSDoor().Passable() == false && aRoom.GetNDoor().Passable() == false) {
-                        DrawHorizontalDoor(y, x, 1);
+                    if (aRoom.GetVisited()) {
+                        if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
+                            DrawHorizontalDoor(y, x, 1);
+                        }
+                        if (aRoom.GetSDoor().Passable() == false) {
+                            DrawHorizontalDoor(y, x, 2);
+                        }
+                        //------------------------
+                        if (aRoom.GetSDoor().Passable() == true && aRoom.GetSDoor().IsOpen() == true) {
+                            DrawHorizontalDoor(y, x, 2);
+                        }
+                        if (aRoom.GetNDoor().Passable() == true && aRoom.GetNDoor().IsOpen() == true) {
+                            DrawHorizontalDoor(y, x, 2);
+                        }
+                        if (aRoom.GetSDoor().Passable() == false && aRoom.GetNDoor().Passable() == false) {
+                            DrawHorizontalDoor(y, x, 1);
+                        }
                     }
                 }
             }

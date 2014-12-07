@@ -23,6 +23,7 @@ namespace TriviaMaze_CSCD350 {
         private Wall sWall;
         private Wall wWall;
         private char enteredFrom;
+        private bool visited;
 
         //=====================================================================
         
@@ -89,6 +90,9 @@ namespace TriviaMaze_CSCD350 {
         public Wall GetWWall() {
             return this.wWall;
         }
+        public bool GetVisited() {
+            return this.visited;
+        }
 
         //=====================================================================
         
@@ -118,6 +122,9 @@ namespace TriviaMaze_CSCD350 {
         }
         public void SetEnteredFrom(char direction) {
             this.enteredFrom = direction;
+        }
+        public void SetVisited(bool visited) {
+            this.visited = visited;
         }
     }
 }
