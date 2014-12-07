@@ -772,7 +772,7 @@ namespace TriviaMaze_CSCD350 {
         private void EnterButton_Click(object sender, RoutedEventArgs e) {
 
             //Get Current Answer
-            String currentAnswer = "A";
+            String currentAnswer = "";
 
             if (this.currentQuestion.GetQType() == 1) { //Short
                 currentAnswer = AnswerBox.Text;
@@ -797,31 +797,51 @@ namespace TriviaMaze_CSCD350 {
             } else {
                 Console.WriteLine("*Error* - EnterButton_Click If Statment");
             }
-            CheckQuestionAnswer(currentAnswer);
+            if (currentAnswer != "") {
+                CheckQuestionAnswer(currentAnswer);
+            } else {
+                AnswerWrong();
+            }
         }
 
         //=====================================================================
         //Check if quesiton is correct + Open or Lock Door
         private void CheckQuestionAnswer(String currentAnswer) {
+            if (this.currentQuestion.CheckAnswer(currentAnswer)) {
+                AnswerCorrect();
+            } else {
+                AnswerWrong();
+            }
+        }
+
+        //=====================================================================
+
+        private void AnswerCorrect() {
             char from = this.gameCore.GetMaze().GetCurRoom().GetEnteredFrom();
             int col = this.gameCore.GetMaze().GetCurPoint().GetCol();
             int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
-            if (this.currentQuestion.CheckAnswer(currentAnswer)) {
-                MessageBox.Show("CORRECT!");                
-                this.gameCore.QuestionAnswered(true);
-                QuestionAnswered(row, col, from, 2);
-            } else {
-                MessageBox.Show("INCORRECT!");
-                this.gameCore.QuestionAnswered(false);
-                QuestionAnswered(row, col, from, 1);
-                if (flagEndGame) {
-                    this.saveGameMenuItem.IsEnabled = false;
-                }
-            }
 
+            MessageBox.Show("CORRECT!");
+            this.gameCore.QuestionAnswered(true);
+            QuestionAnswered(row, col, from, 2);
             this.askingQuestion = false;
+            ResetQuestion();
+        }
 
-            //reset question boxes
+        //=====================================================================
+
+        private void AnswerWrong() {
+            char from = this.gameCore.GetMaze().GetCurRoom().GetEnteredFrom();
+            int col = this.gameCore.GetMaze().GetCurPoint().GetCol();
+            int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
+
+            MessageBox.Show("INCORRECT!");
+            this.gameCore.QuestionAnswered(false);
+            QuestionAnswered(row, col, from, 1);
+            if (flagEndGame) {
+                this.saveGameMenuItem.IsEnabled = false;
+            }
+            this.askingQuestion = false;
             ResetQuestion();
         }
 

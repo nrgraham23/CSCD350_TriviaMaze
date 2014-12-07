@@ -82,22 +82,22 @@ namespace TriviaMaze_CSCD350 {
 
             visitedMap[testYCoord, testXCoord] = true; //update visited
 
-            if (curTestRoom.GetNPassable() && !visitedMap[testYCoord - 1, testXCoord]) { //try north
+            if (curTestRoom.GetNPassable() && curTestRoom.GetNDoor().FloorChange() == 0 && !visitedMap[testYCoord - 1, testXCoord]) { //try north
                 if (RecurseSearch(visitedMap, (testYCoord - 1), testXCoord, testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
-            if (curTestRoom.GetEPassable() && !visitedMap[testYCoord, testXCoord + 1]) { //try east
+            if (curTestRoom.GetEPassable() && curTestRoom.GetEDoor().FloorChange() == 0 && !visitedMap[testYCoord, testXCoord + 1]) { //try east
                 if (RecurseSearch(visitedMap, testYCoord, (testXCoord + 1), testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
-            if (curTestRoom.GetSPassable() && !visitedMap[testYCoord + 1, testXCoord]) { //try south
+            if (curTestRoom.GetSPassable() && curTestRoom.GetSDoor().FloorChange() == 0 && !visitedMap[testYCoord + 1, testXCoord]) { //try south
                 if (RecurseSearch(visitedMap, (testYCoord + 1), testXCoord, testZCoord, exitY, exitX)) {
                     return true;
                 }
             }
-            if (curTestRoom.GetWPassable() && !visitedMap[testYCoord, testXCoord - 1]) { //try west
+            if (curTestRoom.GetWPassable() && curTestRoom.GetWDoor().FloorChange() == 0 && !visitedMap[testYCoord, testXCoord - 1]) { //try west
                 if (RecurseSearch(visitedMap, testYCoord, (testXCoord - 1), testZCoord, exitY, exitX)) {
                     return true;
                 }
