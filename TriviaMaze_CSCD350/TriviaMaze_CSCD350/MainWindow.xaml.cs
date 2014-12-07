@@ -59,17 +59,17 @@ namespace TriviaMaze_CSCD350 {
                     Room aRoom = curFloor.GetRoom(newPoint);
                     //if (aRoom.GetVisited()) {
                         if (aRoom.GetEDoor().IsOpen() == true)
-                            DrawEDoor(y, x, 2);
-                        if(aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
-                            DrawEDoor(y, x, 0);
+                            DrawVerticleDoor(y, x, 2);
+                        else if(aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
+                            DrawVerticleDoor(y, x, 0);
                         else if(aRoom.GetEDoor().IsOpen() == false)
-                            DrawEDoor(y, x, 1);
-                        if(aRoom.GetWDoor().IsOpen() == true)
-                            DrawWDoor(y, x, 2);
-                        if(aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
-                            DrawWDoor(y, x, 0);
+                            DrawVerticleDoor(y, x, 1);
+                        else if(aRoom.GetWDoor().IsOpen() == true)
+                            DrawVerticleDoor(y, x, 2);
+                        else if(aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
+                            DrawVerticleDoor(y, x, 0);
                         else if(aRoom.GetWDoor().IsOpen() == false)
-                            DrawWDoor(y, x, 1);                                                
+                            DrawVerticleDoor(y, x, 1);                                                
                     //}
                 }
             }
@@ -80,17 +80,17 @@ namespace TriviaMaze_CSCD350 {
                     Room aRoom = curFloor.GetRoom(newPoint);
                    //if (aRoom.GetVisited()) {
                        if (aRoom.GetSDoor().IsOpen() == true)
-                           DrawSDoor(y, x, 2);
-                       if(aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
-                           DrawSDoor(y, x, 0);
+                           DrawHorizontalDoor(y, x, 2);
+                       else if(aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
+                           DrawHorizontalDoor(y, x, 0);
                        else if (aRoom.GetSDoor().IsOpen() == false)
-                           DrawSDoor(y, x, 1);
-                       if(aRoom.GetNDoor().IsOpen() == true)
-                           DrawNDoor(y, x, 2);
-                       if(aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
-                           DrawNDoor(y, x, 0);
+                           DrawHorizontalDoor(y, x, 1);
+                       else if(aRoom.GetNDoor().IsOpen() == true)
+                           DrawHorizontalDoor(y, x, 2);
+                       else if(aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
+                           DrawHorizontalDoor(y, x, 0);
                        else if(aRoom.GetNDoor().IsOpen() == false)
-                           DrawNDoor(y, x, 1);                                               
+                           DrawHorizontalDoor(y, x, 1);                                               
                     //}
                 }
             }
@@ -313,48 +313,29 @@ namespace TriviaMaze_CSCD350 {
         private void DrawVerticleDoors() {
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 5; y++) {
-                    DrawWDoor(x, y, 0);
-                    DrawEDoor(x, y, 0);
+                    DrawVerticleDoor(x, y, 0);
                 }
             }
         }
 
         //=====================================================================
 
-        private void DrawWDoor(int x, int y, int color) {
-            System.Windows.Shapes.Rectangle wDoor;
+        private void DrawVerticleDoor(int x, int y, int color) {
+            System.Windows.Shapes.Rectangle verticleDoor;
 
-            wDoor = new System.Windows.Shapes.Rectangle();
-            wDoor.Stroke = new SolidColorBrush(Colors.Black);
-            wDoor.Width = 5;
-            wDoor.Height = 10;
+            verticleDoor = new System.Windows.Shapes.Rectangle();
+            verticleDoor.Stroke = new SolidColorBrush(Colors.Black);
+            verticleDoor.Width = 10;
+            verticleDoor.Height = 10;
             if(color == 0)
-                wDoor.Fill = new SolidColorBrush(Colors.White);
+                verticleDoor.Fill = new SolidColorBrush(Colors.White);
             else if (color == 1)
-                wDoor.Fill = new SolidColorBrush(Colors.Red);
+                verticleDoor.Fill = new SolidColorBrush(Colors.Red);
             else if (color == 2)
-                wDoor.Fill = new SolidColorBrush(Colors.Green);
-            Canvas.SetLeft(wDoor, 65 + (x * 50));
-            Canvas.SetTop(wDoor, 30 + (y * 50));
-            MapCanvas.Children.Add(wDoor);
-        }
-
-        private void DrawEDoor(int x, int y, int color) {
-            System.Windows.Shapes.Rectangle eDoor;
-
-            eDoor = new System.Windows.Shapes.Rectangle();
-            eDoor.Stroke = new SolidColorBrush(Colors.Black);
-            eDoor.Width = 5;
-            eDoor.Height = 10;
-            if (color == 0)
-                eDoor.Fill = new SolidColorBrush(Colors.White);
-            else if (color == 1)
-                eDoor.Fill = new SolidColorBrush(Colors.Red);
-            else if (color == 2)
-                eDoor.Fill = new SolidColorBrush(Colors.Green);
-            Canvas.SetLeft(eDoor, 70 + (x * 50));
-            Canvas.SetTop(eDoor, 30 + (y * 50));
-            MapCanvas.Children.Add(eDoor);
+                verticleDoor.Fill = new SolidColorBrush(Colors.Green);
+            Canvas.SetLeft(verticleDoor, 65 + (x * 50));
+            Canvas.SetTop(verticleDoor, 30 + (y * 50));
+            MapCanvas.Children.Add(verticleDoor);
         }
 
         //=====================================================================
@@ -362,39 +343,20 @@ namespace TriviaMaze_CSCD350 {
         private void DrawHorizontalDoors() {
             for (int x = 0; x < 5; x++) {
                 for (int y = 0; y < 4; y++) {
-                    DrawSDoor(x, y, 0);
-                    DrawNDoor(x, y, 0);
+                    DrawHorizontalDoor(x, y, 0);
                 }
             }
         }
 
         //=====================================================================
 
-        private void DrawNDoor(int x, int y, int color) {
+        private void DrawHorizontalDoor(int x, int y, int color) {
             System.Windows.Shapes.Rectangle horizontalDoor;
 
             horizontalDoor = new System.Windows.Shapes.Rectangle();
             horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
             horizontalDoor.Width = 10;
-            horizontalDoor.Height = 5;
-            if (color == 0)
-                horizontalDoor.Fill = new SolidColorBrush(Colors.White);
-            else if (color == 1)
-                horizontalDoor.Fill = new SolidColorBrush(Colors.Red);
-            else if (color == 2)
-                horizontalDoor.Fill = new SolidColorBrush(Colors.Green);
-            Canvas.SetLeft(horizontalDoor, 40 + (x * 50));
-            Canvas.SetTop(horizontalDoor, 60 + (y * 50));
-            MapCanvas.Children.Add(horizontalDoor);
-        }
-        
-        private void DrawSDoor(int x, int y, int color) {
-            System.Windows.Shapes.Rectangle horizontalDoor;
-
-            horizontalDoor = new System.Windows.Shapes.Rectangle();
-            horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
-            horizontalDoor.Width = 10;
-            horizontalDoor.Height = 5;
+            horizontalDoor.Height = 10;
             if(color == 0)
                 horizontalDoor.Fill = new SolidColorBrush(Colors.White);
             else if(color == 1)
@@ -493,10 +455,9 @@ namespace TriviaMaze_CSCD350 {
         private void controlsGameMenuItemClick(object sender, RoutedEventArgs e) {
             MessageBox.Show("The bottom left hand corner you will see a map of\n" +
                             "the maze. \n\nUse it to find your way to the exit " +
-                            "by clicking on the \ndoorways, or by using the arrow" +
-                            "keys, to move either \nforward, backward, left, or right.\n" +
-                            "\nThe arrow on the minimap will show you the direction \nyou're facing" + 
-                            "and the box's beside the map will show \nyou the floor your on. ", "Controls");
+                            "\"The Brown Square\" \nby clicking on the doorways," +
+                            "or by using the arrow keys,\nto move either forward," +
+                            "backward, left, or right. \n\nThe arrow on the minimap will show you the direction\nyou're facing", "Controls");
 
         }
 
@@ -758,7 +719,7 @@ namespace TriviaMaze_CSCD350 {
                 int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
 
                 this.gameCore.QuestionAnswered(true);
-                //QuestionAnswered(row, col, from, 1);
+                QuestionAnswered(row, col, from, 1);
                 this.askingQuestion = false;
                 ResetQuestion();
             }
@@ -874,7 +835,7 @@ namespace TriviaMaze_CSCD350 {
             ResetQuestion();
         }
 
-        /*private void QuestionAnswered(int row, int col, char from, int incorrect) {
+        private void QuestionAnswered(int row, int col, char from, int incorrect) {
             if (from == 'n') {
                 if (this.gameCore.getClickDirection().Equals("center")) {
                     DrawHorizontalDoor(col, row - 1, incorrect);
@@ -932,7 +893,7 @@ namespace TriviaMaze_CSCD350 {
                 }
             }
             
-        }*/
+        }
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
