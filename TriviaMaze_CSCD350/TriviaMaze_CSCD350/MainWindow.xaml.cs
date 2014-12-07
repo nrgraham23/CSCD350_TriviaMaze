@@ -103,8 +103,8 @@ namespace TriviaMaze_CSCD350 {
             
             line = new System.Windows.Shapes.Rectangle();
             //line.Stroke = new SolidColorBrush(Colors.Black);
-            line.Width = 25;
-            line.Height = 25;
+            line.Width = 26;
+            line.Height = 26;
             line.Fill = new SolidColorBrush(Colors.LawnGreen);
             Canvas.SetLeft(line, 30 + (x * 50));
             Canvas.SetTop(line, 15 + (y * 50));
@@ -880,7 +880,7 @@ namespace TriviaMaze_CSCD350 {
             ResetQuestion();
         }
 
-        private void QuestionAnswered(int row, int col, char from, int incorrect) {
+        /*private void QuestionAnswered(int row, int col, char from, int incorrect) {
             if (from == 'n') {
                 if (this.gameCore.getClickDirection().Equals("center")) {
                     DrawHorizontalDoor(col, row - 1, incorrect);
@@ -938,7 +938,7 @@ namespace TriviaMaze_CSCD350 {
                 }
             }
             
-        }
+        }*/
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
