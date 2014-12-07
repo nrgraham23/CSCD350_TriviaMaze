@@ -929,19 +929,15 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public static void GameWon() {
-            MessageBox.Show("You Won!");
+            MessageBox.Show("You Won!  Congratulations on your victory!  If you would like to play again, start a new game!");
             flagEndGame = true;
-
-            //add more game won stuff here
         }
 
         //=====================================================================
 
         public static void GameLost() {
-            MessageBox.Show("You lost!");
+            MessageBox.Show("You lost!  If you would like to play again, start a new game!");
             flagEndGame = true;
-
-            //add game lost stuff here
         }
 
         public bool GameEnds() {
