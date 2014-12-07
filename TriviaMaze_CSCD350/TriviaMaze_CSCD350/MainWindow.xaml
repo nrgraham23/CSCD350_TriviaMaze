@@ -20,8 +20,7 @@
                 <MenuItem x:Name="ctrlsMenuItem" Header="_Controls" Click="controlsGameMenuItemClick"/>
             </MenuItem>
             <MenuItem Header="_Tools" x:Name="toolsMenuItem">
-                <MenuItem x:Name="addQMenuItem" Header="_Add Question" Click="addQuestionGameMenuItemClick"/>
-                <MenuItem x:Name="viewQuestionsMenuItem" Header="_View Questions" Click="viewQuestionsGameMenuItemClick"/>
+                <MenuItem x:Name="viewQuestionsMenuItem" Header="Open Question _Database Tool" Click="viewQuestionsGameMenuItemClick"/>
             </MenuItem>
         </Menu>
         <TextBox x:Name="QuestionBox" HorizontalAlignment="Left" Height="178" TextWrapping="Wrap"  VerticalAlignment="Top" Width="382" IsReadOnlyCaretVisible="True" Margin="10,30,0,0" Text="Question...." IsEnabled="False"/>
