@@ -39,6 +39,7 @@ namespace TriviaMaze_CSCD350 {
             this.subscribeQuestion = new QuestionTF();
             this.subscribeQuestion.Subscribe(this);
             ResetQuestion();
+            this.saveGameMenuItem.IsEnabled = false;
         }
 
         //=====================================================================
@@ -403,6 +404,7 @@ namespace TriviaMaze_CSCD350 {
             LDoorCanvas.IsEnabled = true;
             BDoorCanvas.IsEnabled = true;
             flagEndGame = false;
+            this.saveGameMenuItem.IsEnabled = true;
             
         }
 
@@ -812,6 +814,9 @@ namespace TriviaMaze_CSCD350 {
                 MessageBox.Show("INCORRECT!");
                 this.gameCore.QuestionAnswered(false);
                 QuestionAnswered(row, col, from, 1);
+                if (flagEndGame) {
+                    this.saveGameMenuItem.IsEnabled = false;
+                }
             }
 
             this.askingQuestion = false;

@@ -9,7 +9,7 @@
     <Grid>
 
         <Menu IsMainMenu="True" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="Menu" >
-            <MenuItem Header="_File" x:Name="mazeMenuItem">
+            <MenuItem Header="_File" x:Name="mazeFileMenuItem">
                 <MenuItem x:Name="newGameMenuItem" Header="_New Game" Click="newGameMenuItemClick"/>
                 <MenuItem x:Name="saveGameMenuItem" Header="_Save Game" Click="saveGameMenuItemClick"/>
                 <MenuItem x:Name="loadGameMenuItem" Header="_Load Game" Click="loadGameMenuItemClick"/>
