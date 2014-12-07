@@ -638,7 +638,7 @@ namespace TriviaMaze_CSCD350 {
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
 
-            } else if(this.currentQuestion.GetQType() == 4 || this.currentQuestion.GetQType() == 5) {
+            } else if(this.currentQuestion.GetQType() == 3 && this.currentQuestion.GetAuxiliary() >= 2) {
                 //Picture & Sound
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "A";
