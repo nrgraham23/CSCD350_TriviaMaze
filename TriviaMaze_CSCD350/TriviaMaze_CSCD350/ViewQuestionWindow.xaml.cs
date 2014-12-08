@@ -399,5 +399,23 @@ namespace TriviaMaze_CSCD350 {
             UpdatePageView();
         }
 
+        //=====================================================================
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void HelpButton_Click(object sender, RoutedEventArgs e) {
+            String message = "This is a tool to allow a user to enter questions into the database, or remove questions from the database.\n\n";
+            message += "To add a question, select a question type and then click new question.  This will add a default question to the database which";
+            message += " you can then select with a radio button and click edit to modify.\n\n";
+            message += "Column Value explanation:\n\tID: The ID associated with the question in the database (you can not modify this).\n\t";
+            message += "Question: A line of text to ask a question.\n\tType: An integer value.  1 Stands for Short Answer, 2 stands for True/False, and";
+            message += " 3 stands for Multiple Choice.\n\tAnswer: An integer value associated with the option that is the correct answer.\n\t";
+            message += "Options 1 - 4: Options offered to the user as possible answers.  In some cases some of these will be blank.\n\t";
+            message += "Aux Type: an integer that refers to whether this is a text, picture, or sound question.  1 stands for text, 2 stands for image,";
+            message += " and 3 stands for sound.\n\tAux File: The file name for the picture or sound file associated with the question.";
+            MessageBox.Show(message);
+        }
     }
 }

@@ -6,7 +6,7 @@
     <Grid>
         <ScrollViewer HorizontalAlignment="Left" Height="153" Margin="57,49,0,0" VerticalAlignment="Top" Width="525" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" BorderBrush="Black" Padding="0">
             <Grid HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="1367">
-                
+
                 <!--GRID ROW SIZES-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="16*"/>
@@ -16,7 +16,7 @@
                     <RowDefinition Height="16*"/>
                     <RowDefinition Height="16*"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--GRID COL SIZES-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="41*"/>
@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="136*"/>
                     <ColumnDefinition Width="137*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!--HEADERS-->
                 <TextBox Grid.Row="0" Grid.Column="0" IsEnabled="False" FontWeight="Bold" Text="ID" />
                 <TextBox Grid.Row="0" Grid.Column="1" IsEnabled="False" FontWeight="Bold" Text="Question" />
@@ -42,7 +42,7 @@
                 <TextBox Grid.Row="0" Grid.Column="7" IsEnabled="False" FontWeight="Bold" Text="Option 4" />
                 <TextBox Grid.Row="0" Grid.Column="8" IsEnabled="False" FontWeight="Bold" Text="Aux Type" />
                 <TextBox Grid.Row="0" Grid.Column="9" IsEnabled="False" FontWeight="Bold" Text="Aux File"/>
-                
+
                 <!--ROW 1-->
                 <TextBox Grid.Row="1" Grid.Column="0" IsEnabled="False" Text="" x:Name="Row1_ID" />
                 <TextBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Text="" x:Name="Row1_Question" />
@@ -54,7 +54,7 @@
                 <TextBox Grid.Row="1" Grid.Column="7" IsEnabled="False" Text="" x:Name="Row1_Option4"/>
                 <TextBox Grid.Row="1" Grid.Column="8" IsEnabled="False" Text="" x:Name="Row1_Auxiliary"/>
                 <TextBox Grid.Row="1" Grid.Column="9" IsEnabled="False" Text="" x:Name="Row1_AuxFile"/>
-                
+
                 <!--ROW 2-->
                 <TextBox Grid.Row="2" Grid.Column="0" IsEnabled="False" Text="" x:Name="Row2_ID" />
                 <TextBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Text="" x:Name="Row2_Question" />
@@ -66,7 +66,7 @@
                 <TextBox Grid.Row="2" Grid.Column="7" IsEnabled="False" Text="" x:Name="Row2_Option4"/>
                 <TextBox Grid.Row="2" Grid.Column="8" IsEnabled="False" Text="" x:Name="Row2_Auxiliary"/>
                 <TextBox Grid.Row="2" Grid.Column="9" IsEnabled="False" Text="" x:Name="Row2_AuxFile"/>
-                
+
                 <!--ROW 3-->
                 <TextBox Grid.Row="3" Grid.Column="0" IsEnabled="False" Text="" x:Name="Row3_ID" />
                 <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Text="" x:Name="Row3_Question" />
@@ -78,7 +78,7 @@
                 <TextBox Grid.Row="3" Grid.Column="7" IsEnabled="False" Text="" x:Name="Row3_Option4"/>
                 <TextBox Grid.Row="3" Grid.Column="8" IsEnabled="False" Text="" x:Name="Row3_Auxiliary"/>
                 <TextBox Grid.Row="3" Grid.Column="9" IsEnabled="False" Text="" x:Name="Row3_AuxFile"/>
-                
+
                 <!--ROW 4-->
                 <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="False" Text="" x:Name="Row4_ID" />
                 <TextBox Grid.Row="4" Grid.Column="1" IsEnabled="False" Text="" x:Name="Row4_Question" />
@@ -90,7 +90,7 @@
                 <TextBox Grid.Row="4" Grid.Column="7" IsEnabled="False" Text="" x:Name="Row4_Option4"/>
                 <TextBox Grid.Row="4" Grid.Column="8" IsEnabled="False" Text="" x:Name="Row4_Auxiliary"/>
                 <TextBox Grid.Row="4" Grid.Column="9" IsEnabled="False" Text="" x:Name="Row4_AuxFile"/>
-                
+
                 <!--ROW 5-->
                 <TextBox Grid.Row="5" Grid.Column="0" IsEnabled="False" Text="" x:Name="Row5_ID" />
                 <TextBox Grid.Row="5" Grid.Column="1" IsEnabled="False" Text="" x:Name="Row5_Question" />
@@ -104,16 +104,16 @@
                 <TextBox Grid.Row="5" Grid.Column="9" IsEnabled="False" Text="" x:Name="Row5_AuxFile"/>
             </Grid>
         </ScrollViewer>
-        
+
         <!--NAVIGATE ENTRIES-->
-        <Button HorizontalAlignment="Left" Margin="542,208,0,0" VerticalAlignment="Top" Width="40" Content="--&gt;" x:Name="Button_Next" Click="Button_Next_Click"/>
-        <Button HorizontalAlignment="Left" Margin="57,208,0,0" VerticalAlignment="Top" Width="40" Content="&lt;--" x:Name="Button_Prev" Click="Button_Prev_Click"/>
+        <Button HorizontalAlignment="Left" Margin="542,208,0,0" VerticalAlignment="Top" Width="40" Content="--_&gt;" x:Name="Button_Next" Click="Button_Next_Click"/>
+        <Button HorizontalAlignment="Left" Margin="57,208,0,0" VerticalAlignment="Top" Width="40" Content="_&lt;--" x:Name="Button_Prev" Click="Button_Prev_Click"/>
         <Slider HorizontalAlignment="Left" Margin="102,207,0,0" VerticalAlignment="Top" Width="435" x:Name="Slider" IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged"/>
 
         <!--SELECT QUESTION-->
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="15,50,0,0" Stroke="#FFACACAC" VerticalAlignment="Top" Width="27"/>
-        <Button HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="46" Content="Edit" x:Name="Button_Edit" Click="Button_Edit_Click"/>
-        <Button HorizontalAlignment="Left" Margin="6,180,0,0" VerticalAlignment="Top" Width="46" Content="Delete" x:Name="Button_Delete" Click="Button_Delete_Click"/>
+        <Button HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="46" Content="_Edit" x:Name="Button_Edit" Click="Button_Edit_Click"/>
+        <Button HorizontalAlignment="Left" Margin="6,180,0,0" VerticalAlignment="Top" Width="46" Content="_Delete" x:Name="Button_Delete" Click="Button_Delete_Click"/>
         <RadioButton Margin="22,77,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row1"/>
         <RadioButton Margin="22,99,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row2"/>
         <RadioButton Margin="22,120,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" x:Name="Radio_Row3"/>
@@ -122,10 +122,12 @@
 
         <!--CREATE QUESTION-->
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="34" Margin="58,6,0,0" Stroke="#FFACACAC" VerticalAlignment="Top" Width="523"/>
-        <Button HorizontalAlignment="Left" Margin="66,12,0,0" VerticalAlignment="Top" Width="105" Content="New Question" x:Name="Button_New" Click="Button_New_Click"/>
+        <Button HorizontalAlignment="Left" Margin="66,12,0,0" VerticalAlignment="Top" Width="105" Content="_New Question" x:Name="Button_New" Click="Button_New_Click"/>
         <RadioButton HorizontalAlignment="Left" Margin="309,15,0,0" VerticalAlignment="Top" Content=" True/False" Width="108" x:Name="Radio_TF"/>
-        <RadioButton HorizontalAlignment="Left" Margin="201,15,0,0" VerticalAlignment="Top" Content=" Short Answer" Width="89" x:Name="Radio_Short"/>
+        <RadioButton HorizontalAlignment="Left" Margin="201,15,0,0" VerticalAlignment="Top" Content=" Short Answer" Width="103" x:Name="Radio_Short"/>
         <RadioButton HorizontalAlignment="Left" Margin="432,15,0,0" VerticalAlignment="Top" Content=" Multiple Choice" Width="123" x:Name="Radio_Multi"/>
-        
+        <Button x:Name="CloseButton" Content="_Close" HorizontalAlignment="Left" Margin="6,208,0,0" VerticalAlignment="Top" Width="46" Height="25" Click="CloseButton_Click"/>
+        <Button x:Name="HelpButton" Content="_Help" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="42" Height="22" Click="HelpButton_Click"/>
+
     </Grid>
 </Window>
