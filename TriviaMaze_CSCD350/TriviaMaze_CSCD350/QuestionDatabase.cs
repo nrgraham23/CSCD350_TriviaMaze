@@ -72,8 +72,11 @@ namespace TriviaMaze_CSCD350 {
          
         public Question RandomQuestion() {
 
-            if (!validConnection || !HasQuestions())
+            if (!validConnection)
                 return null;
+
+            if (!HasQuestions()) //If no more new questions, repeat one
+                return GetQuestion(rand.Next(dbEntries) + 1);
 
             int index = -1;
             do {
@@ -89,7 +92,7 @@ namespace TriviaMaze_CSCD350 {
         //Grabs a question object from the database and returns it.
         public Question GetQuestion(int index) {
 
-            if (!HasQuestions() || !ValidIndex(index) || !validConnection || (index < 1 || index > dbEntries))
+            if (!validConnection || (index < 1 || index > dbEntries))
                 return null;
 
             string sql = "SELECT * FROM Questions WHERE QIndex = " + index;
