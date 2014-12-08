@@ -544,12 +544,13 @@ namespace TriviaMaze_CSCD350 {
             this.gameCore = new GameCore(this);
             this.askingQuestion = false;
             ResetQuestion();
-
+            
             CDoorCanvas.IsEnabled = true;
             RDoorCanvas.IsEnabled = true;
             LDoorCanvas.IsEnabled = true;
             BDoorCanvas.IsEnabled = true;
             flagEndGame = false;
+            this.loadGameMenuItem.IsEnabled = true;
             this.saveGameMenuItem.IsEnabled = true;
             
         }
@@ -784,11 +785,10 @@ namespace TriviaMaze_CSCD350 {
             QuestionMulti tempQuestion = new QuestionMulti();
 
             //tempQuestion.SetAuxFile("door_closed.png");
-            tempQuestion.SetAuxFile("megaman.png");
-            //tempQuestion.SetQType();
-            tempQuestion.SetAuxiliary(2);
+            tempQuestion.SetAuxFile("test_sound.wav");
+            tempQuestion.SetQType(5);
 
-            Console.WriteLine(tempQuestion.GetAuxiliary());
+
 
             this.currentQuestion = tempQuestion;
             //*/
@@ -816,8 +816,7 @@ namespace TriviaMaze_CSCD350 {
                 D_RadioButton.Visibility = Visibility.Hidden;
                 AnswerBox.Visibility = Visibility.Hidden;
                 AnswerBox.IsEnabled = false;
-            }
-            else if (this.currentQuestion.GetQType() == 3 && this.currentQuestion.GetAuxiliary() == 1) {
+            } else if (this.currentQuestion.GetQType() == 3) {
                 //Multi
                 A_TrueRadioButton.IsEnabled = true;
                 A_TrueRadioButton.Content = "A";
@@ -1158,14 +1157,14 @@ namespace TriviaMaze_CSCD350 {
 
         private void PlayButton_Click(object sender, RoutedEventArgs e) {
             
-            if(this.currentQuestion.GetAuxiliary() == 2){
+            if(this.currentQuestion.GetQType()==4){
                 ViewPictureWindow tempNewWindow = new ViewPictureWindow();
                 tempNewWindow.Show();
                 String qFilePath = @"..\..\Images\" + this.currentQuestion.GetAuxFile();
                 tempNewWindow.PictureCanvas.Background = new ImageBrush(new BitmapImage(new Uri(qFilePath, UriKind.Relative)));
 
             }
-            else if(this.currentQuestion.GetAuxiliary() == 3){
+            else if(this.currentQuestion.GetQType()==5){
                 String qFilePath = @"..\..\Sounds\" + this.currentQuestion.GetAuxFile();
 
 

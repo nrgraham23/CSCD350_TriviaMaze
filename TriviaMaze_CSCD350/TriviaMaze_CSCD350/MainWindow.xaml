@@ -12,7 +12,7 @@
             <MenuItem Header="_File" x:Name="mazeFileMenuItem">
                 <MenuItem x:Name="newGameMenuItem" Header="_New Game" Click="newGameMenuItemClick"/>
                 <MenuItem x:Name="saveGameMenuItem" Header="_Save Game" Click="saveGameMenuItemClick"/>
-                <MenuItem x:Name="loadGameMenuItem" Header="_Load Game" Click="loadGameMenuItemClick"/>
+                <MenuItem x:Name="loadGameMenuItem" Header="_Load Game" Click="loadGameMenuItemClick" IsEnabled="False"/>
                 <MenuItem x:Name="exitMenuItem" Header="_Exit" Click="exitMenuItemClick"/>
             </MenuItem>
             <MenuItem Header="_Help" x:Name="helpMenuItem">
