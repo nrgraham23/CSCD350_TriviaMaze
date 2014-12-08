@@ -80,7 +80,7 @@ namespace TriviaMaze_CSCD350 {
                 index = rand.Next(dbEntries) + 1;
             } while (!ValidIndex(index));
 
-            dbIgnore.Add(index);
+            //dbIgnore.Add(index);
 
             return GetQuestion(index);
         }
