@@ -156,7 +156,6 @@ The Legend of Zelda was released in 1984.
 True
 -- False
 
---------------------------
 -------------------------- !!!!!!!!!!!!!!!!!!
 
 What game is this screenshot from? (smb2.png)
