@@ -17,7 +17,7 @@ namespace TriviaMaze_CSCD350 {
     public class QuestionShort : Question {
 
         //=====================================================================
-        //Comment- Constructor
+        //Constructor
         public QuestionShort() {
             SetChoiceArray(new String[4] { "correct", "", "", "" });
             SetText("DEFAULT: The answer is correct.");
@@ -28,14 +28,14 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public override String ToString() {
             String result = GetText();
             return result;
         }
 
         //=====================================================================
-        //Comment-
+        
         public override bool CheckAnswer(String answer) {
             if (answer.ToLower().Equals(GetChoice(1).ToLower()))
                 return true;

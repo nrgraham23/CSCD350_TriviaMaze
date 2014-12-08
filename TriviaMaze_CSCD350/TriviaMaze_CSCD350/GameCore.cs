@@ -61,8 +61,6 @@ namespace TriviaMaze_CSCD350 {
             return this.curDoor;
         }
 
-        //=====================================================================
-
         public String getClickDirection() {
             return clickDirection;
         }

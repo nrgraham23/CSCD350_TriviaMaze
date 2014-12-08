@@ -40,11 +40,13 @@ namespace TriviaMaze_CSCD350 {
             return 1;
         }
 
+        //=====================================================================
 
         public bool IsOpen() {
             return true;
         }
 
+        //=====================================================================
 
         public bool IsWall() {
             return false;

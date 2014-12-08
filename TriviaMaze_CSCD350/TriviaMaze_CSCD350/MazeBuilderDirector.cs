@@ -15,6 +15,7 @@ namespace TriviaMaze_CSCD350 {
 
     class MazeBuilderDirector {
 
+        //=====================================================================
         //if 0 is passed no extra doors are closed, if 1 is passed doors are closed to add difficulty
         public Maze Construct(int difficulty) {
             MazeBuilder builder = new MazeBuilder();

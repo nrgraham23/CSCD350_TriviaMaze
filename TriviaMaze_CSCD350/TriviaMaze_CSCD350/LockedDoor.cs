@@ -46,6 +46,7 @@ namespace TriviaMaze_CSCD350 {
             return false;
         }
 
+        //=====================================================================
 
         public bool IsWall() {
             return false;

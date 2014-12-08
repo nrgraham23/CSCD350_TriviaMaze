@@ -25,7 +25,7 @@ namespace TriviaMaze_CSCD350 {
         protected static List<IObserver<Question>> observers;
 
         //=====================================================================
-        //Comment- Constructor
+        //Constructor
         public Question() {
             if (observers == null) {
                 observers = new List<IObserver<Question>>();
@@ -33,7 +33,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Set Methods
+        //Set Methods
         public void SetText(String text) {
             questionText = text;
         }
@@ -65,7 +65,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Get Methods
+        //Get Methods
         public String GetText() {
             return questionText;
         }
@@ -97,19 +97,19 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Abstract Methods
+        //Abstract Methods
         public abstract override String ToString();
 
         public abstract bool CheckAnswer(String answer);
 
         //=====================================================================
-        //Comment-
+        
         public void AskQuestion() {
             observers[0].OnNext(this);
         }
 
         //=====================================================================
-        //Comment-
+        
         public IDisposable Subscribe(IObserver<Question> observer) {
             if (!Question.observers.Contains(observer)) {
                 observers.Add(observer);
@@ -118,7 +118,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- allows for the removal of an observer
+         //allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
             [NonSerialized]
@@ -138,7 +138,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public virtual void SetMultiChoiceList(String[] newList) {
             throw new NotImplementedException();
         }

@@ -23,25 +23,25 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Enter() {
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        
         public String GetFileName() {
             return "door_open.png";
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Passable() {
             return true;
         }
 
         //=====================================================================
-        //Comment-
+        
         public int FloorChange() {
             return 0;
         }
@@ -52,6 +52,7 @@ namespace TriviaMaze_CSCD350 {
             return true;
         }
 
+        //=====================================================================
 
         public bool IsWall() {
             return false;

@@ -17,7 +17,7 @@ namespace TriviaMaze_CSCD350 {
     public class QuestionTF : Question{
 
         //=====================================================================
-        //Comment- Constructor
+        //Constructor
         public QuestionTF() {
             SetChoiceArray(new String[4] { "TRUE", "FALSE", "", "" });
             SetText("DEFAULT: This is a true or false question.");
@@ -28,14 +28,14 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         public override String ToString() {
             String result = GetText() + "\n\tA. True\n\tB. False";
             return result;
         }
 
         //=====================================================================
-        //Comment-
+        
         public override bool CheckAnswer(String answer) {
             if ((answer.Equals("TRUE") && GetAnswer() == 1) || (answer.Equals("FALSE") && GetAnswer() == 2))
                 return true;

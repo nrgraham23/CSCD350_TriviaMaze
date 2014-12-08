@@ -39,7 +39,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Create the database object, open it, and count entries
+        //Create the database object, open it, and count entries
         private QuestionDatabase(string dbPath) {
             this.dbPath = dbPath;
             validConnection = OpenDatabase();
@@ -47,7 +47,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Create a new database connection, open it, and test the connection (returns bool type for success flag)
+        //Create a new database connection, open it, and test the connection (returns bool type for success flag)
         private bool OpenDatabase() {
             dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;");
             dbConnection.Open();
@@ -63,13 +63,13 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         public void CloseDatabase() {
             dbConnection.Close();
         }
 
         //=====================================================================
-        //Comment- 
+         
         public Question RandomQuestion() {
 
             if (!validConnection || !HasQuestions())
@@ -86,7 +86,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Grabs a question object from the database and returns it.
+        //Grabs a question object from the database and returns it.
         public Question GetQuestion(int index) {
 
             if (!HasQuestions() || !ValidIndex(index) || !validConnection || (index < 1 || index > dbEntries))
@@ -112,7 +112,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         public void AddQuestionToDatabase(Question q) {
 
             if (!validConnection)
@@ -130,7 +130,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         public void DeleteQuestionFromDatabase(int index) {
 
             if (!validConnection)
@@ -150,7 +150,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Sets existing question of ID index to contain values of Question object mod
+        //Sets existing question of ID index to contain values of Question object mod
         public void ModifyQuestionInDatabase(int index, Question mod) {
 
             if (!validConnection)
@@ -175,7 +175,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         private bool HasQuestions() {
             if (dbIgnore.Count == dbEntries) {
                 Console.WriteLine("No more questions!");
@@ -185,7 +185,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         private bool ValidIndex(int index) {
             if (dbIgnore.IndexOf(index) == -1)
                 return true;
@@ -193,7 +193,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         private int CountEntries() {
 
             if (!validConnection)
@@ -209,19 +209,19 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- 
+         
         public int GetEntries() {
             return dbEntries;
         }
 
         //=====================================================================
-        //Comment- 
+         
         private void UnignoreAll() {
             dbIgnore.Clear();
         }
 
         //=====================================================================
-        //Comment- 
+         
         private Question QuestionFromType(int type) {
             if (type == 1)
                 return new QuestionShort();
@@ -231,7 +231,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Prevent SQL inqection by scrubbing strings
+        //Prevent SQL inqection by scrubbing strings
         private String EscapeString(String input) {
             input = input.Replace("\"","''");
             return input;

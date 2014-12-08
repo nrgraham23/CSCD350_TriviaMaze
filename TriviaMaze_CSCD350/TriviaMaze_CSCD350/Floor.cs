@@ -23,7 +23,7 @@ namespace TriviaMaze_CSCD350 {
         Point exit;
 
         //=====================================================================
-        //Comment-
+        
         public Floor() {
             this.size = 5;
             this.floor = new Room[size, size];
@@ -31,7 +31,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment-
+        
         private void InitFloor() {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -41,7 +41,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Get methods
+        //Get methods
         public int GetSize() {
             return this.size;
         }
@@ -56,7 +56,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- Set methods
+        //Set methods
         public void SetEntry(Point entry) {
             this.entry = entry;
         }
