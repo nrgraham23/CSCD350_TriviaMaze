@@ -47,53 +47,9 @@ namespace TriviaMaze_CSCD350 {
         private void DrawMiniMap() {
             DrawOutline();
             DrawLines();
-            DrawVerticleDoors();
-            DrawHorizontalDoors();
+            //DrawVerticleDoors();
+            //DrawHorizontalDoors();
 
-        }
-
-        private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
-            for (int x = 0; x < 5; x++) {
-                for (int y = 0; y < 4; y++) {
-                    Point newPoint = new Point(x, y);
-                    Room aRoom = curFloor.GetRoom(newPoint);
-                    //if (aRoom.GetVisited()) {
-                        if (aRoom.GetEDoor().IsOpen() == true)
-                            DrawVerticleDoor(y, x, 2);
-                        else if (aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
-                            DrawVerticleDoor(y, x, 0);
-                        else if (aRoom.GetEDoor().IsOpen() == false)
-                            DrawVerticleDoor(y, x, 1);
-                        else if (aRoom.GetWDoor().IsOpen() == true)
-                            DrawVerticleDoor(y, x, 2);
-                        else if (aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
-                            DrawVerticleDoor(y, x, 0);
-                        else if (aRoom.GetWDoor().IsOpen() == false)
-                            DrawVerticleDoor(y, x, 1);
-                    //}
-                }
-            }
-
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 5; y++) {
-                    Point newPoint = new Point(x, y);
-                    Room aRoom = curFloor.GetRoom(newPoint);
-                    //if (aRoom.GetVisited()) {
-                    if (aRoom.GetSDoor().IsOpen() == true)
-                        DrawHorizontalDoor(y, x, 2);
-                    else if (aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
-                        DrawHorizontalDoor(y, x, 0);
-                    else if (aRoom.GetSDoor().IsOpen() == false)
-                        DrawHorizontalDoor(y, x, 1);
-                    else if (aRoom.GetNDoor().IsOpen() == true)
-                        DrawHorizontalDoor(y, x, 2);
-                    else if (aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
-                        DrawHorizontalDoor(y, x, 0);
-                    else if (aRoom.GetNDoor().IsOpen() == false)
-                        DrawHorizontalDoor(y, x, 1);  
-                    //}
-                }
-            }
         }
 
         //=====================================================================
@@ -308,6 +264,218 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.Children.Add(line);
         }
 
+        private void DrawDoors(Floor curFloor) { //0 is closed, 1 is red, 2 is green, 3 is brown
+            for (int row = 0; row < curFloor.GetSize(); row++) {
+                for (int col = 0; col < curFloor.GetSize(); col++) {
+                    Room curRoom = curFloor.GetRoom(new Point(row, col));
+
+                    if (curRoom.GetVisited()) {
+                        if (row > 0) {
+                            if (!curRoom.GetNDoor().IsWall()) {  //north
+                                if (curRoom.GetNDoor().Passable() && curRoom.GetNDoor().IsOpen() && curRoom.GetNDoor().FloorChange() == 0) {
+                                    DrawNorthDoor(row, col, 2);
+                                }
+                                if (curRoom.GetNDoor().FloorChange() != 0) {
+                                    DrawNorthDoor(row, col, 3);
+                                }
+                                if (!curRoom.GetNDoor().Passable()) {
+                                    DrawNorthDoor(row, col, 1);
+                                }
+                            }
+                        }
+                        if (!curRoom.GetSDoor().IsWall()) { //south
+                            if (row < curFloor.GetSize() - 1) {
+                                if (curRoom.GetSDoor().Passable() && curRoom.GetSDoor().IsOpen() && curRoom.GetSDoor().FloorChange() == 0) {
+                                    DrawSouthDoor(row, col, 2);
+                                }
+                                if (curRoom.GetSDoor().FloorChange() != 0) {
+                                    DrawSouthDoor(row, col, 3);
+                                }
+                                if (!curRoom.GetSDoor().Passable()) {
+                                    DrawSouthDoor(row, col, 1);
+                                }
+                            }
+                        }
+                        if (!curRoom.GetWDoor().IsWall()) { //west
+                            if (col > 0) {
+                                if (curRoom.GetWDoor().Passable() && curRoom.GetWDoor().IsOpen() && curRoom.GetWDoor().FloorChange() == 0) {
+                                    DrawWestDoor(row, col, 2);
+                                }
+                                if (curRoom.GetWDoor().FloorChange() != 0) {
+                                    DrawWestDoor(row, col, 3);
+                                }
+                                if (!curRoom.GetWDoor().Passable()) {
+                                    DrawWestDoor(row, col, 1);
+                                }
+                            }
+                        }
+                        if (!curRoom.GetEDoor().IsWall()) { //east
+                            if (col < curFloor.GetSize() - 1) {
+                                if (curRoom.GetEDoor().Passable() && curRoom.GetEDoor().IsOpen() && curRoom.GetEDoor().FloorChange() == 0) {
+                                    DrawEastDoor(row, col, 2);
+                                }
+                                if (curRoom.GetEDoor().FloorChange() != 0) {
+                                    DrawEastDoor(row, col, 3);
+                                }
+                                if (!curRoom.GetEDoor().Passable()) {
+                                    DrawEastDoor(row, col, 1);
+                                }
+                            }
+                        }
+                    } else {
+                        if (row > 0) {
+                            //DrawNorthDoor(row, col, 0);
+                        }
+                        if (row < curFloor.GetSize() - 1) {
+                           // DrawSouthDoor(row, col, 0);
+                        }
+                        if (col > 0) {
+                           // DrawWestDoor(row, col, 0);
+                        }
+                        if (col < curFloor.GetSize() - 1) {
+                           // DrawEastDoor(row, col, 0);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawEastDoor(int row, int col, int color) {
+            System.Windows.Shapes.Rectangle verticleDoor;
+
+            verticleDoor = new System.Windows.Shapes.Rectangle();
+            verticleDoor.Stroke = new SolidColorBrush(Colors.Black);
+            verticleDoor.Width = 5;
+            verticleDoor.Height = 10;
+            if (color == 0)
+                verticleDoor.Fill = new SolidColorBrush(Colors.White);
+            else if (color == 1) {
+                verticleDoor.Width = 10;
+                verticleDoor.Fill = new SolidColorBrush(Colors.Red);
+            } else if (color == 2) {
+                verticleDoor.Width = 10;
+                verticleDoor.Fill = new SolidColorBrush(Colors.Green);
+            } else if (color == 3)
+                verticleDoor.Fill = new SolidColorBrush(Colors.Brown);
+            Canvas.SetLeft(verticleDoor, 65 + (col * 50));
+            Canvas.SetTop(verticleDoor, 30 + (row * 50));
+            MapCanvas.Children.Add(verticleDoor);
+        }
+
+        private void DrawSouthDoor(int row, int col, int color) {
+            System.Windows.Shapes.Rectangle horizontalDoor;
+            
+            horizontalDoor = new System.Windows.Shapes.Rectangle();
+            horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
+            horizontalDoor.Width = 10;
+            horizontalDoor.Height = 5;
+            if (color == 0)
+                horizontalDoor.Fill = new SolidColorBrush(Colors.White);
+            else if (color == 1) {
+                horizontalDoor.Height = 10;
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Red);
+            } else if (color == 2) {
+                horizontalDoor.Height = 10;
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Green);
+            } else if (color == 3)
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Brown);
+            Canvas.SetLeft(horizontalDoor, 40 + (col * 50));
+            Canvas.SetTop(horizontalDoor, 55 + (row * 50));
+            MapCanvas.Children.Add(horizontalDoor);
+        }
+
+        private void DrawWestDoor(int row, int col, int color) {
+            System.Windows.Shapes.Rectangle verticleDoor;
+            int leftVar = 20;
+            verticleDoor = new System.Windows.Shapes.Rectangle();
+            verticleDoor.Stroke = new SolidColorBrush(Colors.Black);
+            verticleDoor.Width = 5;
+            verticleDoor.Height = 10;
+            if (color == 0)
+                verticleDoor.Fill = new SolidColorBrush(Colors.White);
+            else if (color == 1) {
+                leftVar = leftVar - 5;
+                verticleDoor.Width = 10;
+                verticleDoor.Fill = new SolidColorBrush(Colors.Red);
+            } else if (color == 2) {
+                leftVar = leftVar - 5;
+                verticleDoor.Width = 10;
+                verticleDoor.Fill = new SolidColorBrush(Colors.Green);
+            } else if (color == 3)
+                verticleDoor.Fill = new SolidColorBrush(Colors.Brown);
+            Canvas.SetLeft(verticleDoor, leftVar + (col * 50));
+            Canvas.SetTop(verticleDoor, 30 + (row * 50));
+            MapCanvas.Children.Add(verticleDoor);
+        }
+
+        private void DrawNorthDoor(int row, int col, int color) {
+            System.Windows.Shapes.Rectangle horizontalDoor;
+            int topVar = 10;
+            horizontalDoor = new System.Windows.Shapes.Rectangle();
+            horizontalDoor.Stroke = new SolidColorBrush(Colors.Black);
+            horizontalDoor.Width = 10;
+            horizontalDoor.Height = 5;
+            if (color == 0)
+                horizontalDoor.Fill = new SolidColorBrush(Colors.White);
+            else if (color == 1) {
+                horizontalDoor.Height = 10;
+                topVar = topVar - 5;
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Red);
+            } else if (color == 2) {
+                horizontalDoor.Height = 10;
+                topVar = topVar - 5;
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Green);
+            } else if (color == 3) 
+                horizontalDoor.Fill = new SolidColorBrush(Colors.Brown);
+            Canvas.SetLeft(horizontalDoor, 40 + (col * 50));
+            Canvas.SetTop(horizontalDoor, topVar + (row * 50));
+            MapCanvas.Children.Add(horizontalDoor);
+        }
+
+        private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
+            for (int x = 0; x < 5; x++) {
+                for (int y = 0; y < 4; y++) {
+                    Point newPoint = new Point(x, y);
+                    Room aRoom = curFloor.GetRoom(newPoint);
+                    if (aRoom.GetVisited()) {
+                    if (aRoom.GetEDoor().IsOpen() == true)
+                        DrawVerticleDoor(y, x, 2);
+                    else if (aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
+                        DrawVerticleDoor(y, x, 0);
+                    else if (aRoom.GetEDoor().IsOpen() == false)
+                        DrawVerticleDoor(y, x, 1);
+                    else if (aRoom.GetWDoor().IsOpen() == true)
+                        DrawVerticleDoor(y, x, 2);
+                    else if (aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
+                        DrawVerticleDoor(y, x, 0);
+                    else if (aRoom.GetWDoor().IsOpen() == false)
+                        DrawVerticleDoor(y, x, 1);
+                    }
+                }
+            }
+
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 5; y++) {
+                    Point newPoint = new Point(x, y);
+                    Room aRoom = curFloor.GetRoom(newPoint);
+                    if (aRoom.GetVisited()) {
+                    if (aRoom.GetSDoor().IsOpen() == true)
+                        DrawHorizontalDoor(y, x, 2);
+                    else if (aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
+                        DrawHorizontalDoor(y, x, 0);
+                    else if (aRoom.GetSDoor().IsOpen() == false)
+                        DrawHorizontalDoor(y, x, 1);
+                    else if (aRoom.GetNDoor().IsOpen() == true)
+                        DrawHorizontalDoor(y, x, 2);
+                    else if (aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
+                        DrawHorizontalDoor(y, x, 0);
+                    else if (aRoom.GetNDoor().IsOpen() == false)
+                        DrawHorizontalDoor(y, x, 1);
+                    }
+                }
+            }
+        }
+
         //=====================================================================
 
         private void DrawVerticleDoors() {
@@ -367,20 +535,6 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetTop(horizontalDoor, 55 + (y * 50));
             MapCanvas.Children.Add(horizontalDoor);
         }
-
-        //=====================================================================
-
-        /*private void DrawExit(int row) {
-            System.Windows.Shapes.Rectangle exit;
-            exit = new System.Windows.Shapes.Rectangle();
-            exit.Stroke = new SolidColorBrush(Colors.Black);
-            exit.Width = 15;
-            exit.Height = 15;
-            exit.Fill = new SolidColorBrush(Colors.Chocolate);
-            Canvas.SetLeft(exit, 55 + (4 * 50));
-            Canvas.SetTop(exit, 25 + (row * 50));
-            MapCanvas.Children.Add(exit);
-        }*/
 
         //=====================================================================
 
@@ -464,19 +618,6 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void addQuestionGameMenuItemClick(object sender, RoutedEventArgs e) {
-            //MessageBox.Show("Add Question Game");
-            //
-            //
-            //
-            //
-            //
-            //
-
-        }
-
-        //=====================================================================
-
         private void viewQuestionsGameMenuItemClick(object sender, RoutedEventArgs e) {
             ViewQuestionWindow newWindwo = new ViewQuestionWindow();
             newWindwo.Show();
@@ -506,7 +647,11 @@ namespace TriviaMaze_CSCD350 {
             int floor = value.GetCurFloor();
 
             MarkCurrentFloor(floor);
-            FindOpenedClosedDoors(curFloor);
+            //FindOpenedClosedDoors(curFloor);
+            if (this.gameCore.GetFloorChanged()) {
+                DrawMiniMap();
+            }
+            DrawDoors(curFloor);
 
             if (curRoom.GetEnteredFrom() == 'n') {
                 NorthEntry(curRoom); ;
@@ -814,7 +959,7 @@ namespace TriviaMaze_CSCD350 {
             } else if (this.currentQuestion.GetQType() == 2) { //True/False
                 if (A_TrueRadioButton.IsChecked.HasValue && A_TrueRadioButton.IsChecked.Value) {
                     currentAnswer = "TRUE";
-                } else {
+                } else if(B_FalseRadioButton.IsChecked.HasValue && B_FalseRadioButton.IsChecked.Value) {
                     currentAnswer = "FALSE";
                 }
             }
@@ -847,6 +992,7 @@ namespace TriviaMaze_CSCD350 {
             } else {
                 AnswerWrong();
             }
+            DrawDoors(this.gameCore.GetMazeFloor(this.gameCore.GetMaze().GetCurFloor()));
         }
 
         //=====================================================================
@@ -942,23 +1088,43 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
-            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(0));
+            //FindOpenedClosedDoors(this.gameCore.GetMazeFloor(0));
+            DrawMiniMap();
+            DrawDoors(this.gameCore.GetMazeFloor(0));
+            if (this.gameCore.GetMaze().GetCurFloor() == 0)
+                DrawTriangle(gameCore.GetMaze().GetCurPoint().GetCol(), gameCore.GetMaze().GetCurPoint().GetRow(), gameCore.GetMaze().GetCurRoom().GetEnteredFrom());
         }
 
         private void Floor2Button_Click(object sender, RoutedEventArgs e) {
-            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(1));
+            //FindOpenedClosedDoors(this.gameCore.GetMazeFloor(1));
+            DrawMiniMap();
+            DrawDoors(this.gameCore.GetMazeFloor(1));
+            if (this.gameCore.GetMaze().GetCurFloor() == 1)
+                DrawTriangle(gameCore.GetMaze().GetCurPoint().GetCol(), gameCore.GetMaze().GetCurPoint().GetRow(), gameCore.GetMaze().GetCurRoom().GetEnteredFrom());
         }
 
         private void Floor3Button_Click(object sender, RoutedEventArgs e) {
-            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(2));
+            //FindOpenedClosedDoors(this.gameCore.GetMazeFloor(2));
+            DrawMiniMap();
+            DrawDoors(this.gameCore.GetMazeFloor(2));
+            if (this.gameCore.GetMaze().GetCurFloor() == 2)
+                DrawTriangle(gameCore.GetMaze().GetCurPoint().GetCol(), gameCore.GetMaze().GetCurPoint().GetRow(), gameCore.GetMaze().GetCurRoom().GetEnteredFrom());
         }
 
         private void Floor4Button_Click(object sender, RoutedEventArgs e) {
-            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(3));
+            //FindOpenedClosedDoors(this.gameCore.GetMazeFloor(3));
+            DrawMiniMap();
+            DrawDoors(this.gameCore.GetMazeFloor(3));
+            if (this.gameCore.GetMaze().GetCurFloor() == 3)
+                DrawTriangle(gameCore.GetMaze().GetCurPoint().GetCol(), gameCore.GetMaze().GetCurPoint().GetRow(), gameCore.GetMaze().GetCurRoom().GetEnteredFrom());
         }
 
         private void Floor5Button_Click(object sender, RoutedEventArgs e) {
-            FindOpenedClosedDoors(this.gameCore.GetMazeFloor(4));
+            //FindOpenedClosedDoors(this.gameCore.GetMazeFloor(4));
+            DrawMiniMap();
+            DrawDoors(this.gameCore.GetMazeFloor(4));
+            if (this.gameCore.GetMaze().GetCurFloor() == 4)
+                DrawTriangle(gameCore.GetMaze().GetCurPoint().GetCol(), gameCore.GetMaze().GetCurPoint().GetRow(), gameCore.GetMaze().GetCurRoom().GetEnteredFrom());
         }
 
         //=====================================================================

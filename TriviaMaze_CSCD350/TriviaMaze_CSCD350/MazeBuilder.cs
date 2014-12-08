@@ -193,6 +193,7 @@ namespace TriviaMaze_CSCD350 {
 
             this.maze.SetCurRoom(this.maze.GetFloor(0).GetRoom(startRoom));
             this.maze.GetCurRoom().SetEnteredFrom('w');
+            this.maze.GetCurRoom().SetVisited(true);
             this.maze.SetCurPoint(startRoom);
             this.maze.GetFloor(0).SetEntry(startRoom);
         }

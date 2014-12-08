@@ -19,5 +19,6 @@ namespace TriviaMaze_CSCD350 {
         bool Passable(); //returns true if the door is not locked or a wall
         int FloorChange(); //returns an int to be added to the current floor number variable in maze
         bool IsOpen(); //used by the mini map to tell whether a door is open.  Stair cases count as open
+        bool IsWall(); //used by mini map to tell whether the door is a NullDoor and actually a wall
     }
 }

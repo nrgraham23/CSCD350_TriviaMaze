@@ -17,30 +17,25 @@ namespace TriviaMaze_CSCD350 {
     public class NullDoor : IDoor {
 
         //=====================================================================
-        //Comment- Constructor
-        public NullDoor() {
-        }
-
-        //=====================================================================
-        //Comment-
+        
         public bool Enter() {
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public String GetFileName() {
             return "door_wall.png";
         }
 
         //=====================================================================
-        //Comment-
+        
         public bool Passable() {
             return false;
         }
 
         //=====================================================================
-        //Comment-
+        
         public int FloorChange() {
             return 0;
         }
@@ -49,6 +44,11 @@ namespace TriviaMaze_CSCD350 {
 
         public bool IsOpen() {
             return false;
+        }
+
+
+        public bool IsWall() {
+            return true;
         }
     }
 }

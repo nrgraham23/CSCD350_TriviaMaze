@@ -24,6 +24,7 @@ namespace TriviaMaze_CSCD350 {
         private int curFloorNum;
         private Wall clickedWall;
         private int numFloors;
+        private bool floorChange;
 
         [NonSerialized]
         private List<IObserver<Maze>> observers;
@@ -35,6 +36,7 @@ namespace TriviaMaze_CSCD350 {
             this.numFloors = 5;
             this.curFloorNum = 0;
             InitFloors();
+            this.floorChange = false;
         }
 
         //=====================================================================
@@ -137,10 +139,14 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveNorth() {
             if (curRoom.GetNDoor().Enter()) {
-                this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
+                if (curRoom.GetNDoor().FloorChange() != 0) {
+                    this.curFloorNum = curFloorNum + curRoom.GetNDoor().FloorChange();
+                    this.floorChange = true;
+                }
                 this.curPoint.SetRow(this.curPoint.GetRow() - 1);
                 this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('s');
+                this.curRoom.SetVisited(true);
                 observers[0].OnNext(this);
                 return true;
             }
@@ -154,10 +160,14 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveEast() {
             if (curRoom.GetEDoor().Enter()) {
-                this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
+                if (curRoom.GetEDoor().FloorChange() != 0) {
+                    this.curFloorNum = curFloorNum + curRoom.GetEDoor().FloorChange();
+                    this.floorChange = true;
+                }
                 this.curPoint.SetCol(this.curPoint.GetCol() + 1);
                 this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('w');
+                this.curRoom.SetVisited(true);
                 observers[0].OnNext(this);
                 return true;
             }
@@ -171,10 +181,14 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveSouth() {
             if (curRoom.GetSDoor().Enter()) {
-                this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
+                if (curRoom.GetSDoor().FloorChange() != 0) {
+                    this.curFloorNum = curFloorNum + curRoom.GetSDoor().FloorChange();
+                    this.floorChange = true;
+                }
                 this.curPoint.SetRow(this.curPoint.GetRow() + 1);
                 this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('n');
+                this.curRoom.SetVisited(true);
                 observers[0].OnNext(this);
                 return true;
             }
@@ -188,10 +202,14 @@ namespace TriviaMaze_CSCD350 {
 
         public bool MoveWest() {
             if (curRoom.GetWDoor().Enter()) {
-                this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
+                if (curRoom.GetWDoor().FloorChange() != 0) {
+                    this.curFloorNum = curFloorNum + curRoom.GetWDoor().FloorChange();
+                    this.floorChange = true;
+                }
                 this.curPoint.SetCol(this.curPoint.GetCol() - 1);
                 this.curRoom = this.mazeFloors[this.curFloorNum].GetRoom(curPoint);
                 this.curRoom.SetEnteredFrom('e');
+                this.curRoom.SetVisited(true);
                 observers[0].OnNext(this);
                 return true;
             }
@@ -238,7 +256,7 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
-        //Comment- allows for the removal of an observer
+        //allows for the removal of an observer
         //taken directly from: http://msdn.microsoft.com/en-us/library/dd990377%28v=vs.110%29.aspx
         private class Unsubscriber : IDisposable {
             [NonSerialized]
@@ -255,6 +273,16 @@ namespace TriviaMaze_CSCD350 {
                 if (_observer != null && _observers.Contains(_observer))
                     _observers.Remove(_observer);
             }
+        }
+
+        //=====================================================================
+
+        public bool GetFloorChange() {
+            if (this.floorChange) {
+                this.floorChange = false;
+                return true;
+            }
+            return false;
         }
     }
 }
