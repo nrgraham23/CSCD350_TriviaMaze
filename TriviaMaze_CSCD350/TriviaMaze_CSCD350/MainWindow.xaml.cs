@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Twenty Hats
+ * Nathan Graham, Kyle Johnson, Daniel Moore, Eric Laib
+ * CSCD 350
+ * 
+ * MainWindow -> This is the GUI side of our program, It interacts with the UI and gets its information from
+ * GameCore.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +39,8 @@ namespace TriviaMaze_CSCD350 {
         private Question currentQuestion;
         private bool askingQuestion;
         private static bool flagEndGame = false;
+
+        //=====================================================================
 
         public MainWindow() {
             this.askingQuestion = false;
@@ -66,6 +76,8 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetTop(line, 15 + (y * 50));
             MapCanvas.Children.Add(line);
         }
+
+        //=====================================================================
 
         private void MoveTriangle(int row, int col, char enteredFrom) {
 
@@ -264,6 +276,8 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.Children.Add(line);
         }
 
+        //=====================================================================
+
         private void DrawDoors(Floor curFloor) { //0 is closed, 1 is red, 2 is green, 3 is brown
             for (int row = 0; row < curFloor.GetSize(); row++) {
                 for (int col = 0; col < curFloor.GetSize(); col++) {
@@ -340,6 +354,8 @@ namespace TriviaMaze_CSCD350 {
             }
         }
 
+        //=====================================================================
+
         private void DrawEastDoor(int row, int col, int color) {
             System.Windows.Shapes.Rectangle verticleDoor;
 
@@ -362,6 +378,8 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.Children.Add(verticleDoor);
         }
 
+        //=====================================================================
+
         private void DrawSouthDoor(int row, int col, int color) {
             System.Windows.Shapes.Rectangle horizontalDoor;
             
@@ -383,6 +401,8 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetTop(horizontalDoor, 55 + (row * 50));
             MapCanvas.Children.Add(horizontalDoor);
         }
+
+        //=====================================================================
 
         private void DrawWestDoor(int row, int col, int color) {
             System.Windows.Shapes.Rectangle verticleDoor;
@@ -408,6 +428,8 @@ namespace TriviaMaze_CSCD350 {
             MapCanvas.Children.Add(verticleDoor);
         }
 
+        //=====================================================================
+
         private void DrawNorthDoor(int row, int col, int color) {
             System.Windows.Shapes.Rectangle horizontalDoor;
             int topVar = 10;
@@ -431,6 +453,8 @@ namespace TriviaMaze_CSCD350 {
             Canvas.SetTop(horizontalDoor, topVar + (row * 50));
             MapCanvas.Children.Add(horizontalDoor);
         }
+
+        //=====================================================================
 
         private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
             for (int x = 0; x < 5; x++) {
@@ -1142,6 +1166,8 @@ namespace TriviaMaze_CSCD350 {
             flagEndGame = true;
         }
 
+        //=====================================================================
+
         public bool GameEnds() {
             if (flagEndGame) {
                 CDoorCanvas.IsEnabled = false;
@@ -1154,6 +1180,8 @@ namespace TriviaMaze_CSCD350 {
                 return false;
             }
         }
+
+        //=====================================================================
 
         private void PlayButton_Click(object sender, RoutedEventArgs e) {
             
