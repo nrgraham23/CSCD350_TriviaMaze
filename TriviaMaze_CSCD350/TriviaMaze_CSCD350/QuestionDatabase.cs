@@ -181,7 +181,7 @@ namespace TriviaMaze_CSCD350 {
          
         private bool HasQuestions() {
             if (dbIgnore.Count == dbEntries) {
-                Console.WriteLine("No more questions!");
+                //Console.WriteLine("No more questions!");
                 return false;
             }
             return true;

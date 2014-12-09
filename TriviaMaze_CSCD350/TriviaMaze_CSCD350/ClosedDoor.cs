@@ -24,6 +24,12 @@ namespace TriviaMaze_CSCD350 {
         }
 
         //=====================================================================
+
+        public ClosedDoor(Question q) {
+            this.question = q;
+        }
+
+        //=====================================================================
         
         public bool Enter() {
             this.question.AskQuestion();

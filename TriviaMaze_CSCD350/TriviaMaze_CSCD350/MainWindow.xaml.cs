@@ -337,20 +337,7 @@ namespace TriviaMaze_CSCD350 {
                                 }
                             }
                         }
-                    } else {
-                        if (row > 0) {
-                            //DrawNorthDoor(row, col, 0);
-                        }
-                        if (row < curFloor.GetSize() - 1) {
-                           // DrawSouthDoor(row, col, 0);
-                        }
-                        if (col > 0) {
-                           // DrawWestDoor(row, col, 0);
-                        }
-                        if (col < curFloor.GetSize() - 1) {
-                           // DrawEastDoor(row, col, 0);
-                        }
-                    }
+                    } 
                 }
             }
         }
@@ -941,6 +928,9 @@ namespace TriviaMaze_CSCD350 {
                 this.askingQuestion = false;
                 ResetQuestion();
             }
+            if (e.Key == Key.K) {
+                TestAllDoorTypes();
+            }
         }
 
         //=====================================================================
@@ -1209,6 +1199,12 @@ namespace TriviaMaze_CSCD350 {
                     MessageBox.Show("The file was not found, please check your database entry and the Sound folder.");
                 }
             }
+        }
+
+        //=====================================================================
+        //for testing and presentation purposes
+        private void TestAllDoorTypes() {
+            this.gameCore.SetUpTest();
         }
     }
 }

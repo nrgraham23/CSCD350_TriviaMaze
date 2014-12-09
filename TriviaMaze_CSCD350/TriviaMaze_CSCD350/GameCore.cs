@@ -211,5 +211,11 @@ namespace TriviaMaze_CSCD350 {
         public bool GetFloorChanged() {
             return this.maze.GetFloorChange();
         }
+
+        //=====================================================================
+
+        public void SetUpTest() {
+            this.maze.MakeEachDoor();
+        }
     }
 }

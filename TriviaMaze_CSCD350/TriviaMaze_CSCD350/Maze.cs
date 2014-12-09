@@ -284,5 +284,15 @@ namespace TriviaMaze_CSCD350 {
             }
             return false;
         }
+
+        //=====================================================================
+
+        public void MakeEachDoor() {
+            QuestionDatabase db = QuestionDatabase.GetInstance();
+            Question q = db.GetQuestion(134);
+            this.GetFloor(0).GetRoom(new Point(0, 0)).SetEDoor(new ClosedDoor(q));
+            q = db.GetQuestion(115);
+            this.GetFloor(0).GetRoom(new Point(0, 1)).SetEDoor(new ClosedDoor(q));
+        }
     }
 }
