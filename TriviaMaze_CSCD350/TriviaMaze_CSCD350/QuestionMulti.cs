@@ -30,7 +30,7 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
         
         public override String ToString() {
-            String result = GetText() + "\n\tA. " + GetChoice(1) + "\n\tB. " + GetChoice(2) + "\n\tC. " + GetChoice(3) + "\n\tD. " + GetChoice(4);
+            String result = GetText() + "\n\nA. " + GetChoice(1) + "\nB. " + GetChoice(2) + "\nC. " + GetChoice(3) + "\nD. " + GetChoice(4);
             return result;
         }
 
