@@ -50,6 +50,7 @@ namespace TriviaMaze_CSCD350 {
             this.subscribeQuestion.Subscribe(this);
             ResetQuestion();
             this.saveGameMenuItem.IsEnabled = false;
+            this.loadGameMenuItem.IsEnabled = true;
         }
 
         //=====================================================================
@@ -608,6 +609,9 @@ namespace TriviaMaze_CSCD350 {
         //=====================================================================
 
         public void LoadGameInput(String fileName) {
+            if (this.gameCore == null) {
+                this.gameCore = new GameCore(this, 1);
+            }
             if (!this.gameCore.LoadGame(fileName)) {
                 MessageBox.Show("The file you specified does not exist!");
             }
@@ -1175,6 +1179,7 @@ namespace TriviaMaze_CSCD350 {
                 RDoorCanvas.IsEnabled = false;
                 LDoorCanvas.IsEnabled = false;
                 BDoorCanvas.IsEnabled = false;
+                saveGameMenuItem.IsEnabled = false;
                 return true;
             }
             else {
@@ -1198,7 +1203,11 @@ namespace TriviaMaze_CSCD350 {
 
 
                 SoundPlayer waveFile = new SoundPlayer(qFilePath);
-                waveFile.PlaySync();
+                try {
+                    waveFile.PlaySync();
+                } catch (System.IO.FileNotFoundException) {
+                    MessageBox.Show("The file was not found, please check your database entry and the Sound folder.");
+                }
             }
         }
     }
