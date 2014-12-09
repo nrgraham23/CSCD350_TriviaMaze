@@ -803,8 +803,6 @@ namespace TriviaMaze_CSCD350 {
             tempQuestion.SetAuxFile("kirbydance.wav");
             tempQuestion.SetAuxiliary(3);
 
-
-
             this.currentQuestion = tempQuestion;
             //*/
 
