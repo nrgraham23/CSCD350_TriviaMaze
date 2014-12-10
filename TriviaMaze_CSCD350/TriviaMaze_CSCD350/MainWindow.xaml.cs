@@ -60,7 +60,6 @@ namespace TriviaMaze_CSCD350 {
             DrawLines();
             //DrawVerticleDoors();
             //DrawHorizontalDoors();
-
         }
 
         //=====================================================================
@@ -444,52 +443,6 @@ namespace TriviaMaze_CSCD350 {
 
         //=====================================================================
 
-        private void FindOpenedClosedDoors(Floor curFloor) {  //0 is unknown, 1 is red, 2 is green
-            for (int x = 0; x < 5; x++) {
-                for (int y = 0; y < 4; y++) {
-                    Point newPoint = new Point(x, y);
-                    Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetVisited()) {
-                    if (aRoom.GetEDoor().IsOpen() == true)
-                        DrawVerticleDoor(y, x, 2);
-                    else if (aRoom.GetEDoor().IsOpen() == false && aRoom.GetEDoor().Passable() == true)
-                        DrawVerticleDoor(y, x, 0);
-                    else if (aRoom.GetEDoor().IsOpen() == false)
-                        DrawVerticleDoor(y, x, 1);
-                    else if (aRoom.GetWDoor().IsOpen() == true)
-                        DrawVerticleDoor(y, x, 2);
-                    else if (aRoom.GetWDoor().IsOpen() == false && aRoom.GetWDoor().Passable() == true)
-                        DrawVerticleDoor(y, x, 0);
-                    else if (aRoom.GetWDoor().IsOpen() == false)
-                        DrawVerticleDoor(y, x, 1);
-                    }
-                }
-            }
-
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 5; y++) {
-                    Point newPoint = new Point(x, y);
-                    Room aRoom = curFloor.GetRoom(newPoint);
-                    if (aRoom.GetVisited()) {
-                    if (aRoom.GetSDoor().IsOpen() == true)
-                        DrawHorizontalDoor(y, x, 2);
-                    else if (aRoom.GetSDoor().IsOpen() == false && aRoom.GetSDoor().Passable() == true)
-                        DrawHorizontalDoor(y, x, 0);
-                    else if (aRoom.GetSDoor().IsOpen() == false)
-                        DrawHorizontalDoor(y, x, 1);
-                    else if (aRoom.GetNDoor().IsOpen() == true)
-                        DrawHorizontalDoor(y, x, 2);
-                    else if (aRoom.GetNDoor().IsOpen() == false && aRoom.GetNDoor().Passable() == true)
-                        DrawHorizontalDoor(y, x, 0);
-                    else if (aRoom.GetNDoor().IsOpen() == false)
-                        DrawHorizontalDoor(y, x, 1);
-                    }
-                }
-            }
-        }
-
-        //=====================================================================
-
         private void DrawVerticleDoors() {
             for (int x = 0; x < 4; x++) {
                 for (int y = 0; y < 5; y++) {
@@ -794,8 +747,6 @@ namespace TriviaMaze_CSCD350 {
             this.currentQuestion = value;
             this.askingQuestion = true;
 
-            
-
             /*Test Block
             QuestionMulti tempQuestion = new QuestionMulti();
 
@@ -1044,65 +995,6 @@ namespace TriviaMaze_CSCD350 {
             ResetQuestion();
         }
 
-        /*private void QuestionAnswered(int row, int col, char from, int incorrect) {
-            if (from == 'n') {
-                if (this.gameCore.getClickDirection().Equals("center")) {
-                    DrawHorizontalDoor(col, row - 1, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("back")) {
-                    DrawHorizontalDoor(col, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("left")) {
-                    DrawVerticleDoor(col - 1, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("right")) {
-                    DrawVerticleDoor(col, row, incorrect);
-                }
-            }
-            if (from == 'e') {
-                if (this.gameCore.getClickDirection().Equals("center")){
-                    DrawVerticleDoor(col - 1, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("back")){
-                    DrawVerticleDoor(col, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("left")) {
-                    DrawHorizontalDoor(col, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("right")) {
-                    DrawHorizontalDoor(col, row - 1, incorrect);
-                }
-            }
-            if (from == 's') {
-                if (this.gameCore.getClickDirection().Equals("center")) {
-                    DrawHorizontalDoor(col, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("back")) {
-                    DrawHorizontalDoor(col, row - 1, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("left")) {
-                    DrawVerticleDoor(col - 1, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("right")) {
-                    DrawVerticleDoor(col, row, incorrect);
-                }
-            }
-            if (from == 'w') {
-                if (this.gameCore.getClickDirection().Equals("center")){
-                    DrawVerticleDoor(col, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("back")){
-                    DrawVerticleDoor(col - 1, row, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("left")){
-                    DrawHorizontalDoor(col, row - 1, incorrect);
-                }
-                else if (this.gameCore.getClickDirection().Equals("right")){
-                    DrawHorizontalDoor(col, row, incorrect);
-                }
-            }
-            
-        }*/
         //=====================================================================
 
         private void Floor1Button_Click(object sender, RoutedEventArgs e) {
