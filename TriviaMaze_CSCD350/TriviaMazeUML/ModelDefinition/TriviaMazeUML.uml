@@ -3,12 +3,6 @@
   dslVersion="1.0.0.0"
   Id="dbfc4926-fc9b-44cd-8914-ac78cdddaec0"
   name="TriviaMazeUML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
-  <ownedCommentsInternal>
-    <comment
-      Id="bf53f989-1ef2-4fc5-a3ac-a2f0213fe067">
-      <body>Comment</body>
-    </comment>
-  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
