@@ -867,7 +867,7 @@ namespace TriviaMaze_CSCD350 {
                 }
             } else if (e.Key == Key.Up || e.Key == Key.Down || e.Key == Key.Right || e.Key == Key.Left) {
                 MessageBox.Show("You must answer the question before proceeding!");
-            } else if (e.Key == Key.P) {
+            } else if (e.Key == Key.F1) {
                 char from = this.gameCore.GetMaze().GetCurRoom().GetEnteredFrom();
                 int col = this.gameCore.GetMaze().GetCurPoint().GetCol();
                 int row = this.gameCore.GetMaze().GetCurPoint().GetRow();
@@ -877,7 +877,7 @@ namespace TriviaMaze_CSCD350 {
                 this.askingQuestion = false;
                 ResetQuestion();
             }
-            if (e.Key == Key.K) {
+            if (e.Key == Key.F2) {
                 TestAllDoorTypes();
             }
         }
